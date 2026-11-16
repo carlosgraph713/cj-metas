@@ -10,6 +10,7 @@ Fuente: https://bhdfondos.com.do  (informes diarios publicos de cada fondo).
 """
 import io, json, os, re, sys, time, datetime, unicodedata
 import requests
+from urllib.parse import urljoin
 import pdfplumber
 
 BASE = "https://bhdfondos.com.do/"
@@ -135,6 +136,7 @@ def main():
         try:
             html = get(url)
             pdf = pdf_diario(html)
+            pdf = urljoin(url, pdf) if pdf else None
             if not pdf:
                 print("-", fid, ": sin informe diario (se omite)")
                 continue  # p. ej. fondos cerrados sin informe diario
@@ -149,7 +151,7 @@ def main():
             if not all(-50 < v < 100 for v in rent.values()):
                 raise RuntimeError("valores fuera de rango %s" % rent)
             nombre = titulo(html) or base.get("nombre") or fid
-            base.update(nombre=nombre, moneda=moneda(nombre, texto), url_pdf=pdf, fecha_corte=fecha,
+            base.update(nombre=nombre, tipo=("cerrado" if "cerrado" in fid else "abierto"), moneda=moneda(nombre, texto), url_pdf=pdf, fecha_corte=fecha,
                         valor_cuota=parse_cuota(texto), r30=rent[30], r90=rent[90], r180=rent[180],
                         r365=rent[365], leido=ahora, ok=True, error=None)
             print("OK", fid, fecha, rent)
@@ -167,13 +169,13 @@ def main():
         if fid not in vistos and "r365" in f:
             f.update(ok=False, error="no encontrado hoy")
             fondos.append(f)
-    if not fondos:
-        print("Sin datos: no se modifica", OUT)
-        sys.exit(1 if not previo else 0)
+    if not fondos and previo:
+        print("Sin datos nuevos: no se modifica", OUT)
+        sys.exit(0)
     fondos.sort(key=lambda f: f.get("nombre", f["id"]))
     data = {"actualizado": ahora, "fuente": "BHD Fondos — Información Diaria de cada fondo",
             "fuente_url": BASE, "nota": "Rentabilidades anualizadas publicadas por la administradora.",
-            "fondos": fondos}
+            "errores": errores, "fondos": fondos}
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("Escrito", OUT, "con", len(fondos), "fondos;", len(errores), "con error")
 

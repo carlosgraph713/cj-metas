@@ -102,8 +102,11 @@ def parse_rent(texto):
     return out
 
 def parse_cuota(texto):
+    """Valor de la cuota del dia: el primer importe con 6 decimales del informe."""
     t = norm(texto)
-    m = re.search(r'valor\s+(?:de\s+la\s+)?cuota[^\d]{0,60}([\d,]+\.\d{2,})', t)
+    m = re.search(r'(?:rd\$|us\$)\s*([\d,]+\.\d{6})\b', t)
+    if not m:
+        m = re.search(r'valor\s+(?:de\s+la\s+)?cuota[^\d]{0,60}([\d,]+\.\d{2,})', t)
     return num(m.group(1)) if m else None
 
 def moneda(nombre, texto):

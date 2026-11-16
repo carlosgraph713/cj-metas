@@ -1,7 +1,7 @@
-/* AFI PRO CJ — service worker (v5.12)
+/* AFI PRO CJ — service worker (v5.13)
    Guarda la app en el dispositivo para que abra sin internet.
    NO toca tus datos: esos viven en el almacenamiento del navegador (localStorage). */
-const CACHE = 'afi-pro-cj-v5.12';
+const CACHE = 'afi-pro-cj-v5.13';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 // Recursos externos que la app usa: tipografías y la librería de exportar a Excel
 const EXTERNAL = [
@@ -35,6 +35,8 @@ self.addEventListener('fetch', e => {
   // Solo tipografías y la librería de Excel. Las llamadas a Google Drive e inicio de sesión NUNCA se guardan en caché.
   const isExternalAsset = ['fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net'].includes(url.hostname);
   if (!sameOrigin && !isExternalAsset) return;
+  // Los datos de fondos (fondos.json) siempre van directo a internet: nunca se sirven desde la copia guardada
+  if (sameOrigin && /fondos\.json$/.test(url.pathname)) return;
 
   // La página: primero internet (para recibir versiones nuevas); sin conexión, la copia guardada
   if (req.mode === 'navigate' || (sameOrigin && /\/(index\.html)?$/.test(url.pathname))) {

@@ -141,19 +141,39 @@ def uni_ficha(html):
             best, bd = href, d
     return best
 
+PAR_PCT = re.compile(r'^\s*(-?\d{1,3}\.\d{1,4})\s*%\s+(-?\d{1,3}\.\d{1,4})\s*%\s*$')
+
 def parse_rent_uni(texto):
-    """Ficha de Universal: bloque 'Rentabilidad efectiva anual' con 30/90/180/365 dias."""
-    r = parse_rent(texto)
-    if len(r) == 4:
-        return r
-    t = norm(texto)
-    i = t.find("rentabilidad efectiva")
-    if i < 0:
-        return r
-    ps = re.findall(r'(-?\d{1,3}\.\d{1,4})\s*%', t[i:i + 700])
-    if len(ps) >= 4:
-        return {30: float(ps[0]), 90: float(ps[1]), 180: float(ps[2]), 365: float(ps[3])}
-    return r
+    """Ficha de Universal. En el texto, cada par de valores va justo ANTES de sus etiquetas:
+         7.64% 7.64%
+         VALOR CUOTA ... RENTABILIDAD 30 dias 90 dias
+         DIA ANTERIOR EFECTIVA ANUAL
+         7.55% 7.39%
+         NUMERO DE CUOTAS ... 180 dias 365 dias
+    Se lee solo el bloque de RENTABILIDAD (no el de volatilidad ni el eje del grafico)."""
+    ls = [norm(l) for l in texto.splitlines()]
+    i = next((k for k, l in enumerate(ls) if "rentabilidad" in l and re.search(r'30\s*dias', l)), None)
+    if i is None:
+        return {}
+    j = next((k for k in range(i + 1, min(i + 6, len(ls))) if re.search(r'180\s*dias', ls[k])), None)
+    if j is None:
+        return {}
+    a = next((PAR_PCT.match(ls[k]) for k in range(i - 1, max(i - 4, -1), -1) if PAR_PCT.match(ls[k])), None)
+    b = next((PAR_PCT.match(ls[k]) for k in range(j - 1, i, -1) if PAR_PCT.match(ls[k])), None)
+    if not a or not b:
+        return {}
+    return {30: float(a.group(1)), 90: float(a.group(2)), 180: float(b.group(1)), 365: float(b.group(2))}
+
+def parse_cuota_uni(texto):
+    """'VALOR CUOTA DEL DIA': el importe en esa linea o en la anterior (el PDF a veces separa los digitos)."""
+    ls = texto.splitlines()
+    def imp(l):
+        m = re.search(r'\$\s*([\d ,]+\.\d{4,})', l)
+        return num(m.group(1).replace(" ", "")) if m else None
+    for k, l in enumerate(ls):
+        if re.search(r'valor\s*cuota\s*del\s*d', norm(l)):
+            return imp(l) or (imp(ls[k - 1]) if k else None)
+    return None
 
 def moneda(nombre, texto):
     n = norm(nombre + " " + texto[:1500])
@@ -234,9 +254,8 @@ def main():
             if not all(-50 < v < 100 for v in rent.values()):
                 raise RuntimeError("valores fuera de rango %s" % rent)
             base.update(nombre=nombre, tipo="abierto", moneda=("USD" if "dolar" in pag else "DOP"), url_pdf=pdf,
-                        fecha_corte=fecha, valor_cuota=parse_cuota(texto), r30=rent[30], r90=rent[90],
-                        r180=rent[180], r365=rent[365], leido=ahora, ok=True, error=None,
-                        verificar=True)  # formato nuevo: no se publica hasta revisar el lector
+                        fecha_corte=fecha, valor_cuota=parse_cuota_uni(texto), r30=rent[30], r90=rent[90],
+                        r180=rent[180], r365=rent[365], leido=ahora, ok=True, error=None)
             print("OK", fid, fecha, rent)
         except Exception as e:
             print("ERROR", fid, e)

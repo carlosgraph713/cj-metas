@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """AFI PRO CJ — actualiza fondos.json con la rentabilidad publicada por las administradoras.
-Fuentes: BHD Fondos (Informacion Diaria), AFI Universal (ficha tecnica diaria) y
-Alcanza (plan de ahorro de AFP Siembra: cifras publicadas en su pagina principal, actualizacion mensual).
+Fuentes: BHD Fondos (Informacion Diaria; el propio informe indica que es informacion publica
+que puede divulgarse sin restriccion) y Alcanza (plan de ahorro de AFP Siembra: cifras publicadas en su
+pagina principal, actualizacion mensual).
+AFI Universal y AFI Popular NO se leen: sus condiciones de uso prohiben publicar o reproducir el contenido
+de su web sin autorizacion escrita. Si alguna lo autoriza por escrito, se puede activar (UNI_ACTIVO).
 
 Lo ejecuta GitHub Actions una vez al dia. Para cada fondo abierto de BHD Fondos:
   1. abre la pagina publica del fondo,
@@ -118,6 +121,7 @@ def parse_cuota(texto):
     return num(m.group(1)) if m else None
 
 # ─── AFI Universal ───
+UNI_ACTIVO = False  # desactivado: requiere autorizacion escrita de AFI Universal (terminos de uso, punto 14)
 UNI_BASE = "https://www.afiuniversal.com.do/"
 UNI_FONDOS = {  # pagina: nombre (fondos abiertos)
     "universal-liquidez": "Universal Liquidez",
@@ -268,7 +272,7 @@ def main():
         fondos.append(base)
         time.sleep(1.5)
     # ─── AFI Universal ───
-    for pag, nombre in UNI_FONDOS.items():
+    for pag, nombre in (UNI_FONDOS.items() if UNI_ACTIVO else []):
         url = UNI_BASE + pag + "/"
         fid = "universal-" + pag
         base = dict(previo.get(fid, {}), id=fid, afi="AFI Universal", url_pagina=url)
@@ -336,7 +340,7 @@ def main():
     # Conserva fondos que ya existian y hoy no aparecieron en la portada
     vistos = {f["id"] for f in fondos}
     for fid, f in previo.items():
-        if fid not in vistos and "r365" in f:
+        if fid not in vistos and "r365" in f and (UNI_ACTIVO or not fid.startswith("universal-")):
             f.update(ok=False, error="no encontrado hoy")
             fondos.append(f)
     if not fondos and previo:
@@ -346,7 +350,7 @@ def main():
     revision = [f for f in fondos if f.get("verificar")]
     fondos = [f for f in fondos if not f.get("verificar")]
     fondos.sort(key=lambda f: (f.get("afi", ""), f.get("nombre", f["id"])))
-    data = {"actualizado": ahora, "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; AFI Universal: ficha técnica diaria; Alcanza/AFP Siembra: página principal)",
+    data = {"actualizado": ahora, "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; Alcanza/AFP Siembra: página principal)",
             "fuente_url": BASE, "nota": "Rentabilidades anualizadas publicadas por la administradora.",
             "errores": errores, "fondos": fondos, "en_revision": revision}
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

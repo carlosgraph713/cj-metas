@@ -37,14 +37,29 @@ def get(url, binary=False):
         time.sleep(3 + 3 * i)
     raise RuntimeError("%s -> %s" % (url, last))
 
+SEMILLAS = ["fondo-mutuo-renta-fija-nacional-bhd-liquidez", "fondo-mutuo-renta-fija-bhd-plazo-30-dias",
+            "fondo-mutuo-renta-fija-bhd-tu-futuro"]
+
+def enlaces_fondos(html):
+    slugs = set(re.findall(r'bhdfondos\.com\.do/(fondo-[a-z0-9\-]+)', html, flags=re.I))
+    slugs |= set(re.findall(r'href=["\']/(fondo-[a-z0-9\-]+)', html, flags=re.I))
+    return {s.lower() for s in slugs}
+
 def descubrir_paginas():
-    """Devuelve las URL de las paginas de fondos enlazadas desde la portada."""
-    html = get(BASE)
-    urls = set(re.findall(r'href="(https://(?:www\.)?bhdfondos\.com\.do/fondo-[^"#?]+)"', html))
-    return sorted(u if u.endswith("/") else u + "/" for u in urls)
+    """Paginas de fondos: las conocidas + las enlazadas desde la portada y desde cada fondo."""
+    slugs = set(SEMILLAS)
+    for u in [BASE, BASE + SEMILLAS[0] + "/"]:
+        try:
+            html = get(u)
+            nuevos = enlaces_fondos(html)
+            print("Enlaces de fondos en", u, ":", len(nuevos))
+            slugs |= nuevos
+        except Exception as e:
+            print("Aviso:", u, e)
+    return sorted(BASE + s + "/" for s in slugs)
 
 def pdf_diario(html):
-    cands = re.findall(r'href="([^"]+\.pdf)"', html, flags=re.I)
+    cands = re.findall(r'href=["\']([^"\']+\.pdf)["\']', html, flags=re.I)
     diarios = [c for c in cands if re.search(r'informaci[oó]n[-_ %20]*diaria', c, flags=re.I)]
     return diarios[0] if diarios else None
 

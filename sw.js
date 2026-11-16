@@ -1,7 +1,7 @@
-/* AFI PRO CJ — service worker (v5.4)
+/* AFI PRO CJ — service worker (v5.5)
    Guarda la app en el dispositivo para que abra sin internet.
    NO toca tus datos: esos viven en el almacenamiento del navegador (localStorage). */
-const CACHE = 'afi-pro-cj-v5.4';
+const CACHE = 'afi-pro-cj-v5.5';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png'];
 // Recursos externos que la app usa: tipografías y la librería de exportar a Excel
 const EXTERNAL = [

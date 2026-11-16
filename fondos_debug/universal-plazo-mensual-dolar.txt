@@ -1,29 +1,29 @@
-https://cdnafiuniversalprod.azureedge.net/afi/media/2ain5ut1/ficha_tecnica_12_11_2026_dolar.pdf
+https://cdnafiuniversalprod.azureedge.net/afi/media/jwqfomyo/ficha_tecnica_31_10_2026_dolar.pdf
 
 PLAZO MENSUAL DOLAR
 RNC: 1-31-52427-3
 Tipo: Fondo de Inversión Abierto
 Registro: SIVFIA-0019
 Moneda: Dólar Americano US$
-Fecha 12-Nov-26 1783 Aportantes 1. COMISIÓNADMINISTRACIÓN 0.50 % Anual
+Fecha 31-Oct-26 1772 Aportantes 1. COMISIÓNADMINISTRACIÓN 0.50 % Anual
 20% Sobre el excedente del
 2. COMISIÓNDESEMPEÑO Benchmark
-$ 1 13,230,575.88
+$ 1 17,910,914.66
 PATRIMONIO
 3. PENALIDAD 0.2% del monto retirado
-$ 1,355.317926
+$ 1,354.088847
 VALOR CUOTA DELDÍA
-3.76% 3.39%
-VALOR CUOTA $ 1,355.208819 RENTABILIDAD 30 días 90 días
+4.31% 3.69%
+VALOR CUOTA $ 1,353.970115 RENTABILIDAD 30 días 90 días
 DÍA ANTERIOR EFECTIVA ANUAL
-3.77% 4.35%
-NÚMERO DE CUOTAS $ 8 3,545.398247 180 días 365 días
-DURACIÓN PROMEDIO 4 57.00 0.60% 0.58%
+3.55% 4.34%
+NÚMERO DE CUOTAS $ 8 7,077.679522 180 días 365 días
+DURACIÓN PROMEDIO 5 03.00 0.60% 0.58%
 DEL PORTAFOLIO
 VOLATILIDAD DE LA 30 días 90 días
 CUOTA
 PORCENTAJEDE
-21.08% 11.78% 0.43%
+25.22% 11.78% 0.43%
 VINCULADOS
 180 días 365 días
 Comparativo Rendimiento del Fondo con su Benchmark
@@ -36,12 +36,11 @@ Comparativo Rendimiento del Fondo con su Benchmark
 0.00%
 Rentabilidad Benchmark Rentabilidad Fondo
 Instrumento Sector Calificación
-90.99%
-76.67%
-40.23%
-15.15%14.24%
-19.82% 9.01% 9.01% 3.27% 5.66% 7.93% 1.49%
-3.51%
+66.59% 91.51%
+36.48%
+14.25%15.15%
+22.88% 8.49% 7.85% 7.49%
+10.53% 8.49% 3.08% 2.65%
 GOB AAA AA+ A+
 Renta Fija Saldo en Bancos Público Privado
 A A- BBB+ N/A
@@ -59,11 +58,11 @@ $1,330.00
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
 / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
-7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 0 0 0 0 0 0 0 0 0 0 1 1 1 1
-/ / / / / / / / / / / / / / / / / / / / / / / / / / 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-6 9 2 5 8 1 3 6 9 2 5 8 1 4 7 0 2 5 8 1 4 7 0 3 6 9 / / / / / / / / / / / / / /
-1 1 2 2 2 3 1 1 1 2 2 2 3 1 1 1 2 2 2 2 2 5 8 1 4 7 0 3 6 9 1 4 7 0
-1 1 1 2 2 2 2 1
+7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 0 0 0 0 0 0 0 0 0 0
+/ / / / / / / / / / / / / / / / / / / / / / / / / / / / / / 1 1 1 1 1 1 1 1 1 1
+5 8 1 4 7 0 3 6 9 1 4 7 0 3 6 9 2 5 8 1 3 6 9 2 5 8 1 4 7 0 / / / / / / / / / /
+1 1 1 2 2 2 2 1 1 1 1 2 2 2 3 1 1 1 2 2 2 3 3 6 9 2 5 8 1 4 7 0
+1 1 1 2 2 2 3
 1. La administradora cobrará al Fondo por concepto de administración una comisión anual de administración hasta el 1.25% anual sobre el activo administrado.
 2. El porcentaje a aplicar sobre el activo administrado para el cálculo de comisión por desempeño será hasta el 20% sobre el excedente que presente la rentabilidad mensual del fondo en su equivalente anualizado respecto al
 Benchmark correspondiente.

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""AFI PRO CJ — actualiza fondos.json con la rentabilidad publicada por BHD Fondos.
+"""AFI PRO CJ — actualiza fondos.json con la rentabilidad publicada por las administradoras.
+Fuentes: BHD Fondos (Informacion Diaria) y AFI Universal (ficha tecnica diaria).
 
 Lo ejecuta GitHub Actions una vez al dia. Para cada fondo abierto de BHD Fondos:
   1. abre la pagina publica del fondo,
@@ -18,6 +19,8 @@ UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, 
       "Accept-Language": "es-DO,es;q=0.9"}
 OUT = "fondos.json"
 DEBUG_DIR = "fondos_debug"
+MESES_AB = {"ene":1,"feb":2,"mar":3,"abr":4,"may":5,"jun":6,"jul":7,"ago":8,"sep":9,"set":9,"oct":10,"nov":11,"dic":12,
+            "jan":1,"apr":4,"aug":8,"dec":12}
 MESES = {"enero":1,"febrero":2,"marzo":3,"abril":4,"mayo":5,"junio":6,"julio":7,"agosto":8,
          "septiembre":9,"setiembre":9,"octubre":10,"noviembre":11,"diciembre":12}
 
@@ -77,6 +80,10 @@ def parse_fecha(texto):
     m = re.search(r'(\d{1,2})\s+de\s+([a-z]+)\s+(?:de|del)\s+(\d{4})', t)
     if m and m.group(2) in MESES:
         return "%04d-%02d-%02d" % (int(m.group(3)), MESES[m.group(2)], int(m.group(1)))
+    m = re.search(r'\b(\d{1,2})[-/ ]([a-z]{3})[a-z]*[-/ ](\d{2,4})\b', t)
+    if m and m.group(2) in MESES_AB:
+        y = int(m.group(3)); y = y + 2000 if y < 100 else y
+        return "%04d-%02d-%02d" % (y, MESES_AB[m.group(2)], int(m.group(1)))
     m = re.search(r'\b(\d{1,2})[/-](\d{1,2})[/-](\d{4})\b', t)
     if m:
         return "%04d-%02d-%02d" % (int(m.group(3)), int(m.group(2)), int(m.group(1)))
@@ -104,10 +111,49 @@ def parse_rent(texto):
 def parse_cuota(texto):
     """Valor de la cuota del dia: el primer importe con 6 decimales del informe."""
     t = norm(texto)
-    m = re.search(r'(?:rd\$|us\$)\s*([\d,]+\.\d{6})\b', t)
+    m = re.search(r'(?:rd\$|us\$|\$)\s*([\d,]+\.\d{6})\b', t)
     if not m:
         m = re.search(r'valor\s+(?:de\s+la\s+)?cuota[^\d]{0,60}([\d,]+\.\d{2,})', t)
     return num(m.group(1)) if m else None
+
+# ─── AFI Universal ───
+UNI_BASE = "https://www.afiuniversal.com.do/"
+UNI_FONDOS = {  # pagina: nombre (fondos abiertos)
+    "universal-liquidez": "Universal Liquidez",
+    "deposito-financiero-flexible": "Depósito Financiero Flexible",
+    "renta-valores": "Renta Valores",
+    "renta-futuros": "Renta Futuro",
+    "plazo-mensual-dolar": "Plazo Mensual Dólar",
+}
+
+def uni_ficha(html):
+    """La ficha tecnica mas reciente enlazada en la pagina (nombre: ficha_tecnica_DD_MM_AAAA_...)."""
+    best, bd = None, None
+    for href in re.findall(r'href=["\']([^"\']+\.pdf)["\']', html, flags=re.I):
+        m = re.search(r'ficha[_-]?tecnica[_-]?(\d{1,2})[_-](\d{1,2})[_-](\d{4})', href, flags=re.I)
+        if not m:
+            continue
+        try:
+            d = datetime.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+        except ValueError:
+            continue
+        if bd is None or d > bd:
+            best, bd = href, d
+    return best
+
+def parse_rent_uni(texto):
+    """Ficha de Universal: bloque 'Rentabilidad efectiva anual' con 30/90/180/365 dias."""
+    r = parse_rent(texto)
+    if len(r) == 4:
+        return r
+    t = norm(texto)
+    i = t.find("rentabilidad efectiva")
+    if i < 0:
+        return r
+    ps = re.findall(r'(-?\d{1,3}\.\d{1,4})\s*%', t[i:i + 700])
+    if len(ps) >= 4:
+        return {30: float(ps[0]), 90: float(ps[1]), 180: float(ps[2]), 365: float(ps[3])}
+    return r
 
 def moneda(nombre, texto):
     n = norm(nombre + " " + texto[:1500])
@@ -166,6 +212,40 @@ def main():
             base.update(ok=False, error=str(e)[:200])
         fondos.append(base)
         time.sleep(1.5)
+    # ─── AFI Universal ───
+    for pag, nombre in UNI_FONDOS.items():
+        url = UNI_BASE + pag + "/"
+        fid = "universal-" + pag
+        base = dict(previo.get(fid, {}), id=fid, afi="AFI Universal", url_pagina=url)
+        try:
+            html = get(url)
+            pdf = uni_ficha(html)
+            if not pdf:
+                raise RuntimeError("sin ficha tecnica")
+            pdf = urljoin(url, pdf)
+            raw = get(pdf, binary=True)
+            with pdfplumber.open(io.BytesIO(raw)) as doc:
+                texto = "\n".join((p.extract_text() or "") for p in doc.pages[:2])
+            open(os.path.join(DEBUG_DIR, fid + ".txt"), "w", encoding="utf-8").write(pdf + "\n\n" + texto)
+            rent = parse_rent_uni(texto)
+            fecha = parse_fecha(texto)
+            if len(rent) < 4 or not fecha:
+                raise RuntimeError("no se reconocio el formato (rent=%s fecha=%s)" % (rent, fecha))
+            if not all(-50 < v < 100 for v in rent.values()):
+                raise RuntimeError("valores fuera de rango %s" % rent)
+            base.update(nombre=nombre, tipo="abierto", moneda=("USD" if "dolar" in pag else "DOP"), url_pdf=pdf,
+                        fecha_corte=fecha, valor_cuota=parse_cuota(texto), r30=rent[30], r90=rent[90],
+                        r180=rent[180], r365=rent[365], leido=ahora, ok=True, error=None,
+                        verificar=True)  # formato nuevo: no se publica hasta revisar el lector
+            print("OK", fid, fecha, rent)
+        except Exception as e:
+            print("ERROR", fid, e)
+            errores.append(fid)
+            if "r365" not in base:
+                continue
+            base.update(ok=False, error=str(e)[:200])
+        fondos.append(base)
+        time.sleep(1.5)
     # Conserva fondos que ya existian y hoy no aparecieron en la portada
     vistos = {f["id"] for f in fondos}
     for fid, f in previo.items():
@@ -175,10 +255,13 @@ def main():
     if not fondos and previo:
         print("Sin datos nuevos: no se modifica", OUT)
         sys.exit(0)
-    fondos.sort(key=lambda f: f.get("nombre", f["id"]))
-    data = {"actualizado": ahora, "fuente": "BHD Fondos — Información Diaria de cada fondo",
+    # Fondos de una fuente nueva quedan "en revision" (no los muestra la app) hasta validar el lector
+    revision = [f for f in fondos if f.get("verificar")]
+    fondos = [f for f in fondos if not f.get("verificar")]
+    fondos.sort(key=lambda f: (f.get("afi", ""), f.get("nombre", f["id"])))
+    data = {"actualizado": ahora, "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; AFI Universal: ficha técnica diaria)",
             "fuente_url": BASE, "nota": "Rentabilidades anualizadas publicadas por la administradora.",
-            "errores": errores, "fondos": fondos}
+            "errores": errores, "fondos": fondos, "en_revision": revision}
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("Escrito", OUT, "con", len(fondos), "fondos;", len(errores), "con error")
 

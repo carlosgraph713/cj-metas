@@ -207,6 +207,11 @@ def moneda(nombre, texto):
 def slug(url):
     return url.rstrip("/").split("/")[-1]
 
+def mas_viejo(base, fecha):
+    """True si el dato leido hoy es de una fecha ANTERIOR al que ya teniamos (p. ej. la pagina
+    vuelve a enlazar la ficha mensual en vez de la diaria). En ese caso se conserva el dato previo."""
+    return bool(base.get("fecha_corte") and fecha and fecha < base["fecha_corte"] and "r365" in base)
+
 def main():
     previo = {}
     if os.path.exists(OUT):
@@ -244,6 +249,11 @@ def main():
                 raise RuntimeError("no se reconocio el formato (rent=%s fecha=%s)" % (rent, fecha))
             if not all(-50 < v < 100 for v in rent.values()):
                 raise RuntimeError("valores fuera de rango %s" % rent)
+            if mas_viejo(base, fecha):
+                print("=", fid, "dato de hoy (%s) mas viejo que el guardado (%s): se conserva" % (fecha, base["fecha_corte"]))
+                base.update(ok=True, error=None)
+                fondos.append(base)
+                continue
             nombre = titulo(html) or base.get("nombre") or fid
             base.update(nombre=nombre, tipo=("cerrado" if "cerrado" in fid else "abierto"), moneda=moneda(nombre, texto), url_pdf=pdf, fecha_corte=fecha,
                         valor_cuota=parse_cuota(texto), r30=rent[30], r90=rent[90], r180=rent[180],
@@ -278,6 +288,11 @@ def main():
                 raise RuntimeError("no se reconocio el formato (rent=%s fecha=%s)" % (rent, fecha))
             if not all(-50 < v < 100 for v in rent.values()):
                 raise RuntimeError("valores fuera de rango %s" % rent)
+            if mas_viejo(base, fecha):
+                print("=", fid, "ficha de hoy (%s) mas vieja que la guardada (%s): se conserva" % (fecha, base["fecha_corte"]))
+                base.update(ok=True, error=None)
+                fondos.append(base)
+                continue
             base.update(nombre=nombre, tipo="abierto", moneda=("USD" if "dolar" in pag else "DOP"), url_pdf=pdf,
                         fecha_corte=fecha, valor_cuota=parse_cuota_uni(texto), r30=rent[30], r90=rent[90],
                         r180=rent[180], r365=rent[365], leido=ahora, ok=True, error=None)
@@ -302,12 +317,14 @@ def main():
             raise RuntimeError("no se reconocio el formato (rent=%s fecha=%s)" % (rent, fecha))
         if not all(-50 < v < 100 for v in rent.values()):
             raise RuntimeError("valores fuera de rango %s" % rent)
-        base.update(nombre="Alcanza", tipo="abierto", moneda="DOP", categoria="liquidez", frecuencia="mensual",
+        if mas_viejo(base, fecha):
+            print("=", fid, "dato de hoy (%s) mas viejo que el guardado (%s): se conserva" % (fecha, base["fecha_corte"]))
+            rent = None
+        if rent: base.update(nombre="Alcanza", tipo="abierto", moneda="DOP", categoria="liquidez", frecuencia="mensual",
                     url_pdf=ALC_URL, fecha_corte=fecha, valor_cuota=None,
                     r30=rent[30], r90=rent.get(90), r180=rent.get(180), r365=rent[365],
                     nota="Plan de Ahorro Complementario de AFP Siembra (regulado por la SIPEN). La pagina no aclara si la cifra es antes o despues de la comision anual de 2%.",
-                    leido=ahora, ok=True, error=None,
-                    verificar=True)  # fuente nueva: en revision hasta comprobar la lectura
+                    leido=ahora, ok=True, error=None)
         print("OK", fid, fecha, rent)
     except Exception as e:
         print("ERROR", fid, e)

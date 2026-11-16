@@ -1,7 +1,7 @@
-/* CJ Metas (antes AFI PRO CJ) — service worker (v7.0)
+/* CJ Metas — service worker (v7.1)
    Guarda la app en el dispositivo para que abra sin internet.
    NO toca tus datos: esos viven en el almacenamiento del navegador (localStorage). */
-const CACHE = 'afi-pro-cj-v7.0'; // se conserva el prefijo para que se borren las copias viejas
+const CACHE = 'cj-metas-v7.1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 // Recursos externos que la app usa: tipografías y la librería de exportar a Excel
 const EXTERNAL = [
@@ -22,7 +22,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter(k => k.startsWith('afi-pro-cj-') && k !== CACHE).map(k => caches.delete(k)));
+    await Promise.all(keys.filter(k => (k.startsWith('cj-metas-') || k.startsWith('afi-pro-cj-')) && k !== CACHE).map(k => caches.delete(k)));
     await self.clients.claim();
   })());
 });

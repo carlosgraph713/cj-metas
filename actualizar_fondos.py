@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """AFI PRO CJ — actualiza fondos.json con la rentabilidad publicada por las administradoras.
-Fuentes: BHD Fondos (Informacion Diaria) y AFI Universal (ficha tecnica diaria).
+Fuentes: BHD Fondos (Informacion Diaria), AFI Universal (ficha tecnica diaria) y
+Alcanza (plan de ahorro de AFP Siembra: cifras publicadas en su pagina principal, actualizacion mensual).
 
 Lo ejecuta GitHub Actions una vez al dia. Para cada fondo abierto de BHD Fondos:
   1. abre la pagina publica del fondo,
@@ -175,6 +176,30 @@ def parse_cuota_uni(texto):
             return imp(l) or (imp(ls[k - 1]) if k else None)
     return None
 
+# ─── Alcanza (AFP Siembra) ───
+ALC_URL = "https://www.alcanza.com.do/"
+
+def html_a_texto(html):
+    t = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', html)
+    t = re.sub(r'(?s)<[^>]+>', ' ', t)
+    t = (t.replace('&nbsp;', ' ').replace('&aacute;', 'á').replace('&iacute;', 'í')
+          .replace('&oacute;', 'ó').replace('&eacute;', 'é').replace('&uacute;', 'ú').replace('&#37;', '%'))
+    return re.sub(r'\s+', ' ', t)
+
+def parse_alcanza(html):
+    """'Rentabilidad anualizada ultimos 30 dias ... 7.6% ... al 30 de octubre 2026' (y lo mismo con 365)."""
+    t = norm(html_a_texto(html))
+    out = {}
+    for d in (30, 90, 180, 365):
+        m = re.search(r'anualizada\s+(?:de\s+los\s+)?ultimos\s+%d\s+dias\D{0,120}?(\d{1,2}(?:[.,]\d{1,3})?)\s*%%' % d, t)
+        if m:
+            out[d] = float(m.group(1).replace(',', '.'))
+    m = re.search(r'\bal\s+(\d{1,2})\s+de\s+([a-z]+)\s+(?:de\s+|del\s+)?(\d{4})', t)
+    fecha = None
+    if m and m.group(2) in MESES:
+        fecha = "%04d-%02d-%02d" % (int(m.group(3)), MESES[m.group(2)], int(m.group(1)))
+    return out, fecha, t
+
 def moneda(nombre, texto):
     n = norm(nombre + " " + texto[:1500])
     return "USD" if re.search(r'dolar|us\$|usd', n) else "DOP"
@@ -265,6 +290,32 @@ def main():
             base.update(ok=False, error=str(e)[:200])
         fondos.append(base)
         time.sleep(1.5)
+    # ─── Alcanza (AFP Siembra) ───
+    fid = "alcanza-afp-siembra"
+    base = dict(previo.get(fid, {}), id=fid, afi="Alcanza (AFP Siembra)", url_pagina=ALC_URL)
+    try:
+        html = get(ALC_URL)
+        rent, fecha, texto = parse_alcanza(html)
+        i = texto.find("rentabilidad")
+        open(os.path.join(DEBUG_DIR, fid + ".txt"), "w", encoding="utf-8").write(ALC_URL + "\n\n" + texto[max(0, i - 300):i + 2500])
+        if 30 not in rent or 365 not in rent or not fecha:
+            raise RuntimeError("no se reconocio el formato (rent=%s fecha=%s)" % (rent, fecha))
+        if not all(-50 < v < 100 for v in rent.values()):
+            raise RuntimeError("valores fuera de rango %s" % rent)
+        base.update(nombre="Alcanza", tipo="abierto", moneda="DOP", categoria="liquidez", frecuencia="mensual",
+                    url_pdf=ALC_URL, fecha_corte=fecha, valor_cuota=None,
+                    r30=rent[30], r90=rent.get(90), r180=rent.get(180), r365=rent[365],
+                    nota="Plan de Ahorro Complementario de AFP Siembra (regulado por la SIPEN). La pagina no aclara si la cifra es antes o despues de la comision anual de 2%.",
+                    leido=ahora, ok=True, error=None,
+                    verificar=True)  # fuente nueva: en revision hasta comprobar la lectura
+        print("OK", fid, fecha, rent)
+    except Exception as e:
+        print("ERROR", fid, e)
+        errores.append(fid)
+        if "r365" in base:
+            base.update(ok=False, error=str(e)[:200])
+    if "r365" in base:
+        fondos.append(base)
     # Conserva fondos que ya existian y hoy no aparecieron en la portada
     vistos = {f["id"] for f in fondos}
     for fid, f in previo.items():
@@ -278,7 +329,7 @@ def main():
     revision = [f for f in fondos if f.get("verificar")]
     fondos = [f for f in fondos if not f.get("verificar")]
     fondos.sort(key=lambda f: (f.get("afi", ""), f.get("nombre", f["id"])))
-    data = {"actualizado": ahora, "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; AFI Universal: ficha técnica diaria)",
+    data = {"actualizado": ahora, "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; AFI Universal: ficha técnica diaria; Alcanza/AFP Siembra: página principal)",
             "fuente_url": BASE, "nota": "Rentabilidades anualizadas publicadas por la administradora.",
             "errores": errores, "fondos": fondos, "en_revision": revision}
     json.dump(data, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

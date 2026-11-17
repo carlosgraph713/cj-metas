@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkREQzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBOUEyRjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTE4IDk0IEw0NiA1NiBMNjAgNzIgTDc4IDQ0IEwxMDIgOTQgWiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTc4IDQ0IEw3OCAyMCIgc3Ryb2tlPSIjNEU0QUIzIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5IDIxIEw5OCAyNyBMNzkgMzQgWiIgZmlsbD0iI0ZGQjk5NiIvPjxwYXRoIGQ9Ik00NiA1NiBMNTIgNjQgTDQwIDY0IFogTTc4IDQ0IEw4NSA1NiBMNzEgNTYgWiIgZmlsbD0iI0U0RTFGQiIvPjxyZWN0IHg9IjE4IiB5PSI5MiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjUiIHJ4PSIyLjUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii43Ii8+PC9zdmc+">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v7.8 — Ahorro e inversión</title>
+<title>CJ Metas v7.9 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2451,6 +2451,35 @@ body[data-page="sim"] .qr-fab{display:none;}
   .qr-fab b{font-size:28px;}
   .page{padding-bottom:70px;}
 }
+
+/* ── v7.9 · gráfico del crecimiento del patrimonio ── */
+#resCrece{margin:-12px 0 36px;}
+.crece-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:20px 20px 12px;box-shadow:var(--shadow);}
+.crece-h{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:8px;}
+.crece-h .sec-h2{margin:0;}
+.crece-sub{font-size:12.5px;color:var(--text-dim);margin:6px 0 0;}
+.crece-kpi{text-align:right;}
+.crece-kpi b{display:block;font-size:22px;font-weight:800;color:var(--brand);letter-spacing:-.02em;}
+.crece-kpi span{font-size:12.5px;font-weight:600;}
+.crece-kpi .up{color:var(--green);} .crece-kpi .down{color:var(--red);}
+.cg-tip .up{color:#8FDDC4;} .cg-tip .down{color:#FF9AA5;}
+@media(max-width:560px){.crece-kpi{text-align:left;}}
+.crece-graf{position:relative;width:100%;}
+.crece-graf svg{display:block;width:100%;height:auto;touch-action:pan-y;}
+.cg-grid{stroke:var(--border2);stroke-width:1;stroke-dasharray:3 4;}
+.cg-grid.base{stroke-dasharray:none;}
+.cg-y{fill:var(--text-dim);font:500 10.5px 'Plus Jakarta Sans',sans-serif;text-anchor:end;}
+.cg-x{fill:var(--text-dim);font:500 10.5px 'Plus Jakarta Sans',sans-serif;text-anchor:middle;}
+.cg-line{fill:none;stroke:url(#cgLinea);stroke-width:2.6;stroke-linejoin:round;stroke-linecap:round;}
+.cg-dot,.cg-dot2{fill:var(--surface);stroke:#7C74E0;stroke-width:2.5;}
+.cg-guia{stroke:var(--text-dim);stroke-width:1;stroke-dasharray:3 3;}
+.cg-tip{position:absolute;pointer-events:none;background:var(--text);color:var(--bg);border-radius:12px;padding:7px 10px;font-size:12px;line-height:1.35;white-space:nowrap;box-shadow:0 8px 20px -10px rgba(0,0,0,.5);}
+.cg-tip b{display:block;font-weight:700;}
+.cg-tip span{display:block;font-weight:600;}
+[data-theme="dark"] .cg-tip .up{color:#2E9E7D;} [data-theme="dark"] .cg-tip .down{color:#C7404B;}
+.cg-tip[hidden]{display:none;}
+.crece-vacio{font-size:13.5px;color:var(--text-dim);margin:8px 0 10px;}
+@media print{.cg-tip,.cg-hover{display:none !important;}.crece-card{box-shadow:none;break-inside:avoid;}}
 </style>
 </head>
 <body data-page="res">
@@ -2498,7 +2527,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 7.8</span>
+      <span class="chip">Versión 7.9</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" data-logo-src="app"></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2512,6 +2541,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <p class="eyebrow">Consolidado</p>
     <h2 class="sec-h2">Todos los planes</h2>
     <div class="res-totals" id="resTotals"></div>
+    <div id="resCrece"></div>
 
     <p class="eyebrow">Plan por plan</p>
     <h2 class="sec-h2">Avance hacia cada meta</h2>
@@ -2545,7 +2575,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.8</div>
+    <div class="ft-line ft-ver">Versión 7.9</div>
   </footer>
 </div>
 
@@ -2698,7 +2728,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.8</div>
+    <div class="ft-line ft-ver">Versión 7.9</div>
   </footer>
 </div>
 
@@ -2836,7 +2866,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.8</div>
+    <div class="ft-line ft-ver">Versión 7.9</div>
   </footer>
 </div>
 
@@ -4824,6 +4854,7 @@ function renderResumen(){
   const plans=planIds().map(getPlanStats);
   resPatrimonio(plans);
   resBanner(plans);
+  try{resCrecimiento(plans);}catch(e){}
   const act=plans.filter(p=>p.configured);
   // ── Consolidado ──
   const tAp=act.reduce((s,p)=>s+p.totalAp,0),tG=act.reduce((s,p)=>s+p.totalG,0);
@@ -4937,6 +4968,81 @@ function renderResumen(){
     }).join('')+'</div>';
   }
 }
+
+/* v7.9: "Cómo ha crecido tu patrimonio" — suma, mes a mes, del saldo de todos los planes.
+   Si un plan no tiene registro en un mes, se usa su último saldo conocido (antes de su primer registro cuenta 0). */
+function resCreceSerie(plans){
+  const act=plans.filter(p=>p.configured&&p.serie.length);
+  if(!act.length)return [];
+  const idx=k=>{const [y,m]=k.split('-').map(Number);return y*12+m-1;};
+  let ini=Infinity,fin=-Infinity;
+  const mapas=act.map(p=>{const b=idx(p.fi),mp={};p.serie.forEach(x=>{mp[b+x.m]=x.saldo;ini=Math.min(ini,b+x.m);fin=Math.max(fin,b+x.m);});return mp;});
+  const ult=mapas.map(()=>0),pts=[];
+  for(let i=ini;i<=fin;i++){
+    let t=0;mapas.forEach((mp,j)=>{if(mp[i]!=null)ult[j]=mp[i];t+=ult[j];});
+    pts.push({k:resYM(Math.floor(i/12),i%12),t});
+  }
+  return pts;
+}
+function resCrecimiento(plans){
+  const el=document.getElementById('resCrece');if(!el)return;
+  const pts=resCreceSerie(plans);
+  if(pts.length<2){el.innerHTML=pts.length?'<div class="crece-card"><div class="crece-h"><div><p class="eyebrow">Tu historia</p><h2 class="sec-h2">Cómo ha crecido tu patrimonio</h2></div></div><p class="crece-vacio">Cuando tengas al menos dos meses registrados, aquí verás la curva de tu patrimonio.</p></div>':'';return;}
+  const primero=pts[0],ultimo=pts[pts.length-1],dif=ultimo.t-primero.t;
+  el.innerHTML=`<div class="crece-card">
+    <div class="crece-h"><div><p class="eyebrow">Tu historia</p><h2 class="sec-h2">Cómo ha crecido tu patrimonio</h2>
+      <p class="crece-sub">Suma del saldo de todos tus planes al cierre de cada mes.</p></div>
+      <div class="crece-kpi"><b>RD$ ${fmt(Math.round(ultimo.t))}</b><span class="${dif>=0?'up':'down'}">${dif>=0?'▲':'▼'} RD$ ${fmt(Math.round(Math.abs(dif)))} desde ${resLbl(primero.k)}</span></div></div>
+    <div class="crece-graf" id="creceGraf"></div>
+  </div>`;
+  creceDibujar(pts);
+}
+function creceDibujar(pts){
+  const box=document.getElementById('creceGraf');if(!box)return;
+  box._pts=pts;
+  const W=Math.max(260,box.clientWidth||600),H=W<520?210:250;
+  const pad={t:14,r:14,b:28,l:W<520?58:70};
+  const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b,n=pts.length;
+  const maxV=Math.max(...pts.map(p=>p.t),1);
+  // escala "redonda": pasos de 1, 2, 2.5 o 5 × 10^k, unas 3–4 líneas
+  const raw=maxV/3.2,pot=Math.pow(10,Math.floor(Math.log10(raw)));
+  const paso=[1,2,2.5,5,10].map(f=>f*pot).find(x=>x>=raw)||pot*10;
+  const top=Math.ceil(maxV*1.06/paso)*paso;
+  const X=i=>pad.l+(n<=1?0:i/(n-1)*iW),Y=v=>pad.t+iH-(Math.max(v,0)/top)*iH;
+  const lbl=k=>resLbl(k).replace('.','').replace(/ de /,' ').replace(/(\d{2})(\d{2})$/,'$2');
+  let grid='';
+  for(let v=0;v<=top+1e-6;v+=paso){const y=Y(v).toFixed(1);
+    grid+=`<line x1="${pad.l}" x2="${W-pad.r}" y1="${y}" y2="${y}" class="cg-grid${v===0?' base':''}"/><text x="${pad.l-8}" y="${(+y+4).toFixed(1)}" class="cg-y">${fmt(v)}</text>`;}
+  const cada=Math.max(1,Math.ceil(n/(W<520?4:7)));let xs='';
+  for(let i=0;i<n;i+=cada){const x=X(i),an=x<pad.l+18?'start':(x>W-pad.r-24?'end':'middle');xs+=`<text x="${(an==='start'?x-4:an==='end'?x+4:x).toFixed(1)}" y="${H-8}" class="cg-x" style="text-anchor:${an}">${lbl(pts[i].k)}</text>`;}
+  const linea=pts.map((p,i)=>`${X(i).toFixed(1)},${Y(p.t).toFixed(1)}`).join(' ');
+  const area=`M${X(0).toFixed(1)},${Y(0).toFixed(1)} L${linea.replace(/ /g,' L')} L${X(n-1).toFixed(1)},${Y(0).toFixed(1)} Z`;
+  const u=pts[n-1];
+  box.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Patrimonio total por mes, de ${resLbl(pts[0].k,true)} a ${resLbl(u.k,true)}">
+    <defs><linearGradient id="cgArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9A2F0" stop-opacity=".42"/><stop offset="1" stop-color="#8FDDC4" stop-opacity=".06"/></linearGradient>
+    <linearGradient id="cgLinea" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5BC4A5"/><stop offset="1" stop-color="#7C74E0"/></linearGradient></defs>
+    ${grid}${xs}
+    <path d="${area}" fill="url(#cgArea)"/>
+    <polyline points="${linea}" class="cg-line"/>
+    <circle cx="${X(n-1).toFixed(1)}" cy="${Y(u.t).toFixed(1)}" r="4.5" class="cg-dot"/>
+    <g class="cg-hover" style="display:none"><line class="cg-guia" y1="${pad.t}" y2="${pad.t+iH}"/><circle r="4.5" class="cg-dot2"/></g>
+  </svg><div class="cg-tip" hidden></div>`;
+  const svg=box.querySelector('svg'),hv=svg.querySelector('.cg-hover'),tip=box.querySelector('.cg-tip');
+  const mover=ev=>{
+    const r=svg.getBoundingClientRect(),x=(ev.clientX-r.left)*(W/r.width);
+    const i=Math.max(0,Math.min(n-1,Math.round((x-pad.l)/(iW||1)*(n-1))));
+    const px=X(i),py=Y(pts[i].t);
+    hv.style.display='';hv.querySelector('line').setAttribute('x1',px);hv.querySelector('line').setAttribute('x2',px);
+    hv.querySelector('circle').setAttribute('cx',px);hv.querySelector('circle').setAttribute('cy',py);
+    const ant=i>0?pts[i].t-pts[i-1].t:null;
+    const mes=resLbl(pts[i].k,true);tip.hidden=false;tip.innerHTML=`<b>${mes.charAt(0).toUpperCase()+mes.slice(1)}</b>RD$ ${fmt(Math.round(pts[i].t))}${ant!=null?`<span class="${ant>=0?'up':'down'}">${ant>=0?'+':'−'}RD$ ${fmt(Math.round(Math.abs(ant)))} en el mes</span>`:''}`;
+    const tl=px/W*r.width;tip.style.left=Math.max(4,Math.min(r.width-tip.offsetWidth-4,tl-tip.offsetWidth/2))+'px';
+    tip.style.top=Math.max(0,py/H*r.height-tip.offsetHeight-12)+'px';
+  };
+  const salir=()=>{hv.style.display='none';tip.hidden=true;};
+  svg.addEventListener('pointermove',mover);svg.addEventListener('pointerdown',mover);svg.addEventListener('pointerleave',salir);
+}
+window.addEventListener('resize',()=>{const b=document.getElementById('creceGraf');if(b&&b._pts){clearTimeout(b._t);b._t=setTimeout(()=>creceDibujar(b._pts),150);}});
 
 /* v7.0 · E: patrimonio total y cómo se reparte entre los planes */
 const PATRI_COLORS=['#7FD3B8','#A69CF0','#FFB996','#8EC5F2','#F5A3C0','#FFD27A','#9FE0E6','#C9B6F2'];

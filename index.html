@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkREQzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBOUEyRjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTE4IDk0IEw0NiA1NiBMNjAgNzIgTDc4IDQ0IEwxMDIgOTQgWiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTc4IDQ0IEw3OCAyMCIgc3Ryb2tlPSIjNEU0QUIzIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5IDIxIEw5OCAyNyBMNzkgMzQgWiIgZmlsbD0iI0ZGQjk5NiIvPjxwYXRoIGQ9Ik00NiA1NiBMNTIgNjQgTDQwIDY0IFogTTc4IDQ0IEw4NSA1NiBMNzEgNTYgWiIgZmlsbD0iI0U0RTFGQiIvPjxyZWN0IHg9IjE4IiB5PSI5MiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjUiIHJ4PSIyLjUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii43Ii8+PC9zdmc+">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v7.4 — Ahorro e inversión</title>
+<title>CJ Metas v7.5 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2400,6 +2400,19 @@ body[data-page="sim"] .qr-fab{display:none;}
 .an-ph:has(+ #res-sec.show){display:none;}
 #res-sec:not(.show){display:none;}
 @media print{.qr-fab,.qr-open,.an-tabs{display:none !important;}.patri{box-shadow:none;}}
+
+/* ── v7.5 · aviso de la app vieja ── */
+.vieja-aviso{position:relative;margin:14px 16px 0;background:var(--herocard);color:var(--herotx);border-radius:22px;padding:18px 44px 18px 20px;box-shadow:0 16px 34px -22px rgba(90,90,190,.6);}
+@media(min-width:760px){.vieja-aviso{max-width:720px;margin:18px auto 0;}}
+.vieja-aviso[hidden],.vieja-aviso [hidden]{display:none !important;}
+.va-x{position:absolute;top:10px;right:12px;width:30px;height:30px;border:0;border-radius:50%;background:rgba(255,255,255,.6);color:var(--herotx);font-size:18px;line-height:1;cursor:pointer;}
+[data-theme="dark"] .va-x{background:rgba(255,255,255,.12);}
+.va-t{font-weight:800;font-size:16px;margin-bottom:4px;}
+.va-d{font-size:13.5px;line-height:1.5;color:var(--herodim);margin:0 0 8px;}
+.va-pasos{margin:0 0 4px 18px;padding:0;font-size:13.5px;line-height:1.55;}
+.va-pasos li{margin:3px 0;}
+.va-btn{margin-top:12px;width:100%;}
+@media print{.vieja-aviso{display:none !important;}}
 </style>
 </head>
 <body data-page="res">
@@ -2425,6 +2438,20 @@ body[data-page="sim"] .qr-fab{display:none;}
   </div>
 </nav>
 
+<!-- v7.5: aviso cuando se abre desde el ícono de la app vieja -->
+<div class="vieja-aviso" id="viejaAviso" hidden>
+  <button type="button" class="va-x" onclick="document.getElementById('viejaAviso').hidden=true" aria-label="Cerrar aviso">×</button>
+  <div class="va-t" id="viejaTit">📲 Instala la app nueva</div>
+  <p class="va-d" id="viejaTxt">Llegaste desde el ícono viejo de CJ Metas (la dirección anterior). Tus datos ya están aquí, pero desde ese ícono no se puede instalar la app nueva.</p>
+  <ol class="va-pasos" id="viejaPasos">
+    <li>Toca <b>⋮</b> (arriba a la derecha) → <b>Abrir en Chrome</b>.</li>
+    <li>En Chrome toca <b>⋮</b> → <b>Instalar app</b>, o usa el botón de abajo cuando aparezca.</li>
+    <li>Espera unos segundos: el ícono nuevo puede quedar en el cajón de aplicaciones.</li>
+    <li>Desinstala el ícono viejo: mantenlo presionado → <b>Desinstalar</b>.</li>
+  </ol>
+  <button type="button" class="btn-primary va-btn" id="viejaInstalar" hidden onclick="pwaInstall()">⬇ Instalar CJ Metas ahora</button>
+</div>
+
 <!-- ══════════════════════════════════════
      PAGE 0 — RESUMEN GENERAL (v5.2)
 ══════════════════════════════════════ -->
@@ -2433,7 +2460,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 7.4</span>
+      <span class="chip">Versión 7.5</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" data-logo-src="app"></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2480,7 +2507,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.4</div>
+    <div class="ft-line ft-ver">Versión 7.5</div>
   </footer>
 </div>
 
@@ -2632,7 +2659,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.4</div>
+    <div class="ft-line ft-ver">Versión 7.5</div>
   </footer>
 </div>
 
@@ -2770,7 +2797,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.4</div>
+    <div class="ft-line ft-ver">Versión 7.5</div>
   </footer>
 </div>
 
@@ -4988,11 +5015,32 @@ let pwaPrompt=null;
 window.addEventListener('beforeinstallprompt',e=>{
   e.preventDefault();pwaPrompt=e;
   const b=document.getElementById('pwaInstallBtn');if(b)b.style.display='';
+  const v=document.getElementById('viejaInstalar');if(v)v.hidden=false; // v7.5
 });
 window.addEventListener('appinstalled',()=>{
   pwaPrompt=null;
   const b=document.getElementById('pwaInstallBtn');if(b)b.style.display='none';
+  // v7.5: confirmar en el aviso de la app vieja
+  const av=document.getElementById('viejaAviso');
+  if(av&&!av.hidden){
+    document.getElementById('viejaTit').textContent='✓ Listo: la app nueva se está instalando';
+    document.getElementById('viejaTxt').textContent='Búscala en tu pantalla de inicio o en el cajón de aplicaciones (puede tardar unos segundos). Después desinstala el ícono viejo: mantenlo presionado → Desinstalar.';
+    document.getElementById('viejaPasos').hidden=true;document.getElementById('viejaInstalar').hidden=true;
+  }
 });
+/* v7.5: ¿se abrió desde el ícono de la app vieja? (la página de la dirección vieja agrega ?desde=app-vieja) */
+(function(){
+  const enApp=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  if(enApp){ // ya es la app nueva instalada
+    try{if(localStorage.getItem(lsKey('appVieja'))){localStorage.removeItem(lsKey('appVieja'));
+      setTimeout(()=>showPlanToast('✓ Ya usas la app nueva. Si todavía ves el ícono viejo de CJ Metas, mantenlo presionado → Desinstalar.'),1500);}}catch(e){}
+    return;
+  }
+  if(new URLSearchParams(location.search).get('desde')!=='app-vieja')return;
+  try{localStorage.setItem(lsKey('appVieja'),'1');}catch(e){}
+  const av=document.getElementById('viejaAviso');if(av)av.hidden=false;
+  if(pwaPrompt){const v=document.getElementById('viejaInstalar');if(v)v.hidden=false;}
+})();
 async function pwaInstall(){
   if(!pwaPrompt)return;
   pwaPrompt.prompt();

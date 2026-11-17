@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkREQzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBOUEyRjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTE4IDk0IEw0NiA1NiBMNjAgNzIgTDc4IDQ0IEwxMDIgOTQgWiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTc4IDQ0IEw3OCAyMCIgc3Ryb2tlPSIjNEU0QUIzIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5IDIxIEw5OCAyNyBMNzkgMzQgWiIgZmlsbD0iI0ZGQjk5NiIvPjxwYXRoIGQ9Ik00NiA1NiBMNTIgNjQgTDQwIDY0IFogTTc4IDQ0IEw4NSA1NiBMNzEgNTYgWiIgZmlsbD0iI0U0RTFGQiIvPjxyZWN0IHg9IjE4IiB5PSI5MiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjUiIHJ4PSIyLjUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii43Ii8+PC9zdmc+">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v7.1 — Ahorro e inversión</title>
+<title>CJ Metas v7.2 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2433,7 +2433,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 7.1</span>
+      <span class="chip">Versión 7.2</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" data-logo-src="app"></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2480,7 +2480,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.1</div>
+    <div class="ft-line ft-ver">Versión 7.2</div>
   </footer>
 </div>
 
@@ -2632,7 +2632,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.1</div>
+    <div class="ft-line ft-ver">Versión 7.2</div>
   </footer>
 </div>
 
@@ -2770,7 +2770,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.1</div>
+    <div class="ft-line ft-ver">Versión 7.2</div>
   </footer>
 </div>
 
@@ -2842,6 +2842,19 @@ let _instanceId=_entry&&_entry.id;
 let _isFresh=false;
 let _autoImported=null; // path we auto-imported from, for the toast
 
+// v7.2: la app se mudó de /afi-pro-cj/ a /cj-metas/ — usa los mismos datos de la dirección vieja
+if(!_instanceId&&/\/cj-metas\//.test(PATH_NOW)){
+  const vieja=Object.keys(_pathmap).find(p=>/\/afi-pro-cj\/(index\.html)?$/.test(p)&&_pathmap[p]&&_pathmap[p].id);
+  if(vieja){
+    const vid=_pathmap[vieja].id,pre='afi_'+vid+'_';
+    if(Object.keys(localStorage).some(k=>k.startsWith(pre+'afiP'))){
+      _instanceId=vid;_autoImported='mudanza';
+      delete _pathmap[vieja];
+      _pathmap[PATH_NOW]={id:_instanceId,lastSeen:NOW};
+      localStorage.setItem(PATHMAP_KEY,JSON.stringify(_pathmap));
+    }
+  }
+}
 if(!_instanceId){
   _isFresh=true;
   // ─── Step 1: detect a "moved file" scenario ───
@@ -2929,20 +2942,21 @@ if(_isFresh&&!_autoImported){
 
 function showAutoImportToast(fromPath){
   if(document.getElementById('afi-import-toast'))return;
+  const mudanza=fromPath==='mudanza'; // v7.2: cambio de dirección de la app
   const fname=(fromPath.split('/').pop()||fromPath).replace(/\.html?$/i,'')||fromPath;
   const t=document.createElement('div');
   t.id='afi-import-toast';
   t.innerHTML=`
     <div class="afi-it-icon">📁</div>
     <div class="afi-it-body">
-      <div class="afi-it-title">Datos importados automáticamente</div>
-      <p class="afi-it-desc">Se detectó que moviste el archivo desde <strong>${fname}</strong> y tus datos fueron preservados aquí.</p>
-      <button class="afi-it-undo" id="afi-it-undo">¿Querías un archivo nuevo? Empezar limpio</button>
+      <div class="afi-it-title">${mudanza?'CJ Metas tiene nueva dirección':'Datos importados automáticamente'}</div>
+      <p class="afi-it-desc">${mudanza?'Tus planes y registros vinieron contigo. Si tenías la app instalada, instálala de nuevo desde aquí.':'Se detectó que moviste el archivo desde <strong>'+fname+'</strong> y tus datos fueron preservados aquí.'}</p>
+      ${mudanza?'':'<button class="afi-it-undo" id="afi-it-undo">¿Querías un archivo nuevo? Empezar limpio</button>'}
     </div>
     <button class="afi-it-close" id="afi-it-close" title="Cerrar">×</button>
   `;
   document.body.appendChild(t);
-  t.querySelector('#afi-it-undo').addEventListener('click',()=>{
+  if(t.querySelector('#afi-it-undo'))t.querySelector('#afi-it-undo').addEventListener('click',()=>{
     if(!confirm('Esto borrará los datos auto-importados y empezarás un plan nuevo aquí. ¿Continuar?'))return;
     // Clear all data under our SP + reassign a fresh instance ID for this path
     Object.keys(localStorage).filter(k=>k.startsWith(SP)).forEach(k=>localStorage.removeItem(k));
@@ -2963,7 +2977,7 @@ function showImportBanner(otherPaths){
     <div class="afi-ib-icon">📂</div>
     <div class="afi-ib-body">
       <div class="afi-ib-title">¿Mover datos a este archivo?</div>
-      <p class="afi-ib-desc">Detectamos datos guardados de otro archivo AFI·Pro. Si moviste o renombraste un archivo y quieres conservar tus datos aquí, importa desde:</p>
+      <p class="afi-ib-desc">Detectamos datos guardados de otra copia de CJ Metas. Si moviste o renombraste un archivo y quieres conservar tus datos aquí, importa desde:</p>
       <div class="afi-ib-options" id="afi-ib-options"></div>
       <button class="afi-ib-dismiss" id="afi-ib-dismiss">No, este es un archivo nuevo</button>
     </div>
@@ -5380,7 +5394,7 @@ applyTrkCompact();
    y guarda fondos.json. La app lo descarga, lo guarda en el dispositivo (para verlo sin
    internet) y lo muestra con su fecha y su fuente. Hoy cubre los fondos abiertos de BHD Fondos.
 ════════════════════════════════════════════════════════════════ */
-const LIVE_URL='https://raw.githubusercontent.com/carlosgraph713/afi-pro-cj/main/fondos.json';
+const LIVE_URL='https://raw.githubusercontent.com/carlosgraph713/cj-metas/main/fondos.json'; // v7.2: el repositorio ahora se llama cj-metas
 const LIVE_MAX_AGE=10*60*1000; // v5.10: se consulta al abrir la app (como máximo cada 10 minutos)
 let liveData=null;
 function liveNorm(s){return String(s||'').normalize('NFKD').replace(/[̀-ͯ]/g,'').toLowerCase();}

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkREQzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBOUEyRjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTE4IDk0IEw0NiA1NiBMNjAgNzIgTDc4IDQ0IEwxMDIgOTQgWiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTc4IDQ0IEw3OCAyMCIgc3Ryb2tlPSIjNEU0QUIzIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5IDIxIEw5OCAyNyBMNzkgMzQgWiIgZmlsbD0iI0ZGQjk5NiIvPjxwYXRoIGQ9Ik00NiA1NiBMNTIgNjQgTDQwIDY0IFogTTc4IDQ0IEw4NSA1NiBMNzEgNTYgWiIgZmlsbD0iI0U0RTFGQiIvPjxyZWN0IHg9IjE4IiB5PSI5MiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjUiIHJ4PSIyLjUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii43Ii8+PC9zdmc+">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v7.2 — Ahorro e inversión</title>
+<title>CJ Metas v7.3 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2433,7 +2433,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 7.2</span>
+      <span class="chip">Versión 7.3</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" data-logo-src="app"></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2480,7 +2480,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.2</div>
+    <div class="ft-line ft-ver">Versión 7.3</div>
   </footer>
 </div>
 
@@ -2632,7 +2632,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.2</div>
+    <div class="ft-line ft-ver">Versión 7.3</div>
   </footer>
 </div>
 
@@ -2770,7 +2770,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 7.2</div>
+    <div class="ft-line ft-ver">Versión 7.3</div>
   </footer>
 </div>
 
@@ -2934,7 +2934,13 @@ if(_autoImported){
 }
 // If multiple inactive instances exist (ambiguous), show the manual import banner
 if(_isFresh&&!_autoImported){
-  const otherPaths=Object.keys(_pathmap).filter(p=>p!==PATH_NOW);
+  // v7.3: solo se ofrece traer datos de copias que de verdad tienen planes guardados
+  const otherPaths=Object.keys(_pathmap).filter(p=>{
+    if(p===PATH_NOW||!_pathmap[p]||!_pathmap[p].id)return false;
+    const pre='afi_'+_pathmap[p].id+'_';
+    return ['afiPD','afiPC','afiSimCfg'].some(k=>Object.keys(localStorage).some(x=>{
+      if(!x.startsWith(pre+k))return false;const v=localStorage.getItem(x);return v&&v.length>2&&v!=='{}';}));
+  });
   if(otherPaths.length>0&&!localStorage.getItem(lsKey('__import_decided'))){
     setTimeout(()=>showImportBanner(otherPaths),120);
   }

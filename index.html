@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkREQzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBOUEyRjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTE4IDk0IEw0NiA1NiBMNjAgNzIgTDc4IDQ0IEwxMDIgOTQgWiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTc4IDQ0IEw3OCAyMCIgc3Ryb2tlPSIjNEU0QUIzIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5IDIxIEw5OCAyNyBMNzkgMzQgWiIgZmlsbD0iI0ZGQjk5NiIvPjxwYXRoIGQ9Ik00NiA1NiBMNTIgNjQgTDQwIDY0IFogTTc4IDQ0IEw4NSA1NiBMNzEgNTYgWiIgZmlsbD0iI0U0RTFGQiIvPjxyZWN0IHg9IjE4IiB5PSI5MiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjUiIHJ4PSIyLjUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii43Ii8+PC9zdmc+">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v8.0 — Ahorro e inversión</title>
+<title>CJ Metas v8.1 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -40,22 +40,22 @@
   --border:   #E0DDEE;
   --border2:  #D2CEE6;
   --text:     #2C2A3A;
-  --text-mid: #55526A;
-  --text-dim: #75718C;
-  --brand:    #5B5FC7;
-  --brand2:   #2E9E7D;
-  --accent:   #2E9E7D;
-  --accent2:  #5B5FC7;
-  --accent3:  #D9825A;
-  --gold:     #B5701F;
+  --text-mid: #423F55;
+  --text-dim: #55516B;
+  --brand: #4A4EB6;
+  --brand2: #166A4F;
+  --accent: #166A4F;
+  --accent2: #4A4EB6;
+  --accent3: #A5532C;
+  --gold: #875408;
   --gold-bg:  #FFF3E4;
-  --green:    #23906F;
+  --green: #1A7356;
   --green-bg: #E9F7F1;
-  --red:      #D0505A;
+  --red: #B02E3A;
   --red-bg:   #FDEEF0;
-  --teal:     #23877E;
+  --teal: #1A6B64;
   --teal-bg:  #E6F6F3;
-  --indigo:   #5B5FC7;
+  --indigo: #4A4EB6;
   --indigo-bg:#ECEAF8;
   --shadow-sm:0 1px 3px rgba(60,50,120,0.05);
   --shadow:   0 8px 24px -10px rgba(60,50,120,0.16), 0 1px 3px rgba(60,50,120,0.04);
@@ -66,7 +66,7 @@
     radial-gradient(circle at 6% 10%, rgba(143,221,196,0.38), transparent 46%),
     radial-gradient(circle at 94% 16%, rgba(169,162,240,0.34), transparent 48%),
     radial-gradient(circle at 50% 115%, rgba(255,185,150,0.20), transparent 55%);
-  --grad-brand: linear-gradient(135deg, #23906F 0%, #5B5FC7 100%);
+  --grad-brand: linear-gradient(135deg, #1A7356 0%, #4A4EB6 100%);
   --grad-brand2: linear-gradient(135deg, #8FDDC4 0%, #A9A2F0 100%);
   --grad-aurora: linear-gradient(120deg, #8FDDC4 0%, #A9A2F0 100%);
   --grad-card: linear-gradient(165deg, #FFFFFF 0%, #FCFBFF 60%, #F4FBF8 100%);
@@ -77,7 +77,7 @@
   --input-fill-teal: #EEF9F5;
   /* v7.0 — nuevos */
   --soft:#E9F7F1; --soft2:#ECEAF8; --soft3:#FFF1E6;
-  --tagtx:#23735E;
+  --tagtx: #1A6650;
   --btn:linear-gradient(135deg,#8FDDC4 0%,#A9A2F0 100%); --btntx:#1F2A3A; --btnsh:rgba(120,130,220,0.45);
   --prog:linear-gradient(90deg,#7FD3B8,#A69CF0);
   --herocard:linear-gradient(135deg,#C9F0E1 0%,#D9D3FA 100%); --herotx:#24364A; --herodim:#4F6378;
@@ -93,12 +93,12 @@
   --border:   #322F42;
   --border2:  #423E57;
   --text:     #EEECFA;
-  --text-mid: #C6C3D9;
-  --text-dim: #9A97B0;
-  --brand:    #B9B3FF;
+  --text-mid: #D2CFE4;
+  --text-dim: #ADAAC4;
+  --brand: #C4BFFF;
   --brand2:   #8FDDC4;
   --accent:   #8FDDC4;
-  --accent2:  #B9B3FF;
+  --accent2: #C4BFFF;
   --accent3:  #FFB996;
   --gold:     #FFD27A;
   --gold-bg:  #30281A;
@@ -108,7 +108,7 @@
   --red-bg:   #3A1F27;
   --teal:     #8FDDC4;
   --teal-bg:  #173029;
-  --indigo:   #B9B3FF;
+  --indigo: #C4BFFF;
   --indigo-bg:#27254A;
   --shadow-sm:0 1px 2px rgba(0,0,0,0.45);
   --shadow:   0 8px 24px -8px rgba(0,0,0,0.55), 0 1px 3px rgba(0,0,0,0.4);
@@ -2480,6 +2480,25 @@ body[data-page="sim"] .qr-fab{display:none;}
 .cg-tip[hidden]{display:none;}
 .crece-vacio{font-size:13.5px;color:var(--text-dim);margin:8px 0 10px;}
 @media print{.cg-tip,.cg-hover{display:none !important;}.crece-card{box-shadow:none;break-inside:avoid;}}
+
+/* ═══ v8.1 · CONTRASTE: ningún texto se mezcla con el fondo ═══ */
+/* Fila "Resumen 2026" de la tabla: texto oscuro sobre menta (antes era blanco) */
+table.trk tbody tr.yr-sum td,table.trk tbody tr.yr-sum td:first-child{color:var(--text) !important;text-shadow:none;}
+table.trk tbody tr.yr-sum .yr-word,table.trk tbody tr.yr-sum td *{color:var(--text) !important;-webkit-text-fill-color:currentColor;}
+table.trk tbody tr.yr-sum .yr-growth-up{color:var(--green) !important;text-shadow:none;}
+table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shadow:none;}
+.yr-growth-up{color:var(--green) !important;text-shadow:none;}
+.yr-growth-down{color:var(--red) !important;text-shadow:none;}
+[data-theme="light"]{--herodim:#3B4C60;}
+/* Montos con degradado: colores firmes */
+.bs-amt.proj{background:none;-webkit-text-fill-color:currentColor;color:var(--gold);}
+/* Colores de cada plan (pestañas y tarjetas): tonos que se leen en cada tema */
+.plan-tab[data-color="teal"],.res-plan[data-color="teal"]{--tab-c1:#1A7356;--tab-c2:#1A6B64;}
+.plan-tab[data-color="indigo"],.res-plan[data-color="indigo"]{--tab-c1:#4A4EB6;--tab-c2:#4A4EB6;}
+.plan-tab[data-color="amber"],.res-plan[data-color="amber"]{--tab-c1:#5A50C2;--tab-c2:#875408;}
+[data-theme="dark"] .plan-tab[data-color="teal"],[data-theme="dark"] .res-plan[data-color="teal"]{--tab-c1:#9BE3CC;--tab-c2:#8FDDC4;}
+[data-theme="dark"] .plan-tab[data-color="indigo"],[data-theme="dark"] .res-plan[data-color="indigo"]{--tab-c1:#C4BFFF;--tab-c2:#B3ACFA;}
+[data-theme="dark"] .plan-tab[data-color="amber"],[data-theme="dark"] .res-plan[data-color="amber"]{--tab-c1:#FFD27A;--tab-c2:#C4BFFF;}
 </style>
 </head>
 <body data-page="res">
@@ -2527,7 +2546,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 8.0</span>
+      <span class="chip">Versión 8.1</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" data-logo-src="app"></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2575,7 +2594,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.0</div>
+    <div class="ft-line ft-ver">Versión 8.1</div>
   </footer>
 </div>
 
@@ -2728,7 +2747,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.0</div>
+    <div class="ft-line ft-ver">Versión 8.1</div>
   </footer>
 </div>
 
@@ -2866,7 +2885,7 @@ body[data-page="sim"] .qr-fab{display:none;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.0</div>
+    <div class="ft-line ft-ver">Versión 8.1</div>
   </footer>
 </div>
 
@@ -3544,13 +3563,13 @@ function drawLineChart(canvas,data,objetivo,inicioV){
   const accent=getVar('--accent')||'#5B7F5B';
   const teal=getVar('--teal')||'#2E8B74';
   const goldC=getVar('--gold')||'#B8860B';
-  const dimC='rgba(120,120,120,0.6)';
+  const dimC=getVar('--text-dim')||'#55516B'; // v8.1: antes gris semitransparente, poco legible
   // objetivo dashed
   const yo=yOf(objetivo);
   if(yo>=pad.t&&yo<=pad.t+iH){
     ctx.beginPath();ctx.setLineDash([5,4]);ctx.strokeStyle=goldC+'88';ctx.lineWidth=1.5;
     ctx.moveTo(pad.l,yo);ctx.lineTo(pad.l+iW,yo);ctx.stroke();ctx.setLineDash([]);
-    ctx.fillStyle=goldC;ctx.font='9px Plus Jakarta Sans,sans-serif';ctx.textAlign='right';
+    ctx.fillStyle=goldC;ctx.font='600 10px Plus Jakarta Sans,sans-serif';ctx.textAlign='right';
     ctx.fillText('META',pad.l+iW,yo-5);
   }
   // aportado fill
@@ -3585,12 +3604,12 @@ function drawLineChart(canvas,data,objetivo,inicioV){
   for(let i=0;i<lc;i++){
     const idx=Math.min(i*s2,pts.length-1);const ms=pts[idx].mes;
     const dt=new Date(iy,im-1+ms);const lb=dt.toLocaleDateString('es-DO',{month:'short',year:'2-digit'});
-    ctx.fillStyle=dimC;ctx.font='9px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';ctx.fillText(lb,xOf(idx),H-4);
+    ctx.fillStyle=dimC;ctx.font='600 10px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';ctx.fillText(lb,xOf(idx),H-4);
   }
   // legend
   ctx.textAlign='left';
   ctx.fillStyle=accent;ctx.fillRect(pad.l,pad.t,10,2.5);
-  ctx.fillStyle=dimC;ctx.font='9px Plus Jakarta Sans,sans-serif';ctx.fillText('Saldo total',pad.l+14,pad.t+4);
+  ctx.fillStyle=dimC;ctx.font='600 10px Plus Jakarta Sans,sans-serif';ctx.fillText('Saldo total',pad.l+14,pad.t+4);
   ctx.fillStyle=teal+'88';ctx.fillRect(pad.l+90,pad.t,10,2.5);
   ctx.fillStyle=dimC;ctx.fillText('Capital aportado',pad.l+104,pad.t+4);
 }
@@ -4078,7 +4097,7 @@ function drawRendChart(labels,data){
   const n=labels.length,bw=Math.max(2,(iW/n)*0.65);
   const green=getVar('--green')||'#3D8B4A';
   const red=getVar('--red')||'#C0392B';
-  const dimC='rgba(120,120,120,0.5)';
+  const dimC=getVar('--text-dim')||'#55516B'; // v8.1: antes gris semitransparente, poco legible
   // zero line
   ctx.beginPath();ctx.strokeStyle=getVar('--border2')||'#ccc';ctx.lineWidth=1;ctx.setLineDash([3,3]);
   ctx.moveTo(pad.l,zeroY);ctx.lineTo(pad.l+iW,zeroY);ctx.stroke();ctx.setLineDash([]);
@@ -4096,10 +4115,10 @@ function drawRendChart(labels,data){
   const step=Math.max(1,Math.floor(n/8));
   for(let i=0;i<n;i+=step){
     const x=pad.l+(i/(n-1||1))*iW;
-    ctx.fillStyle=dimC;ctx.font='8px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';ctx.fillText(labels[i],x,H-4);
+    ctx.fillStyle=dimC;ctx.font='10px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';ctx.fillText(labels[i],x,H-4);
   }
   // max label
-  ctx.fillStyle=getVar('--text-dim')||'#999';ctx.font='8px Plus Jakarta Sans,sans-serif';ctx.textAlign='left';
+  ctx.fillStyle=getVar('--text-dim')||'#999';ctx.font='10px Plus Jakarta Sans,sans-serif';ctx.textAlign='left';
   ctx.fillText('+'+absMax.toFixed(1)+'%',pad.l,pad.t-2);
   ctx.fillText('-'+absMax.toFixed(1)+'%',pad.l,H-pad.b+10);
 }
@@ -4120,12 +4139,12 @@ function drawProjChart(labels,sObjArr,sReal,meta,sProjArr){
   const accent2=getVar('--accent2')||'#4A7A9B';
   const goldC=getVar('--gold')||'#B8860B';
   const brand=getVar('--brand')||'#E8421C';
-  const dimC='rgba(120,120,120,0.55)';
+  const dimC=getVar('--text-dim')||'#55516B'; // v8.1: antes gris semitransparente, poco legible
   // meta dashed
   const ym=yOf(meta);
   ctx.beginPath();ctx.setLineDash([5,4]);ctx.strokeStyle=goldC+'88';ctx.lineWidth=1.5;
   ctx.moveTo(pad.l,ym);ctx.lineTo(pad.l+iW,ym);ctx.stroke();ctx.setLineDash([]);
-  ctx.fillStyle=goldC;ctx.font='9px Plus Jakarta Sans,sans-serif';ctx.textAlign='right';ctx.fillText('META',pad.l+iW,ym-5);
+  ctx.fillStyle=goldC;ctx.font='600 10px Plus Jakarta Sans,sans-serif';ctx.textAlign='right';ctx.fillText('META',pad.l+iW,ym-5);
   // Projected (compound) area fill — drawn first so other lines sit on top
   if(sProjArr && sProjArr.length>1){
     const grad=ctx.createLinearGradient(0,pad.t,0,pad.t+iH);
@@ -4162,7 +4181,7 @@ function drawProjChart(labels,sObjArr,sReal,meta,sProjArr){
   ];
   if(sProjArr) items.push({label:'Proyectado',color:brand});
   items.push({label:'Saldo real', color:accent});
-  ctx.font='8px Plus Jakarta Sans,sans-serif';ctx.textAlign='left';
+  ctx.font='10px Plus Jakarta Sans,sans-serif';ctx.textAlign='left';
   let lx=pad.l;
   items.forEach(it=>{
     ctx.fillStyle=it.color;ctx.fillRect(lx,pad.t,12,2);
@@ -4171,7 +4190,7 @@ function drawProjChart(labels,sObjArr,sReal,meta,sProjArr){
   });
   // x labels
   const step=Math.max(1,Math.floor(n/6));
-  for(let i=0;i<n;i+=step){ctx.fillStyle=dimC;ctx.font='8px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';ctx.fillText(labels[i],xOf(i),H-4);}
+  for(let i=0;i<n;i+=step){ctx.fillStyle=dimC;ctx.font='10px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';ctx.fillText(labels[i],xOf(i),H-4);}
   // empty state
   if(sReal.filter(v=>v!=null).length===0 && !sProjArr){
     ctx.fillStyle=getVar('--text-dim')||'#999';ctx.font='13px Plus Jakarta Sans,sans-serif';ctx.textAlign='center';

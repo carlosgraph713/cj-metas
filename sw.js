@@ -1,7 +1,7 @@
-/* CJ Metas — service worker (v8.0)
+/* CJ Metas — service worker (v8.1)
    Guarda la app en el dispositivo para que abra sin internet.
    NO toca tus datos: esos viven en el almacenamiento del navegador (localStorage). */
-const CACHE = 'cj-metas-v8.0';
+const CACHE = 'cj-metas-v8.1';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 // Recursos externos que la app usa: tipografías y la librería de exportar a Excel
 const EXTERNAL = [

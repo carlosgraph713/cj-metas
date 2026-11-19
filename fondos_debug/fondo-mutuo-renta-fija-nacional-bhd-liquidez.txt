@@ -1,7 +1,7 @@
-https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-BHD-Liquidez-1.pdf
+https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-BHD-Liquidez.pdf
 
 InformeDiario
-17 de noviembre de 2026
+18 de noviembre de 2026
 DATOS GENERALES
 Nombre del fondo Tipo de fondo No. de registro SIMV Fecha de constitución
 Fondo Mutuo Renta Fija Nacional BHD Fondo de Inversión SIVFIA-003 6 de enero de 2015
@@ -9,31 +9,31 @@ Liquidez Abierto
 Administrador del fondo Comisión por Comisión por desempeño Comisión por rescate Moneda de Inversión
 Jael S. Periche M. administración No aplica anticipado Peso Dominicano
 1.75% No aplica
-Rentabilidad de Últimos: RD$ 1,000 RD$ 2,314.135783 RD$ 27,454,279,472.00
+Rentabilidad de Últimos: RD$ 1,000 RD$ 2,314.597643 RD$ 27,939,082,078.10
 Inversión mínima de Valor de la cuota del día Valor del fondo
 adiciones
 RD$ 5,000
-30días 7.61% RD$ 1,000 RD$ 2,313.692008 26,598
+30días 7.60% RD$ 1,000 RD$ 2,314.135783 26,610
 Inversión inicial
 Saldo mínimo de
 mínima permanencia Valor de la cuota del día anterior Número de aportantes
-90días 7.56%
-CEVALDOM 77 días 2.98%
+90días 7.55%
+CEVALDOM 76 días 2.93%
 180días 7.90% Custodio de valores Duración del portafolio Porcentaje participación vinculados
 365 días 7.75% PriceWaterhouseCoopers AAfa/M1 Feller Rate
 Firma de auditoría Calificación de riesgo Calificadora de riesgo
 COMPOSICIÓN DEL PORTAFOLIO
 Sector Económico Instrumento
-Certificados Financieros 83.33%
-Financiero 97.89% A la Vista 14.11%
-Gobierno 2.11%
-Notas 2.11%
+Certificados Financieros 81.61%
+Financiero 97.93% A la Vista 15.87%
+Gobierno 2.07%
+Notas 2.07%
 EVOLUCIÓN VALOR CUOTA Y COMPARACIÓN CON BENCHAMARK
 Evolución Valor Cuota Comparación con Benchmark
-2,246.9 2,262.1 2,277.6 2,291.5 2,306.0 2,314.1 TIPP de 0 a 30 Días
+2,246.9 2,262.1 2,277.6 2,291.5 2,306.0 2,314.6 TIPP de 0 a 30 Días
 7.87% 7.88% 7.95% 8.07% 7.42% 7.47%
 6.70% 6.43% 6.68% 6.57% 5.97% 6.69%
-30-Jun-26 31-Jul-26 31-Aug-26 30-Sep-26 31-Oct-26 17-Nov-26 May-26 Jun-26 Jul-26 Aug-26 Sep-26 Oct-26
+30-Jun-26 31-Jul-26 31-Aug-26 30-Sep-26 31-Oct-26 18-Nov-26 May-26 Jun-26 Jul-26 Aug-26 Sep-26 Oct-26
 Rent. Fondo Rent. Benchmark
 Infórmese de las características esenciales de la inversión en el Fondo Mutuo Renta Fija Nacional – BHD Liquidez, las que se encuentran contenidas en
 el prospecto de emisión y en el reglamento interno del fondo. La rentabilidad o ganancia obtenida en el pasado, no garantiza que se repita en el

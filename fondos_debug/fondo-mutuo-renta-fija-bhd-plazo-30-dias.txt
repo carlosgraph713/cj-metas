@@ -1,7 +1,7 @@
-https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-BHD-Fondos-Plazo-30-1-1.pdf
+https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-BHD-Fondos-Plazo-30-1.pdf
 
 InformeDiario
-19 de noviembre de 2026
+22 de noviembre de 2026
 DATOS GENERALES
 Nombre del fondo Tipo de fondo No. de registro SIMV Fecha de constitución
 Fondo de Inversión SIVFIA-014 18 de abril de 2016
@@ -10,39 +10,39 @@ Administrador del fondo Comisión por Comisión por desempeño Comisión por res
 Jael S. Periche M. administración 20% diferencial con Peso Dominicano
 1% benchmark 0.20% sobre monto del
 retiro
-RD$ 2,252.187529 RD$ 6,470,748,672.44
+RD$ 2,253.640463 RD$ 6,482,218,204.98
 Desempeño Rentabilidad Volatilidad RD$ 1,000
 Valor de la cuota del día Valor del fondo
 Inversión mínima de
 adiciones
 RD$ 10,000
-30días 9.13% 0.10% RD$ 5,000 RD$ 2,251.678793 6,058
+30días 9.13% 0.10% RD$ 5,000 RD$ 2,253.166210 6,061
 Inversión inicial
 Saldo mínimo de Valor de la cuota del día Número de aportantes
 mínima permanencia
 anterior
-90días 8.64% 0.08%
-CEVALDOM 150 días 0.52%
-180días 8.82% 0.16% Custodio de valores Duración del portafolio Porcentaje participación vinculados
-365 días 8.58% 0.01% PriceWaterhouseCoopers AAfa/M2 Feller Rate
+90días 8.63% 0.08%
+CEVALDOM 147 días 0.52%
+180días 8.78% 0.16% Custodio de valores Duración del portafolio Porcentaje participación vinculados
+365 días 8.57% 0.01% PriceWaterhouseCoopers AAfa/M2 Feller Rate
 Firma de auditoría Calificación de riesgo Calificadora de riesgo
 COMPOSICIÓN DEL PORTAFOLIO
 Sector Económico Instrumento
-Certificados Financieros 76.98%
+Certificados Financieros 76.9%
 Financiero 92.69%
-A la Vista 8.34%
-Gobierno 6.47% Fondos mutuos 4.75%
-Notas 6.47%
+A la Vista 8.44%
+Gobierno 6.46% Fondos mutuos 4.75%
+Notas 6.46%
 Sector Real 0.84%
-Bonos 3.%
+Bonos 2.99%
 EVOLUCIÓN VALOR CUOTA Y COMPARACIÓN CON BENCHAMARK
 Evolución Valor Cuota Comparación con Benchmark
-2,179.6 2,195.7 2,211.6 2,226.4 2,241.9 2,252.2 TIPP de 0 a 30 Dias 8.65% 9.04% 8.89% 8.43% 8.52%
+2,179.6 2,195.7 2,211.6 2,226.4 2,241.9 2,253.6 TIPP de 0 a 30 Dias 8.65% 9.04% 8.89% 8.43% 8.52%
 7.70%
 7.43%
 8.20% 7.68% 7.57% 7.69%
 6.97%
-30-Jun-26 31-Jul-26 31-Aug-26 30-Sep-26 31-Oct-26 19-Nov-26 May-26 Jun-26 Jul-26 Aug-26 Sep-26 Oct-26
+30-Jun-26 31-Jul-26 31-Aug-26 30-Sep-26 31-Oct-26 22-Nov-26 May-26 Jun-26 Jul-26 Aug-26 Sep-26 Oct-26
 Rent. Fondo Rent. Benchmark
 Infórmese de las características esenciales de la inversión en el Fondo Mutuo Renta Fija – BHD Plazo 30 Días, las que se encuentran contenidas en el
 folleto informativo y en el reglamento interno del fondo. La rentabilidad o ganancia obtenida en el pasado, no garantiza que se repita en el futuro.

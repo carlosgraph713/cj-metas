@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkREQzQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBOUEyRjAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjMwIiBmaWxsPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTE4IDk0IEw0NiA1NiBMNjAgNzIgTDc4IDQ0IEwxMDIgOTQgWiIgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkyIi8+PHBhdGggZD0iTTc4IDQ0IEw3OCAyMCIgc3Ryb2tlPSIjNEU0QUIzIiBzdHJva2Utd2lkdGg9IjQuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5IDIxIEw5OCAyNyBMNzkgMzQgWiIgZmlsbD0iI0ZGQjk5NiIvPjxwYXRoIGQ9Ik00NiA1NiBMNTIgNjQgTDQwIDY0IFogTTc4IDQ0IEw4NSA1NiBMNzEgNTYgWiIgZmlsbD0iI0U0RTFGQiIvPjxyZWN0IHg9IjE4IiB5PSI5MiIgd2lkdGg9Ijg0IiBoZWlnaHQ9IjUiIHJ4PSIyLjUiIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii43Ii8+PC9zdmc+">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v8.1 — Ahorro e inversión</title>
+<title>CJ Metas v8.2 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2499,6 +2499,49 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
 [data-theme="dark"] .plan-tab[data-color="teal"],[data-theme="dark"] .res-plan[data-color="teal"]{--tab-c1:#9BE3CC;--tab-c2:#8FDDC4;}
 [data-theme="dark"] .plan-tab[data-color="indigo"],[data-theme="dark"] .res-plan[data-color="indigo"]{--tab-c1:#C4BFFF;--tab-c2:#B3ACFA;}
 [data-theme="dark"] .plan-tab[data-color="amber"],[data-theme="dark"] .res-plan[data-color="amber"]{--tab-c1:#FFD27A;--tab-c2:#C4BFFF;}
+
+/* ═══ v8.2 · INFORME PDF POR APARTADOS ═══
+   Página 1: patrimonio, consolidado y crecimiento · luego una página por plan · al final, meses por completar.
+   Nada se parte entre dos páginas: si un bloque no cabe, pasa completo a la siguiente. */
+@media print{
+  @page{size:letter;margin:12mm 12mm 14mm;}
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background-image:none!important;}
+  .res-wrap{padding-top:0!important;padding-bottom:0!important;}
+  .pr-break{break-before:page;page-break-before:always;margin-top:0!important;padding-top:0!important;}
+  .eyebrow{break-after:avoid;}
+  .sec-h2{break-after:avoid;page-break-after:avoid;margin-bottom:12px!important;}
+  /* cada plan en su propia página, a todo el ancho */
+  .res-plans{display:block!important;margin-bottom:0!important;}
+  .res-plans>.res-plan{break-inside:avoid;page-break-inside:avoid;margin:0 0 14px!important;}
+  .res-plans>.res-plan+.res-plan{break-before:page;page-break-before:always;}
+  .res-plans>.res-plan+.res-plan:has(.res-plan-empty){break-before:auto;page-break-before:auto;} /* un plan sin configurar no ocupa página sola */
+  /* los textos con degradado se imprimen con color sólido (evita recuadros raros en el PDF) */
+  .res-plan-saldo,.plan-tab-icon{background:none!important;-webkit-text-fill-color:var(--tab-c1)!important;color:var(--tab-c1)!important;}
+  .hero-title .hl{background:none!important;-webkit-text-fill-color:var(--brand)!important;color:var(--brand)!important;}
+  /* bloques que nunca se cortan */
+  .patri,.res-totals,.stat-card,.crece-card,.res-alert,.res-banner,.res-plan>*,.res-nec,.res-eta,.res-live,.disclaimer,.site-footer{break-inside:avoid;page-break-inside:avoid;}
+  .res-totals{grid-template-columns:repeat(4,1fr)!important;gap:10px!important;margin-bottom:16px!important;}
+  .stat-card{padding:12px!important;}
+  .patri{margin-bottom:16px!important;padding:16px 18px!important;}
+  .patri-leg{grid-template-columns:1fr 1fr!important;}
+  #resCrece{margin:0!important;}
+  .crece-card{padding:14px 16px 8px!important;}
+  .crece-graf svg{max-height:62mm;}
+  .res-plan{padding:18px 20px!important;}
+  /* tarjeta del plan más compacta para que quepa entera en su página */
+  .res-plan .res-kv{grid-template-columns:repeat(3,1fr)!important;gap:8px!important;margin-bottom:10px!important;}
+  .res-plan .metric{padding:9px 11px!important;}
+  .res-plan .m-val{font-size:17px!important;}
+  .res-plan .m-sub{font-size:10px!important;}
+  .res-plan-saldo{font-size:26px!important;margin-top:8px!important;}
+  .res-plan-sub{margin:2px 0 8px!important;}
+  .res-plan .prog-wrap{margin-bottom:10px!important;}
+  .res-spark{height:54px!important;}
+  .res-nec,.res-live,.res-eta{margin-bottom:8px!important;padding:8px 12px!important;}
+  .sec-h2{font-size:22px!important;}
+  .site-footer{margin-top:18px!important;padding-top:10px!important;}
+}
 </style>
 </head>
 <body data-page="res">
@@ -2546,7 +2589,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 8.1</span>
+      <span class="chip">Versión 8.2</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" data-logo-src="app"></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2562,11 +2605,11 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="res-totals" id="resTotals"></div>
     <div id="resCrece"></div>
 
-    <p class="eyebrow">Plan por plan</p>
+    <p class="eyebrow pr-break">Plan por plan</p>
     <h2 class="sec-h2">Avance hacia cada meta</h2>
     <div class="res-plans" id="resPlans"></div>
 
-    <p class="eyebrow">Revisión de registros</p>
+    <p class="eyebrow pr-break">Revisión de registros</p>
     <h2 class="sec-h2">Meses por completar</h2>
     <div id="resAlerts"></div>
 
@@ -2594,7 +2637,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.1</div>
+    <div class="ft-line ft-ver">Versión 8.2</div>
   </footer>
 </div>
 
@@ -2747,7 +2790,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.1</div>
+    <div class="ft-line ft-ver">Versión 8.2</div>
   </footer>
 </div>
 
@@ -2885,7 +2928,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.1</div>
+    <div class="ft-line ft-ver">Versión 8.2</div>
   </footer>
 </div>
 
@@ -5019,7 +5062,7 @@ function resCrecimiento(plans){
 function creceDibujar(pts){
   const box=document.getElementById('creceGraf');if(!box)return;
   box._pts=pts;
-  const W=Math.max(260,box.clientWidth||600),H=W<520?210:250;
+  const W=window._anchoImpresion||Math.max(260,box.clientWidth||600),H=W<520?210:250;
   const pad={t:14,r:14,b:28,l:W<520?58:70};
   const iW=W-pad.l-pad.r,iH=H-pad.t-pad.b,n=pts.length;
   const maxV=Math.max(...pts.map(p=>p.t),1);
@@ -5061,6 +5104,8 @@ function creceDibujar(pts){
   const salir=()=>{hv.style.display='none';tip.hidden=true;};
   svg.addEventListener('pointermove',mover);svg.addEventListener('pointerdown',mover);svg.addEventListener('pointerleave',salir);
 }
+window.addEventListener('beforeprint',()=>{const b=document.getElementById('creceGraf');if(b&&b._pts){window._anchoImpresion=680;creceDibujar(b._pts);}});
+window.addEventListener('afterprint',()=>{const b=document.getElementById('creceGraf');window._anchoImpresion=0;if(b&&b._pts)creceDibujar(b._pts);});
 window.addEventListener('resize',()=>{const b=document.getElementById('creceGraf');if(b&&b._pts){clearTimeout(b._t);b._t=setTimeout(()=>creceDibujar(b._pts),150);}});
 
 /* v7.0 · E: patrimonio total y cómo se reparte entre los planes */

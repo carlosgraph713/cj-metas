@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v8.6 — Ahorro e inversión</title>
+<title>CJ Metas v8.7 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2648,6 +2648,11 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
   body.print-plan .pr-plan-nota{display:block!important;font-size:10.5px;color:var(--text-mid);margin:8px 0 0;}
   body.print-plan .pr-plan-nota:empty{display:none!important;}
 }
+/* ═══ v8.7 · Registro mensual: la fila "Resumen del año" en azul pastel (distinta de los meses) ═══ */
+table.trk tbody tr.yr-sum,[data-theme="light"] table.trk tbody tr.yr-sum{background:#D4E5FA;}
+table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
+[data-theme="dark"] table.trk tbody tr.yr-sum{background:#1F3350;}
+[data-theme="dark"] table.trk tbody tr.yr-sum td{border-color:#35517A;}
 </style>
 </head>
 <body data-page="res">
@@ -2694,7 +2699,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 8.6</span>
+      <span class="chip">Versión 8.7</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2742,7 +2747,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.6</div>
+    <div class="ft-line ft-ver">Versión 8.7</div>
   </footer>
 </div>
 
@@ -2895,7 +2900,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.6</div>
+    <div class="ft-line ft-ver">Versión 8.7</div>
   </footer>
 </div>
 
@@ -3037,7 +3042,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.6</div>
+    <div class="ft-line ft-ver">Versión 8.7</div>
   </footer>
 </div>
 

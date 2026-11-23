@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-23T02:51:34Z",
+ "actualizado": "2026-11-23T22:41:07Z",
  "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; Alcanza/AFP Siembra: página principal)",
  "fuente_url": "https://bhdfondos.com.do/",
  "nota": "Rentabilidades anualizadas publicadas por la administradora.",
@@ -22,7 +22,7 @@
    "r180": null,
    "r365": 8.19,
    "nota": "Plan de Ahorro Complementario de AFP Siembra (regulado por la SIPEN). La pagina no aclara si la cifra es antes o despues de la comision anual de 2%.",
-   "leido": "2026-11-23T02:51:34Z",
+   "leido": "2026-11-23T22:41:07Z",
    "ok": true,
    "error": null
   },
@@ -40,7 +40,7 @@
    "r90": 8.63,
    "r180": 8.78,
    "r365": 8.57,
-   "leido": "2026-11-23T02:51:34Z",
+   "leido": "2026-11-23T22:41:07Z",
    "ok": true,
    "error": null
   },
@@ -58,7 +58,7 @@
    "r90": 8.14,
    "r180": 8.34,
    "r365": 8.67,
-   "leido": "2026-11-23T02:51:34Z",
+   "leido": "2026-11-23T22:41:07Z",
    "ok": true,
    "error": null
   },
@@ -76,7 +76,7 @@
    "r90": 8.75,
    "r180": 8.69,
    "r365": 8.39,
-   "leido": "2026-11-23T02:51:34Z",
+   "leido": "2026-11-23T22:41:07Z",
    "ok": true,
    "error": null
   },
@@ -94,7 +94,7 @@
    "r90": 7.52,
    "r180": 7.89,
    "r365": 7.74,
-   "leido": "2026-11-23T02:51:34Z",
+   "leido": "2026-11-23T22:41:07Z",
    "ok": true,
    "error": null
   },
@@ -105,14 +105,14 @@
    "nombre": "Fondo de Inversión Cerrado de Desarrollo BHD Fondos I",
    "tipo": "cerrado",
    "moneda": "USD",
-   "url_pdf": "https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-Fondo-de-FICD-BHD-Fondos-I-1.pdf",
-   "fecha_corte": "2026-11-22",
-   "valor_cuota": 1328.978842,
-   "r30": 1.98,
+   "url_pdf": "https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-Fondo-de-FICD-BHD-Fondos-I.pdf",
+   "fecha_corte": "2026-11-23",
+   "valor_cuota": 1329.047847,
+   "r30": 1.97,
    "r90": 2.29,
    "r180": 2.19,
-   "r365": 15.58,
-   "leido": "2026-11-23T02:51:34Z",
+   "r365": 15.57,
+   "leido": "2026-11-23T22:41:07Z",
    "ok": true,
    "error": null
   }

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v8.4 — Ahorro e inversión</title>
+<title>CJ Metas v8.5 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2587,6 +2587,67 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
   .nav-brand .nav-logo{margin-right:6px;}
   .nav-brand .nav-logo,.nav-brand .nav-logo:hover,[data-theme="dark"] .nav-brand .nav-logo,[data-theme="dark"] .nav-brand .nav-logo:hover{width:30px;height:30px;}
 }
+/* ═══ v8.5 · INFORME PDF DE UN SOLO PLAN ═══
+   Se activa con el botón "Informe PDF de este plan" (clase print-plan en el body).
+   Página 1: datos del plan, saldo y gráficos · luego el registro mensual. */
+.pr-plan-datos{display:none;}
+@media print{
+  body.print-plan #pg-res{display:none!important;}
+  body.print-plan #pg-plan{display:flex!important;flex-direction:column;}
+  body.print-plan #pg-plan>*{order:5;}
+  body.print-plan #pg-plan>#printPlanHead{order:0;}
+  body.print-plan #pg-plan>.plan-header{order:1;}
+  body.print-plan #pg-plan>.plan-config{order:2;}
+  body.print-plan #pg-plan>.plan-charts{order:3;}
+  body.print-plan #pg-plan>.tracker-area{order:4;break-before:page;page-break-before:always;}
+  body.print-plan #pg-plan>.disclaimer{order:6;}
+  body.print-plan #pg-plan>.site-footer{order:7;}
+  body.print-plan .plan-selector,body.print-plan .plan-pdf-act,body.print-plan #planEdit,body.print-plan .bs-actions,
+  body.print-plan #gdBox,body.print-plan .trk-toggle,body.print-plan #trkMore,body.print-plan .hero-chips{display:none!important;}
+  body.print-plan .plan-header,body.print-plan .plan-config,body.print-plan .tracker-area,body.print-plan .plan-charts{
+    padding-left:0!important;padding-right:0!important;max-width:none!important;margin-left:0!important;margin-right:0!important;}
+  body.print-plan .plan-header{padding-top:0!important;padding-bottom:6px!important;min-height:0!important;background:none!important;}
+  body.print-plan .plan-header::before,body.print-plan .plan-header::after,body.print-plan .big-saldo::before,
+  body.print-plan .pc-card::before,body.print-plan .pc-card::after{display:none!important;}
+  body.print-plan .plan-header .hero-title{font-size:24px!important;margin-bottom:2px!important;}
+  body.print-plan .plan-header .hero-sub{display:none!important;}
+  body.print-plan .pr-plan-datos{display:grid!important;grid-template-columns:repeat(3,1fr);gap:6px 14px;margin:8px 0 2px;
+    font-size:11px;color:var(--text-mid);}
+  .pr-plan-datos b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim);font-weight:600;}
+  .pr-plan-datos span{display:block;color:var(--text);font-weight:600;overflow-wrap:anywhere;}
+  .pr-plan-datos .ppd-ancho{grid-column:1/-1;}
+  body.print-plan .plan-config{display:block!important;padding-top:6px!important;padding-bottom:0!important;}
+  body.print-plan .config-stats{grid-template-columns:repeat(4,1fr)!important;gap:10px!important;margin-bottom:12px!important;}
+  body.print-plan .config-stats .stat-card{padding:10px 12px!important;}
+  body.print-plan .config-stats .sc-val{font-size:18px!important;white-space:nowrap;}
+  body.print-plan .big-saldo{box-shadow:none!important;padding:14px 18px!important;margin-bottom:12px!important;break-inside:avoid;}
+  body.print-plan .bs-amt{font-size:26px!important;}
+  body.print-plan .plan-charts{display:grid!important;grid-template-columns:1fr 1fr!important;gap:12px!important;padding-top:0!important;padding-bottom:0!important;}
+  body.print-plan .pc-card{box-shadow:none!important;padding:12px 14px!important;break-inside:avoid;page-break-inside:avoid;}
+  body.print-plan .pc-card canvas{height:auto!important;}
+  body.print-plan .tracker-area{padding-top:0!important;}
+  body.print-plan .ta-hd{break-after:avoid;margin-bottom:8px!important;}
+  body.print-plan .reg-title{font-size:20px!important;}
+  body.print-plan .reg-sub{font-size:10px!important;}
+  body.print-plan .tbl-scroll{overflow:visible!important;max-height:none!important;box-shadow:none!important;}
+  body.print-plan table.trk{min-width:0!important;width:100%!important;font-size:9.5px!important;border-spacing:0 2px!important;}
+  body.print-plan table.trk thead tr{position:static!important;}
+  body.print-plan table.trk thead{display:table-header-group;}
+  body.print-plan table.trk th,body.print-plan table.trk td{display:table-cell!important;padding:4px!important;}
+  body.print-plan table.trk thead th{font-size:7.5px!important;letter-spacing:.2px!important;white-space:normal!important;line-height:1.2!important;}
+  body.print-plan table.trk .th-full{display:inline!important;}
+  body.print-plan table.trk .th-short{display:none!important;}
+  body.print-plan table.trk .yr-word{display:inline!important;}
+  body.print-plan table.trk tr{break-inside:avoid;page-break-inside:avoid;}
+  body.print-plan table.trk tr.trk-fut{display:none!important;}
+  body.print-plan table.trk .ii{border:none!important;background:none!important;box-shadow:none!important;padding:0!important;
+    font-size:9.5px!important;width:100%!important;min-width:0!important;height:auto!important;}
+  body.print-plan table.trk .ii::placeholder{color:transparent!important;}
+  body.print-plan table.trk .mon-lbl,body.print-plan table.trk .ctag{font-size:9.5px!important;}
+  body.print-plan table.trk .growth-bar{display:none!important;}
+  body.print-plan .pr-plan-nota{display:block!important;font-size:10.5px;color:var(--text-mid);margin:8px 0 0;}
+  body.print-plan .pr-plan-nota:empty{display:none!important;}
+}
 </style>
 </head>
 <body data-page="res">
@@ -2633,7 +2694,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 8.4</span>
+      <span class="chip">Versión 8.5</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2681,7 +2742,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.4</div>
+    <div class="ft-line ft-ver">Versión 8.5</div>
   </footer>
 </div>
 
@@ -2834,7 +2895,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.4</div>
+    <div class="ft-line ft-ver">Versión 8.5</div>
   </footer>
 </div>
 
@@ -2843,6 +2904,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
      PAGE 2 — PLAN DE INVERSIÓN
 ══════════════════════════════════════ -->
 <div id="pg-plan" class="page">
+  <div class="print-only print-head" id="printPlanHead"></div>
 
   <div class="plan-header">
     <div class="hero-chips fi">
@@ -2852,9 +2914,11 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title"><span id="planTitleTipo">Plan de <span class="hl">Inversión</span></span> <span id="planNumLabel" style="color:var(--gold);font-weight:700">1</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Planes de inversión (fondos de las AFI) o de ahorro (banco, cooperativa, alcancía…). Registra tus aportes y ganancias mes a mes; los datos se guardan en tu dispositivo.</p>
+    <div class="pr-plan-datos" id="printPlanDatos"></div>
 
     <!-- v6.0: selector de planes (se arma solo; puedes agregar o quitar planes) -->
     <div class="plan-selector" id="planSelector"></div>
+    <div class="res-hero-actions plan-pdf-act"><button class="btn-sec" onclick="imprimirInformePlan()" title="Abre la ventana de impresión con el informe solo de este plan: elige 'Guardar como PDF'">🖨 Informe PDF de este plan</button></div>
   </div>
 
   <!-- CONFIG -->
@@ -2946,6 +3010,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
       </table>
     </div>
     <button type="button" class="btn-sec trk-more" id="trkMore" hidden onclick="toggleTrkAll()"></button>
+    <p class="print-only pr-plan-nota" id="printPlanNota"></p>
   </div>
 
   <!-- CHARTS -->
@@ -2972,7 +3037,7 @@ table.trk tbody tr.yr-sum .yr-growth-down{color:var(--red) !important;text-shado
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.4</div>
+    <div class="ft-line ft-ver">Versión 8.5</div>
   </footer>
 </div>
 
@@ -4162,8 +4227,8 @@ function drawPlanCharts(){
 }
 
 function canvasSetup(canvas,H){
-  const DPR=window.devicePixelRatio||1;
-  const W=canvas.parentElement.clientWidth-44||400;
+  const DPR=window._anchoPlan?3:(window.devicePixelRatio||1); // v8.5: más nitidez en el PDF del plan
+  const W=window._anchoPlan||canvas.parentElement.clientWidth-44||400;
   canvas.width=W*DPR;canvas.height=H*DPR;
   canvas.style.width=W+'px';canvas.style.height=H+'px';
   const ctx=canvas.getContext('2d');ctx.scale(DPR,DPR);ctx.clearRect(0,0,W,H);
@@ -4942,6 +5007,43 @@ function resSpark(p){
     ${p.serie.length>1?`<polyline points="${rr}" class="sp-real"/>`:''}
     ${p.serie.length?`<circle cx="${X(p.serie[p.serie.length-1].m)}" cy="${Y(p.serie[p.serie.length-1].saldo)}" r="3" class="sp-dot"/>`:''}
   </svg><div class="sp-leg"><span class="sp-l-real">Saldo real</span><span class="sp-l-proj">Proyección del plan</span><span class="sp-l-meta">Meta</span></div>`;
+}
+/* v8.5: informe PDF de un solo plan (el que está abierto en Mis Planes).
+   Usa la misma ventana de impresión del navegador que el informe del Resumen. */
+function imprimirInformePlan(){
+  if(!document.getElementById('pg-plan').classList.contains('active'))showPage('plan',document.getElementById('navPlan'));
+  const v=id=>((document.getElementById(id)||{}).value||'').toString().trim();
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const mesTxt=ym=>{if(!/^\d{4}-\d{2}$/.test(ym))return '—';const [y,m]=ym.split('-').map(Number);return new Date(y,m-1).toLocaleDateString('es-DO',{month:'long',year:'numeric'});};
+  const num=currentPlan,nombre=v('pN'),ahorro=v('pTipo')==='ahorro';
+  const hoy=new Date(),hoyTxt=hoy.toLocaleDateString('es-DO',{day:'numeric',month:'long',year:'numeric'});
+  const h=document.getElementById('printPlanHead');
+  if(h)h.textContent=`CJ Metas · Informe del plan ${num}${nombre?' — '+nombre:''} · ${hoyTxt}`;
+  const lblEnt=((document.getElementById('lblAFI')||{}).textContent||'Entidad').replace(/ seleccionada$/i,'');
+  const rp=v('pRP');
+  const d=document.getElementById('printPlanDatos');
+  if(d)d.innerHTML=(nombre?`<div class="ppd-ancho"><b>Nombre del plan</b><span>${esc(nombre)}</span></div>`:'')+
+    `<div><b>Tipo de plan</b><span>${ahorro?'🐷 Ahorro':'📈 Inversión'}</span></div>`+
+    `<div><b>${esc(lblEnt)}</b><span>${v('pAFI')?esc(v('pAFI')):'—'}</span></div>`+
+    `<div><b>Rendimiento anual proyectado</b><span>${rp?esc(rp)+' %':'—'}</span></div>`+
+    `<div><b>Fecha de inicio</b><span>${mesTxt(v('pFI'))}</span></div>`+
+    `<div><b>Fecha meta</b><span>${mesTxt(v('pFM'))}</span></div>`;
+  const n=document.getElementById('printPlanNota');
+  if(n){const fut=document.querySelectorAll('#trkBody tr.trk-fut:not(.yr-sum)').length;
+    n.textContent=fut?`El registro llega hasta el próximo mes. Faltan ${fut} ${fut===1?'mes':'meses'} más hasta la fecha meta (${mesTxt(v('pFM'))}).`:'';}
+  // El informe siempre sale con colores claros (papel blanco), aunque la app esté en tema oscuro
+  const raiz=document.documentElement,tema=raiz.getAttribute('data-theme');
+  if(tema==='dark')raiz.setAttribute('data-theme','light');
+  document.body.classList.add('print-plan');
+  const titulo=document.title;
+  document.title=`Informe CJ Metas - Plan ${num}${nombre?' - '+nombre:''} - ${hoy.toISOString().slice(0,10)}`.replace(/[\\/:*?"<>|]/g,'-');
+  window._anchoPlan=340;drawPlanCharts();
+  let hecho=false;
+  const fin=()=>{if(hecho)return;hecho=true;window.removeEventListener('afterprint',fin);
+    document.body.classList.remove('print-plan');document.title=titulo;window._anchoPlan=0;
+    if(tema==='dark')raiz.setAttribute('data-theme','dark');drawPlanCharts();};
+  window.addEventListener('afterprint',fin);
+  setTimeout(()=>{window.print();},300);
 }
 /* v6.0: informe en PDF (ventana de impresión del navegador → "Guardar como PDF") */
 function imprimirInforme(){

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.6 — Ahorro e inversión</title>
+<title>CJ Metas v9.7 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2806,6 +2806,14 @@ table.trk thead tr{position:static!important;}
   .tbl-scroll.compact-on{margin-left:-8px;margin-right:-8px;}
   table.trk.compact .ii.ii{font-size:10.5px;padding:5px 3px;}
 }
+/* ═══ v9.7 · Tarjetas Meta / Aporte mensual en pantallas angostas: letra un poco menor y la cifra puede bajar de línea ═══ */
+@media(max-width:380px){
+  .config-stats .sc-val{font-size:19px;line-height:1.2;}
+}
+@media(max-width:340px){
+  .config-stats{gap:10px;}
+  .config-stats .sc-val{font-size:17px;}
+}
 </style>
 </head>
 <body data-page="res">
@@ -2852,7 +2860,7 @@ table.trk thead tr{position:static!important;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.6</span>
+      <span class="chip">Versión 9.7</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2900,7 +2908,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.6</div>
+    <div class="ft-line ft-ver">Versión 9.7</div>
   </footer>
 </div>
 
@@ -3053,7 +3061,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.6</div>
+    <div class="ft-line ft-ver">Versión 9.7</div>
   </footer>
 </div>
 
@@ -3199,7 +3207,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.6</div>
+    <div class="ft-line ft-ver">Versión 9.7</div>
   </footer>
 </div>
 
@@ -4399,7 +4407,7 @@ function updateSummary(){
   // Stats reflect actual entered values: 0 / "—" when empty
   const S=curSym(monActual()),usd=monActual()==='USD'; // v9.0
   document.getElementById('pcM').textContent= meta>0 ? S+' '+fmt(meta) : S+' 0';
-  document.getElementById('pcA').textContent= aM>0 ? S+' '+fmt(aM)+'/mes' : S+' 0/mes';
+  document.getElementById('pcA').textContent= aM>0 ? S+' '+fmt(aM)+'\u200B/mes' : S+' 0\u200B/mes';
   let meses=0;
   if(iv&&mv){
     const [iy,im]=iv.split('-').map(Number),[my,mm]=mv.split('-').map(Number);

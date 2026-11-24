@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.3 — Ahorro e inversión</title>
+<title>CJ Metas v9.4 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2728,6 +2728,46 @@ table.trk thead th{color:#2B2645;}
   .plan-tab-ico{width:42px;height:42px;border-radius:13px;}
   .plan-tab-ico svg{width:23px;height:23px;}
 }
+/* ═══ v9.4 · REGISTRO MENSUAL MÁS LIMPIO ═══
+   Filas blancas iguales, sin bloques de color por columna; el estado del mes se marca con una franja
+   a la izquierda (verde = mes completo, roja = el saldo bajó). Los campos para escribir son cápsulas suaves.
+   No toca la barra de títulos ni la fila del resumen del año (ni sus animaciones). */
+table.trk{border-spacing:0 7px;}
+table.trk tbody tr:not(.yr-sum):not(.empty-state),
+table.trk tbody tr.filled:not(.yr-sum),table.trk tbody tr.filled-down:not(.yr-sum),
+[data-theme="dark"] table.trk tbody tr.filled:not(.yr-sum),[data-theme="dark"] table.trk tbody tr.filled-down:not(.yr-sum){
+  background:var(--surface);}
+table.trk tbody tr:not(.yr-sum):not(.empty-state) td{border-top-width:1px;border-bottom-width:1px;border-color:var(--border);
+  padding-top:8px;padding-bottom:8px;}
+table.trk tbody tr:not(.yr-sum):not(.empty-state) td:first-child{border-left-width:1px;border-radius:12px 0 0 12px;padding-left:14px;}
+table.trk tbody tr:not(.yr-sum):not(.empty-state) td:last-child{border-right-width:1px;border-radius:0 12px 12px 0;}
+table.trk tbody tr:not(.yr-sum):not(.empty-state){box-shadow:0 1px 2px rgba(40,30,90,.05);}
+[data-theme="dark"] table.trk tbody tr:not(.yr-sum):not(.empty-state){box-shadow:none;}
+table.trk tbody tr:not(.yr-sum):not(.empty-state):hover{background:var(--surface2);}
+/* Franja de estado */
+table.trk tbody tr.filled:not(.yr-sum) td:first-child{box-shadow:inset 4px 0 0 var(--green);}
+table.trk tbody tr.filled-down:not(.yr-sum) td:first-child{box-shadow:inset 4px 0 0 var(--red);}
+/* Sin bloques de color en las columnas para escribir */
+.user-cell-gold,.user-cell-teal,
+table.trk tbody tr.filled .user-cell-gold,table.trk tbody tr.filled .user-cell-teal,
+[data-theme="dark"] table.trk tbody tr.filled .user-cell-gold,[data-theme="dark"] table.trk tbody tr.filled .user-cell-teal,
+.user-cell-gold:has(.is-negative),.user-cell-teal:has(.is-negative),
+[data-theme="dark"] .user-cell-gold:has(.is-negative),[data-theme="dark"] .user-cell-teal:has(.is-negative){background:transparent;}
+/* Campos para escribir: cápsula suave */
+table.trk .ii.ii{background:var(--surface2);border:1px solid transparent;border-radius:10px;padding:6px 9px;
+  transition:border-color .18s,background .18s,box-shadow .18s;}
+table.trk .ii.ii:hover{border-color:var(--border2);}
+table.trk .ii.ii:focus{background:var(--surface);border-color:var(--brand);box-shadow:0 0 0 3px rgba(106,85,184,.16);}
+[data-theme="dark"] table.trk .ii.ii{background:rgba(255,255,255,.05);}
+[data-theme="dark"] table.trk .ii.ii:focus{background:rgba(255,255,255,.09);box-shadow:0 0 0 3px rgba(196,191,255,.18);}
+table.trk .ii::placeholder{opacity:.55;}
+table.trk.compact .ii.ii{padding:5px 7px;}
+/* Mes y columnas calculadas */
+table.trk .mon-lbl{font-size:12px;font-weight:600;}
+table.trk tbody td[id^="cR_"]{font-weight:600;}
+@media print{
+  table.trk tbody tr.filled:not(.yr-sum) td:first-child,table.trk tbody tr.filled-down:not(.yr-sum) td:first-child{box-shadow:none;}
+}
 </style>
 </head>
 <body data-page="res">
@@ -2774,7 +2814,7 @@ table.trk thead th{color:#2B2645;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.3</span>
+      <span class="chip">Versión 9.4</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2822,7 +2862,7 @@ table.trk thead th{color:#2B2645;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.3</div>
+    <div class="ft-line ft-ver">Versión 9.4</div>
   </footer>
 </div>
 
@@ -2975,7 +3015,7 @@ table.trk thead th{color:#2B2645;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.3</div>
+    <div class="ft-line ft-ver">Versión 9.4</div>
   </footer>
 </div>
 
@@ -3121,7 +3161,7 @@ table.trk thead th{color:#2B2645;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.3</div>
+    <div class="ft-line ft-ver">Versión 9.4</div>
   </footer>
 </div>
 
@@ -4370,7 +4410,7 @@ function updateSummary(){
       if (rpAnnual > 0) {
         projSubEl.innerHTML = `Aportes: ${S} ${fmt(totalAportes)} + Ganancia: ${S} ${fmt(Math.round(ganancia))} <span style="color:var(--gold);font-weight:600">(${rpAnnual}% anual)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
       } else {
-        projSubEl.innerHTML = `${meses} aportes de ${S} ${fmt(aM)} <span style="opacity:.7">(sin rendimiento aplicado)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
+        projSubEl.innerHTML = `${meses} aportes de ${S} ${fmt(aM)} <span>(sin rendimiento aplicado)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
       }
     } else {
       projEl.textContent = S+' 0';

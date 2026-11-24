@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.7 — Ahorro e inversión</title>
+<title>CJ Metas v9.8 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2814,6 +2814,49 @@ table.trk thead tr{position:static!important;}
   .config-stats{gap:10px;}
   .config-stats .sc-val{font-size:17px;}
 }
+/* ═══ v9.8 · Colores de cada plan en el Resumen y en el título · simulador en dólares · aviso en Planes ═══ */
+.res-plan[data-pc="1"]{--tab-c1:#1A7356;--tab-c2:#1A7356;}
+[data-theme="dark"] .res-plan[data-pc="1"]{--tab-c1:#8FDDC4;--tab-c2:#8FDDC4;}
+#planNumLabel[data-pc="1"]{color:#1A7356!important;}
+[data-theme="dark"] #planNumLabel[data-pc="1"]{color:#8FDDC4!important;}
+.res-plan[data-pc="2"]{--tab-c1:#4A4EB6;--tab-c2:#4A4EB6;}
+[data-theme="dark"] .res-plan[data-pc="2"]{--tab-c1:#C4BFFF;--tab-c2:#C4BFFF;}
+#planNumLabel[data-pc="2"]{color:#4A4EB6!important;}
+[data-theme="dark"] #planNumLabel[data-pc="2"]{color:#C4BFFF!important;}
+.res-plan[data-pc="3"]{--tab-c1:#8A5A0B;--tab-c2:#8A5A0B;}
+[data-theme="dark"] .res-plan[data-pc="3"]{--tab-c1:#FFD27A;--tab-c2:#FFD27A;}
+#planNumLabel[data-pc="3"]{color:#8A5A0B!important;}
+[data-theme="dark"] #planNumLabel[data-pc="3"]{color:#FFD27A!important;}
+.res-plan[data-pc="4"]{--tab-c1:#A93A47;--tab-c2:#A93A47;}
+[data-theme="dark"] .res-plan[data-pc="4"]{--tab-c1:#FFB3BC;--tab-c2:#FFB3BC;}
+#planNumLabel[data-pc="4"]{color:#A93A47!important;}
+[data-theme="dark"] #planNumLabel[data-pc="4"]{color:#FFB3BC!important;}
+.res-plan[data-pc="5"]{--tab-c1:#1D5FA6;--tab-c2:#1D5FA6;}
+[data-theme="dark"] .res-plan[data-pc="5"]{--tab-c1:#9DC9FF;--tab-c2:#9DC9FF;}
+#planNumLabel[data-pc="5"]{color:#1D5FA6!important;}
+[data-theme="dark"] #planNumLabel[data-pc="5"]{color:#9DC9FF!important;}
+.res-plan[data-pc="6"]{--tab-c1:#8E3A86;--tab-c2:#8E3A86;}
+[data-theme="dark"] .res-plan[data-pc="6"]{--tab-c1:#F2B3E6;--tab-c2:#F2B3E6;}
+#planNumLabel[data-pc="6"]{color:#8E3A86!important;}
+[data-theme="dark"] #planNumLabel[data-pc="6"]{color:#F2B3E6!important;}
+.res-plan[data-pc="7"]{--tab-c1:#0D6B77;--tab-c2:#0D6B77;}
+[data-theme="dark"] .res-plan[data-pc="7"]{--tab-c1:#8FE0EA;--tab-c2:#8FE0EA;}
+#planNumLabel[data-pc="7"]{color:#0D6B77!important;}
+[data-theme="dark"] #planNumLabel[data-pc="7"]{color:#8FE0EA!important;}
+.res-plan[data-pc="8"]{--tab-c1:#6A3FB5;--tab-c2:#6A3FB5;}
+[data-theme="dark"] .res-plan[data-pc="8"]{--tab-c1:#D2BBFF;--tab-c2:#D2BBFF;}
+#planNumLabel[data-pc="8"]{color:#6A3FB5!important;}
+[data-theme="dark"] #planNumLabel[data-pc="8"]{color:#D2BBFF!important;}
+.rh-eq{font-size:12.5px;font-weight:600;color:var(--text-mid);margin-top:6px;line-height:1.4;overflow-wrap:anywhere;}
+.rh-eq[hidden]{display:none!important;}
+.np-ico{position:relative;display:inline-block;}
+.nav-dot{position:absolute;top:-3px;right:-5px;width:10px;height:10px;border-radius:50%;background:#E5484D;
+  box-shadow:0 0 0 2px var(--surface);animation:cjDot 2.4s ease-in-out infinite;}
+.nav-dot[hidden]{display:none!important;}
+@keyframes cjDot{0%,100%{transform:scale(1);}50%{transform:scale(1.18);}}
+.nav-left .nav-pill.active .np-ico .nav-dot{top:-1px;right:8px;}
+@media (prefers-reduced-motion:reduce){.nav-dot{animation:none;}}
+@media print{.nav-dot{display:none!important;}}
 </style>
 </head>
 <body data-page="res">
@@ -2823,7 +2866,7 @@ table.trk thead tr{position:static!important;}
   <div class="nav-left">
     <span class="nav-brand" title="CJ Metas"><svg class="nav-logo" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="24" cy="34" r="11" fill="#EDC27C"/><circle cx="24" cy="34" r="7" fill="#F8E7C2"/><polygon points="6,104 42,56 78,104" fill="#A9DEC9"/><polygon points="38,104 78,30 118,104" fill="#C8B9F2"/><polygon points="78,30 118,104 92,104" fill="#A48FE3"/><rect class="lg-mast" x="76.5" y="8" width="3" height="24" rx="1.5" fill="#2B2645"/><polygon points="79.5,9 101,15.5 79.5,22" fill="#EDC27C"/></svg><span class="nb-cj">CJ</span><span class="nb-metas">METAS</span></span>
     <button class="nav-pill active" id="navRes" onclick="showPage('res',this)"><span class="np-ico">🧭</span><span class="np-full"> Resumen</span><span class="np-short">Resumen</span></button>
-    <button class="nav-pill" id="navPlan" onclick="showPage('plan',this)"><span class="np-ico">📋</span><span class="np-full"> Mis Planes</span><span class="np-short">Planes</span></button>
+    <button class="nav-pill" id="navPlan" onclick="showPage('plan',this)"><span class="np-ico">📋<span class="nav-dot" id="navPlanDot" hidden></span></span><span class="np-full"> Mis Planes</span><span class="np-short">Planes</span></button>
     <button class="nav-pill" id="navSim" onclick="showPage('sim',this)"><span class="np-ico">📊</span><span class="np-full"> Análisis</span><span class="np-short">Análisis</span></button>
   </div>
   <div class="nav-right">
@@ -2860,7 +2903,7 @@ table.trk thead tr{position:static!important;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.7</span>
+      <span class="chip">Versión 9.8</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2908,7 +2951,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.7</div>
+    <div class="ft-line ft-ver">Versión 9.8</div>
   </footer>
 </div>
 
@@ -2989,11 +3032,12 @@ table.trk thead tr{position:static!important;}
       <h2 class="sec-h2">Calcula tu escenario</h2>
 
       <div class="fg">
-        <div class="fl"><label>Capital inicial</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="sK" placeholder="0"></div></div>
-        <div class="fl"><label>Aporte mensual</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="sA" placeholder="0"></div></div>
+        <div class="fl f1"><label for="sMon">Moneda</label><select id="sMon" onchange="saveSim();simMonUI(true)"><option value="DOP">RD$ · Pesos</option><option value="USD">US$ · Dólares</option></select><div class="sel-full" id="sMonInfo">Pesos dominicanos o dólares estadounidenses.</div></div>
+        <div class="fl"><label>Capital inicial</label><div class="iw"><span class="pfx sim-cur">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="sK" placeholder="0"></div></div>
+        <div class="fl"><label>Aporte mensual</label><div class="iw"><span class="pfx sim-cur">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="sA" placeholder="0"></div></div>
         <div class="fl"><label>Fecha de inicio</label><input type="month" id="sI" class="date-empty"></div>
         <div class="fl"><label>Fecha meta</label><input type="month" id="sM" class="date-empty"></div>
-        <div class="fl f1"><label>Meta financiera</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="sO" placeholder="0"></div></div>
+        <div class="fl f1"><label>Meta financiera</label><div class="iw"><span class="pfx sim-cur">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="sO" placeholder="0"></div></div>
       </div>
 
       <div class="slider-wrap">
@@ -3020,7 +3064,8 @@ table.trk thead tr{position:static!important;}
       <div id="res-sec">
         <div class="res-hero">
           <div class="rh-lbl">Valor proyectado al final del período</div>
-          <div class="rh-amt"><span class="rh-cur">RD$</span><span id="rVF">—</span></div>
+          <div class="rh-amt"><span class="rh-cur sim-cur">RD$</span><span id="rVF">—</span></div>
+          <div class="rh-eq" id="rVFEq" hidden></div>
           <div class="r-status"><div class="sdot" id="rDot"></div><div class="stxt" id="rTxt"></div></div>
         </div>
         <div class="metrics">
@@ -3040,7 +3085,7 @@ table.trk thead tr{position:static!important;}
         <div class="advice-box" id="rAdv"></div>
         <div class="sug-box" id="rSug">
           <div class="sb-lbl">Aporte mensual sugerido para alcanzar la meta</div>
-          <div class="sb-amt">RD$ <span id="rSugA">—</span></div>
+          <div class="sb-amt"><span class="sim-cur">RD$</span> <span id="rSugA">—</span></div>
           <div class="sb-sub">Para llegar exactamente a la meta en el plazo indicado</div>
         </div>
         <div class="sched-title">Proyección anual</div>
@@ -3061,7 +3106,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.7</div>
+    <div class="ft-line ft-ver">Versión 9.8</div>
   </footer>
 </div>
 
@@ -3207,7 +3252,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.7</div>
+    <div class="ft-line ft-ver">Versión 9.8</div>
   </footer>
 </div>
 
@@ -3762,6 +3807,18 @@ function renderCompBars(){
    SIMULATOR — PERSISTENT STATE
    Save inputs to localStorage on change; restore on page load.
 ════════════════════════════════ */
+/* v9.8: moneda del simulador (RD$ o US$). En dólares muestra también el equivalente en pesos con la tasa del día */
+function simMon(){return (document.getElementById('sMon')||{}).value==='USD'?'USD':'DOP';}
+function simMonUI(recalcular){
+  const u=simMon(),S=curSym(simMon());
+  document.querySelectorAll('.sim-cur').forEach(e=>e.textContent=S);
+  const inf=document.getElementById('sMonInfo');
+  if(inf)inf.textContent=u==='USD'?(tasaLeer()?'Equivalente en pesos con '+tasaTxt()+'.':'Buscando la tasa del dólar para mostrar el equivalente en pesos…'):'Pesos dominicanos o dólares estadounidenses.';
+  if(u==='USD'&&!tasaLeer())tasaActualizar(false).then(n=>{if(n)simMonUI(false);});
+  const sec=document.getElementById('res-sec');
+  if(recalcular&&sec&&sec.classList.contains('show')){try{simular();}catch(e){}}
+  else if(sec&&sec.classList.contains('show')){const e=document.getElementById('rVFEq'),v=parseFloat((document.getElementById('rVF').textContent||'').replace(/,/g,''));if(e){e.hidden=!u;if(!e.hidden&&!isNaN(v))e.textContent=eqRD(v);}}
+}
 function saveSim(){
   // For fmt-num fields: canonicalize (preserve empty, format numeric values).
   // This avoids timing issues with the formatter listener.
@@ -3777,7 +3834,8 @@ function saveSim(){
     i:document.getElementById('sI').value,
     m:document.getElementById('sM').value,
     t:document.getElementById('sT').value,
-    f:document.getElementById('sFsel').value
+    f:document.getElementById('sFsel').value,
+    mon:simMon() // v9.8
   };
   localStorage.setItem(lsKey('afiSimCfg'),JSON.stringify(c));
   // Keep date inputs' has-value class in sync so the white-text style applies live
@@ -3796,7 +3854,9 @@ function loadSim(){
       document.getElementById('sSL').textContent=parseFloat(c.t).toFixed(1)+'%';
     }
     if('f' in c) document.getElementById('sFsel').value=c.f;
+    {const sm=document.getElementById('sMon');if(sm)sm.value=c.mon==='USD'?'USD':'DOP';}
   }catch(e){}
+  try{simMonUI(false);}catch(e){}
 }
 
 /* ════════════════════════════════
@@ -3812,6 +3872,7 @@ function simular(){
   const ap=parseNum('sA');
   const obj=parseNum('sO')||1000000;
   const tasa=parseFloat(document.getElementById('sT').value)||10;
+  const S=curSym(simMon()); // v9.8: moneda del simulador
   const iv=document.getElementById('sI').value,mv=document.getElementById('sM').value;
   if(!iv||!mv){alert('Completa las fechas.');return;}
   if(P<=0&&ap<=0){alert('Ingresa capital inicial o aporte mensual.');return;}
@@ -3826,21 +3887,23 @@ function simular(){
   const pct=Math.min(vf/obj*100,100).toFixed(1);
   const a=Math.floor(meses/12),mr=meses%12;
   document.getElementById('rVF').textContent=fmt(vf);
-  document.getElementById('rTA').textContent='RD$ '+fmt(ta);
-  document.getElementById('rIG').textContent='RD$ '+fmt(ig);
+  document.getElementById('rTA').textContent=S+' '+fmt(ta);
+  document.getElementById('rIG').textContent=S+' '+fmt(ig);
+  {const e=document.getElementById('rVFEq');if(e){const u=simMon()==='USD';e.hidden=!u;if(u)e.textContent=eqRD(vf);}}
+  document.querySelectorAll('.sim-cur').forEach(e=>e.textContent=S);
   document.getElementById('rDur').textContent=a+'a '+mr+'m';
   document.getElementById('rROI').textContent=roi+'%';
   document.getElementById('rPct').textContent=pct+'%';
   document.getElementById('rPBar').style.width=pct+'%';
   const dot=document.getElementById('rDot'),txt=document.getElementById('rTxt');
-  if(vf>=obj){dot.className='sdot yes';txt.innerHTML=`<strong>¡Meta alcanzada!</strong> Superarás el objetivo por RD$ ${fmt(vf-obj)}`;}
-  else if(vf/obj>=0.8){dot.className='sdot near';txt.innerHTML=`<strong>Muy cerca</strong> — Faltan RD$ ${fmt(obj-vf)}`;}
-  else{dot.className='sdot no';txt.innerHTML=`<strong>Meta no alcanzada</strong> — Faltan RD$ ${fmt(obj-vf)}`;}
+  if(vf>=obj){dot.className='sdot yes';txt.innerHTML=`<strong>¡Meta alcanzada!</strong> Superarás el objetivo por ${S} ${fmt(vf-obj)}`;}
+  else if(vf/obj>=0.8){dot.className='sdot near';txt.innerHTML=`<strong>Muy cerca</strong> — Faltan ${S} ${fmt(obj-vf)}`;}
+  else{dot.className='sdot no';txt.innerHTML=`<strong>Meta no alcanzada</strong> — Faltan ${S} ${fmt(obj-vf)}`;}
   let sug=null;
   if(vf<obj&&r>0){const f=Math.pow(1+r,meses);const n2=obj-P*f;if(n2>0)sug=Math.ceil(n2/((f-1)/r));}
   const adv=document.getElementById('rAdv');
   if(vf>=obj)adv.innerHTML=`💡 Tu inversión supera la meta. Podrías reducir el aporte o adelantar la fecha de retiro.`;
-  else if(sug)adv.innerHTML=`📈 Para alcanzar <strong>RD$ ${fmt(obj)}</strong> en el plazo, necesitas <strong>RD$ ${fmt(sug)}/mes</strong> o extender el horizonte temporal.`;
+  else if(sug)adv.innerHTML=`📈 Para alcanzar <strong>${S} ${fmt(obj)}</strong> en el plazo, necesitas <strong>${S} ${fmt(sug)}/mes</strong> o extender el horizonte temporal.`;
   else adv.innerHTML=`⚙️ Ajusta los parámetros para optimizar tu proyección hacia la meta.`;
   const se=document.getElementById('rSug');
   if(sug&&vf<obj){se.style.display='block';document.getElementById('rSugA').textContent=fmt(sug);}else se.style.display='none';
@@ -3850,7 +3913,7 @@ function simular(){
     const mi=Math.min(y*12,meses);const d=data[mi];const ms=d.s>=obj;
     const lbl=(()=>{const dt=new Date(iy,im-1+mi);return dt.toLocaleDateString('es-DO',{month:'short',year:'numeric'});})();
     const tr=document.createElement('tr');if(ms)tr.className='ms-row';
-    tr.innerHTML=`<td>${lbl}${ms?' 🏆':''}</td><td>RD$ ${fmt(d.aA)}</td><td>RD$ ${fmt(d.iA)}</td><td style="font-weight:700;color:${ms?'var(--gold)':'var(--text)'}">RD$ ${fmt(d.s)}</td>`;
+    tr.innerHTML=`<td>${lbl}${ms?' 🏆':''}</td><td>${S} ${fmt(d.aA)}</td><td>${S} ${fmt(d.iA)}</td><td style="font-weight:700;color:${ms?'var(--gold)':'var(--text)'}">${S} ${fmt(d.s)}</td>`;
     sb.appendChild(tr);
   }
   // Chart
@@ -4029,10 +4092,11 @@ function tasaAlCambiar(){
   try{applyPlanMonUI();}catch(e){}
   try{updateSummary();}catch(e){}
   try{if(document.getElementById('pg-res').classList.contains('active'))renderResumen();}catch(e){}
+  try{simMonUI(false);}catch(e){}
 }
 /* Busca la tasa si hace falta (hay algún plan en dólares) */
 function tasaAsegurar(){
-  if(!hayPlanUSD()&&monActual()!=='USD')return;
+  if(!hayPlanUSD()&&monActual()!=='USD'&&simMon()!=='USD')return;
   tasaActualizar(false).then(n=>{if(n)tasaAlCambiar();});
 }
 async function tasaBoton(){
@@ -4181,7 +4245,7 @@ function deletePlan(){
 function updatePlanTabsLabel(){
   renderPlanTabs();
   const numLabel = document.getElementById('planNumLabel');
-  if(numLabel) numLabel.textContent = String(currentPlan);
+  if(numLabel){ numLabel.textContent = String(currentPlan); numLabel.dataset.pc = String((currentPlan-1)%8+1); } // v9.8: número del título con el color del plan
 }
 
 // Cambiar de plan
@@ -4359,6 +4423,7 @@ function trkCutUI(nFut){
 function toggleTrkAll(){
   try{localStorage.setItem(lsKey('trkAll'),trkAllOn()?'0':'1');}catch(e){}
   trkCutUI(document.querySelectorAll('#trkBody tr.trk-fut:not(.yr-sum)').length);
+  try{navAviso();}catch(e){}
 }
 /* v7.0 · D: resumen de la configuración en el botón "Editar plan" */
 function planEditInfo(){
@@ -5225,6 +5290,7 @@ function getPlanStats(n){
     if(ap!=null)st.totalAp+=ap;
     if(g!=null)st.totalG+=g;
     if(ap!=null||g!=null){lastAny=m;st.lastKey=key;}
+    if(ap!=null||g!=null){st._acc=(st._acc||0)+(ap||0)+(g||0);(st.serieT=st.serieT||[]).push({m,saldo:st._acc});} // v9.8: saldo con todo lo registrado
     if(ap!=null&&g!=null){
       if(prevSF>0)rets.push(g/prevSF); // rendimiento del mes sobre el saldo inicial
       prevSF+=ap+g;sumApComp+=ap;st.nComp++;
@@ -5340,6 +5406,7 @@ function renderResumen(){
   const alEl=document.getElementById('resAlerts');
   if(!totEl||!plEl||!alEl)return;
   const plans=planIds().map(getPlanStats);
+  try{navAviso();}catch(e){}
   resPatrimonio(plans);
   resBanner(plans);
   try{resCrecimiento(plans);}catch(e){}
@@ -5366,7 +5433,7 @@ function renderResumen(){
     const S=curSym(p.mon); // v9.0
     const etiqueta='Plan '+p.n+' · '+(p.tipo==='ahorro'?'🐷 Ahorro':'📈 Inversión')+(p.mon==='USD'?' · US$':'');
     if(!p.configured){
-      return `<div class="res-plan" data-color="${RES_COLORS[i%3]}">
+      return `<div class="res-plan" data-color="${RES_COLORS[i%3]}" data-pc="${(p.n-1)%8+1}">
         <div class="res-plan-num">${etiqueta}</div>
         <div class="res-plan-name">${titulo}</div>
         <div class="res-plan-afi">${resEsc(p.afi)}</div>
@@ -5400,12 +5467,12 @@ function renderResumen(){
       etaNote=`Con ${base}, el saldo no llega a la meta.`;
     }
     // v6.0: rendimiento después de inflación y aporte necesario
-    const inf=mensualInflacion();
+    const inf=p.mon==='USD'?INFL_USA:mensualInflacion(); // v9.8: planes en US$ con la inflación de EE. UU.
     const baseR=p.realAnual!=null?p.realAnual:(p.rp>0?p.rp:null);
     let infHtml='';
     if(inf&&baseR!=null){
       const realInf=((1+baseR/100)/(1+inf.valor/100)-1)*100;
-      infHtml=`<div class="metric"><div class="m-lbl">Después de inflación</div><div class="m-val ${realInf>=0?'green':'gold'}">${realInf.toFixed(2)}%</div><div class="m-sub">Inflación ${inf.valor.toFixed(2)}% (${resEsc(inf.periodo_txt)}, Banco Central) sobre tu rendimiento ${p.realAnual!=null?'real':'proyectado'}</div></div>`;
+      infHtml=`<div class="metric"><div class="m-lbl">Después de inflación</div><div class="m-val ${realInf>=0?'green':'gold'}">${realInf.toFixed(2)}%</div><div class="m-sub">Inflación${p.mon==='USD'?' de EE. UU.':''} ${inf.valor.toFixed(2)}% (${resEsc(inf.periodo_txt)}, ${p.mon==='USD'?resEsc(inf.fuente_c):'Banco Central'}) sobre tu rendimiento ${p.realAnual!=null?'real':'proyectado'}</div></div>`;
     }
     let necHtml='';
     if(p.aNec!=null){
@@ -5414,7 +5481,7 @@ function renderResumen(){
         ?`<div class="res-nec ok">Con lo que ya tienes y el rendimiento estimado llegas a la meta sin aportar más.</div>`
         :`<div class="res-nec ${dif>0?'warn':'ok'}"><div class="m-lbl">Aporte necesario para llegar a tiempo</div><div class="res-nec-val">${S} ${fmt(Math.round(p.aNec))}<small>/mes durante ${p.aNecR} mes${p.aNecR===1?'':'es'}</small></div><div class="res-eta-note">${dif>0?S+' '+fmt(Math.round(dif))+' más que tu aporte promedio actual':'Tu aporte promedio actual ('+S+' '+fmt(Math.round(p.avgAp))+') ya alcanza'} · rendimiento ${(p.rateM*12*100).toFixed(2)}% anual.</div></div>`;
     }
-    return `<div class="res-plan" data-color="${RES_COLORS[i%3]}">
+    return `<div class="res-plan" data-color="${RES_COLORS[i%3]}" data-pc="${(p.n-1)%8+1}">
       <div class="res-plan-num">${etiqueta}</div>
       <div class="res-plan-name">${titulo}</div>
       <div class="res-plan-afi">${resEsc(p.afi)}</div>
@@ -5465,11 +5532,11 @@ function renderResumen(){
 /* v7.9: "Cómo ha crecido tu patrimonio" — suma, mes a mes, del saldo de todos los planes.
    Si un plan no tiene registro en un mes, se usa su último saldo conocido (antes de su primer registro cuenta 0). */
 function resCreceSerie(plans){
-  const act=plans.filter(p=>p.configured&&p.serie.length);
+  const act=plans.filter(p=>p.configured&&(p.serieT||p.serie).length);
   if(!act.length)return [];
   const idx=k=>{const [y,m]=k.split('-').map(Number);return y*12+m-1;};
   let ini=Infinity,fin=-Infinity;
-  const mapas=act.map(p=>{const b=idx(p.fi),mp={},fx=p.fx==null?0:p.fx;p.serie.forEach(x=>{mp[b+x.m]=x.saldo*fx;ini=Math.min(ini,b+x.m);fin=Math.max(fin,b+x.m);});return mp;});
+  const mapas=act.map(p=>{const b=idx(p.fi),mp={},fx=p.fx==null?0:p.fx;(p.serieT||p.serie).forEach(x=>{mp[b+x.m]=x.saldo*fx;ini=Math.min(ini,b+x.m);fin=Math.max(fin,b+x.m);});return mp;});
   const ult=mapas.map(()=>0),pts=[];
   for(let i=ini;i<=fin;i++){
     let t=0;mapas.forEach((mp,j)=>{if(mp[i]!=null)ult[j]=mp[i];t+=ult[j];});
@@ -5544,7 +5611,7 @@ window.addEventListener('afterprint',()=>{const b=document.getElementById('crece
 window.addEventListener('resize',()=>{const b=document.getElementById('creceGraf');if(b&&b._pts){clearTimeout(b._t);b._t=setTimeout(()=>creceDibujar(b._pts),150);}});
 
 /* v7.0 · E: patrimonio total y cómo se reparte entre los planes */
-const PATRI_COLORS=['#7FD3B8','#A69CF0','#FFB996','#8EC5F2','#F5A3C0','#FFD27A','#9FE0E6','#C9B6F2'];
+const PATRI_COLORS=['#7FD3B8','#A69CF0','#FFD27A','#FFB3BC','#8EC5F2','#F2B3E6','#9FE0E6','#C9B6F2']; // v9.8: mismo orden que los colores de cada plan
 function resPatrimonio(plans){
   const el=document.getElementById('resPatri');if(!el)return;
   // v9.0: todo en RD$; los planes en US$ se convierten con la tasa del día
@@ -6066,6 +6133,12 @@ function mfParse(csv){
 let mensualData=null,mensualT=0,mfEstado='';
 (function(){try{const c=JSON.parse(localStorage.getItem(lsKey('mensual_fondos'))||'null');if(c&&c.data){mensualData=c.data;mensualT=c.t||0;}}catch(e){}})();
 function mensualFunds(){return (mensualData&&Array.isArray(mensualData.fondos)?mensualData.fondos:[]).filter(f=>f&&typeof f.r365==='number'&&f.nombre&&f.afi);}
+/* v9.8: INFLACIÓN DE EE. UU. para los planes en dólares
+   Índice de precios al consumidor (IPC-U), variación de 12 meses, sin ajuste estacional.
+   Fuente: Oficina de Estadísticas Laborales de EE. UU. (BLS), publicado el 14 de octubre de 2026 (dato a septiembre de 2026).
+   Nota: el BLS no publicó la variación de 12 meses a octubre de 2026 porque no recolectó datos en octubre de 2025.
+   Este dato se actualiza a mano: cámbialo aquí cuando salga uno nuevo. */
+const INFL_USA={valor:3.7,periodo:'2026-09',periodo_txt:'septiembre de 2026',fuente_c:'BLS, EE. UU.'};
 function mensualInflacion(){
   const i=mensualData&&mensualData.inflacion;
   if(!i||typeof i.valor!=='number')return null;
@@ -6338,6 +6411,20 @@ try{if(localStorage.getItem(lsKey('anTab'))==='s')anTab('s');}catch(e){}
   document.addEventListener('click',()=>setTimeout(()=>{firma='';pedir();},80),true);
   window.trkFlotActualizar=()=>{firma='';pedir();};
 })();
+
+/* v9.8: AVISO EN EL BOTÓN PLANES — un puntito cuando a algún plan le falta el aporte o la ganancia del mes pasado */
+function navAviso(){
+  const dot=document.getElementById('navPlanDot'),btn=document.getElementById('navPlan');if(!dot||!btn)return;
+  try{
+    const hoy=new Date(),prev=resYM(hoy.getFullYear(),hoy.getMonth()-1);
+    const falta=planIds().map(getPlanStats).filter(p=>p.configured&&p.miss.some(x=>x.key===prev));
+    dot.hidden=!falta.length;
+    const mes=resLbl(prev,true);
+    btn.title=falta.length?('Falta registrar '+mes+' en: '+falta.map(p=>'Plan '+p.n).join(', ')):'';
+    btn.setAttribute('aria-label',falta.length?('Planes — falta registrar '+mes):'Planes');
+  }catch(e){}
+}
+setTimeout(navAviso,1500);
 
 /* v9.0: tasa del dólar al abrir la app y al volver la conexión */
 setTimeout(()=>{try{applyPlanMonUI();tasaAsegurar();}catch(e){}},1200);

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v8.7 — Ahorro e inversión</title>
+<title>CJ Metas v9.0 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2653,6 +2653,22 @@ table.trk tbody tr.yr-sum,[data-theme="light"] table.trk tbody tr.yr-sum{backgro
 table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
 [data-theme="dark"] table.trk tbody tr.yr-sum{background:#1F3350;}
 [data-theme="dark"] table.trk tbody tr.yr-sum td{border-color:#35517A;}
+/* ═══ v9.0 · Planes en dólares: tasa del día y equivalentes en pesos ═══ */
+.tasa-box{border:1.5px solid var(--border);background:var(--soft2);border-radius:14px;padding:12px 14px;}
+.tasa-box[hidden]{display:none!important;}
+.tasa-k{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim);}
+.tasa-v{font-size:14px;font-weight:600;color:var(--text);margin:4px 0 8px;line-height:1.45;overflow-wrap:anywhere;}
+.tasa-acc{display:flex;flex-wrap:wrap;gap:8px;}
+.tasa-acc .btn-sec{padding:8px 14px;font-size:13px;}
+.tasa-man{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;}
+.tasa-man[hidden]{display:none!important;}
+.tasa-man .iw{flex:1 1 150px;min-width:0;}
+.tasa-nota{font-size:11.5px;color:var(--text-dim);margin-top:8px;line-height:1.45;}
+.bs-eq,.sc-eq,.res-plan-eq{font-size:12px;color:var(--text-mid);font-weight:600;margin-top:4px;line-height:1.4;overflow-wrap:anywhere;}
+.bs-eq[hidden],.sc-eq[hidden]{display:none!important;}
+.res-plan-eq{margin:2px 0 6px;}
+.patri-row .usd{display:block;font-size:10.5px;color:var(--text-dim);font-weight:500;}
+@media print{.tasa-box{display:none!important;}}
 </style>
 </head>
 <body data-page="res">
@@ -2699,7 +2715,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 8.7</span>
+      <span class="chip">Versión 9.0</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2747,7 +2763,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.7</div>
+    <div class="ft-line ft-ver">Versión 9.0</div>
   </footer>
 </div>
 
@@ -2900,7 +2916,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.7</div>
+    <div class="ft-line ft-ver">Versión 9.0</div>
   </footer>
 </div>
 
@@ -2933,10 +2949,12 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
       <div class="plan-edit-body">
       <div class="fg">
         <div class="fl f1"><label>Tipo de plan</label><select id="pTipo" onchange="saveCfg();applyPlanTipoUI();buildTable();renderPlanTabs()"><option value="inversion">📈 Inversión</option><option value="ahorro">🐷 Ahorro</option></select><div class="sel-full">Inversión: en un fondo de una AFI. Ahorro: en banco, cooperativa, alcancía…</div></div>
+        <div class="fl f1"><label for="pMon">Moneda del plan</label><select id="pMon" onchange="saveCfg();applyPlanMonUI();buildTable();renderPlanTabs();tasaAsegurar()"><option value="DOP">RD$ · Pesos</option><option value="USD">US$ · Dólares</option></select><div class="sel-full">Pesos dominicanos o dólares estadounidenses. Los montos de este plan (meta, aportes y ganancias) se escriben en esta moneda.</div></div>
+        <div class="fl f1 tasa-box" id="tasaBox" hidden><div class="tasa-k">Tasa del dólar para el equivalente en pesos</div><div class="tasa-v" id="tasaTxt">—</div><div class="tasa-acc"><button type="button" class="btn-sec" id="tasaBtn" onclick="tasaBoton()">↻ Actualizar tasa</button><button type="button" class="btn-sec" onclick="tasaManualAbrir()">✎ Escribir a mano</button></div><div class="tasa-man" id="tasaManWrap" hidden><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" id="tasaMan" placeholder="Ej: 60.45" aria-label="Pesos por 1 dólar" onkeydown="if(event.key==='Enter'){event.preventDefault();tasaManualGuardar();}"></div><button type="button" class="btn-primary" style="width:auto;margin:0" onclick="tasaManualGuardar()">Guardar tasa</button></div><div class="tasa-nota">Se actualiza sola una vez al día con internet. Sin conexión se usa la última guardada.</div></div>
         <div class="fl f1"><label>Nombre del plan / meta</label><textarea id="pN" rows="1" class="ta-auto" placeholder="Ej: Mi Primer Millón — BHD Liquidez" oninput="growTA(this);saveCfg()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"></textarea></div>
         <div class="fl f1"><label id="lblAFI">AFI seleccionada</label><textarea id="pAFI" rows="1" class="ta-auto" placeholder="Ej: AFI Popular, BHD Fondos, JMMB SAFI..." oninput="growTA(this);saveCfg()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur();}"></textarea></div>
-        <div class="fl"><label>Meta financiera</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="pMet" placeholder="0" oninput="saveCfg();buildTable()"></div></div>
-        <div class="fl"><label>Aporte objetivo mensual</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="pAM" placeholder="0" oninput="saveCfg();buildTable()"></div></div>
+        <div class="fl"><label>Meta financiera</label><div class="iw"><span class="pfx cur-sym">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="pMet" placeholder="0" oninput="saveCfg();buildTable()"></div></div>
+        <div class="fl"><label>Aporte objetivo mensual</label><div class="iw"><span class="pfx cur-sym">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="pAM" placeholder="0" oninput="saveCfg();buildTable()"></div></div>
         <div class="fl"><label>Fecha inicio</label><input type="month" id="pFI" class="date-empty" oninput="saveCfg();buildTable()"></div>
         <div class="fl"><label>Fecha meta</label><input type="month" id="pFM" class="date-empty" oninput="saveCfg();buildTable()"></div>
         <div class="fl f1"><label id="lblRP">Rendimiento anual proyectado (%)</label><div class="iw"><span class="pfx" style="color:var(--gold)">%</span><input type="text" inputmode="decimal" id="pRP" placeholder="Ej: 10.5" oninput="saveCfg();drawPlanCharts();updateSummary()"></div></div>
@@ -2945,7 +2963,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
       </div>
     </details>
     <div class="config-stats">
-      <div class="stat-card"><div class="sc-lbl">Meta</div><div class="sc-val g" id="pcM">—</div></div>
+      <div class="stat-card"><div class="sc-lbl">Meta</div><div class="sc-val g" id="pcM">—</div><div class="sc-eq" id="pcMEq" hidden></div></div>
       <div class="stat-card"><div class="sc-lbl">Aporte mensual objetivo</div><div class="sc-val b" id="pcA">—</div></div>
       <div class="stat-card"><div class="sc-lbl">Plazo total</div><div class="sc-val t" id="pcP">—</div></div>
       <div class="stat-card"><div class="sc-lbl">Progreso real</div><div class="sc-val g" id="pcPR">0%</div></div>
@@ -2957,12 +2975,14 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
             <div class="bs-lbl">Saldo acumulado real</div>
             <div class="bs-amt" id="pcS">RD$ 0</div>
             <div class="bs-sub" id="pcSub">Sin aportes registrados</div>
+            <div class="bs-eq" id="pcSEq" hidden></div>
           </div>
           <div class="bs-divider"></div>
           <div class="bs-block">
             <div class="bs-lbl proj">Saldo final proyectado</div>
             <div class="bs-amt proj" id="pcSProj">RD$ 0</div>
             <div class="bs-sub" id="pcSProjSub">Define fechas, aporte y rendimiento</div>
+            <div class="bs-eq" id="pcSProjEq" hidden></div>
           </div>
         </div>
       </div>
@@ -3002,13 +3022,13 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
       <table class="trk" id="trkTbl">
         <thead><tr>
           <th style="text-align:left"><span class="th-full">Mes / Año</span><span class="th-short">Mes</span></th>
-          <th>Acum. Obj. (RD$)</th>
-          <th><span class="th-full">Aporte Real (RD$)</span><span class="th-short">Aporte real</span></th>
-          <th>Acum. Real (RD$)</th>
-          <th>Saldo Inicial (RD$)</th>
+          <th>Acum. Obj. (<span class="cur-sym">RD$</span>)</th>
+          <th><span class="th-full">Aporte Real (<span class="cur-sym">RD$</span>)</span><span class="th-short">Aporte real</span></th>
+          <th>Acum. Real (<span class="cur-sym">RD$</span>)</th>
+          <th>Saldo Inicial (<span class="cur-sym">RD$</span>)</th>
           <th><span class="th-full" id="thGanF">Ganancia del Mes (RD$)</span><span class="th-short" id="thGanS">Ganancia</span></th>
           <th title="Lo ganado en el mes sobre el saldo inicial, multiplicado por 12 para compararlo con una tasa anual"><span class="th-full">Rend. anualizado %</span><span class="th-short">Rend. anual</span></th>
-          <th><span class="th-full">Saldo Final (RD$)</span><span class="th-short">Saldo final</span></th>
+          <th><span class="th-full">Saldo Final (<span class="cur-sym">RD$</span>)</span><span class="th-short">Saldo final</span></th>
           <th>Crecimiento vs Mes Ant.</th>
         </tr></thead>
         <tbody id="trkBody"></tbody>
@@ -3042,7 +3062,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 8.7</div>
+    <div class="ft-line ft-ver">Versión 9.0</div>
   </footer>
 </div>
 
@@ -3067,8 +3087,8 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="fl"><label>Plan</label><input type="hidden" id="qrPlan"><div class="qr-planes" id="qrPlanes" role="radiogroup" aria-label="Plan"></div></div>
     <div class="fl"><label for="qrMes">Mes</label><select id="qrMes" onchange="qrLoad()"></select><div class="sel-full">✓ mes completo · ⚠ le falta el aporte o la ganancia</div></div>
     <div class="qr-two">
-      <div class="fl"><label for="qrAp">Aporte real</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="qrAp" placeholder="0.00" oninput="qrPrev()" onkeydown="if(event.key==='Enter')qrSave()"></div></div>
-      <div class="fl"><label for="qrG" id="qrGL">Ganancia del mes</label><div class="iw"><span class="pfx">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="qrG" placeholder="0.00" oninput="qrPrev()" onkeydown="if(event.key==='Enter')qrSave()"></div></div>
+      <div class="fl"><label for="qrAp">Aporte real</label><div class="iw"><span class="pfx qr-cur">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="qrAp" placeholder="0.00" oninput="qrPrev()" onkeydown="if(event.key==='Enter')qrSave()"></div></div>
+      <div class="fl"><label for="qrG" id="qrGL">Ganancia del mes</label><div class="iw"><span class="pfx qr-cur">RD$</span><input type="text" inputmode="decimal" class="fmt-num" id="qrG" placeholder="0.00" oninput="qrPrev()" onkeydown="if(event.key==='Enter')qrSave()"></div></div>
     </div>
     <p class="qr-hint">Deja un campo vacío si todavía no tienes el dato. Un retiro se escribe con signo menos.</p>
     <div class="qr-prev" id="qrPrev"></div>
@@ -3809,6 +3829,95 @@ function planKey(base){
   }catch(e){}
 })();
 
+/* ════════════════════════════════
+   v9.0 · MONEDA POR PLAN (RD$ o US$) Y TASA DEL DÓLAR
+   - Cada plan guarda su moneda en su configuración (mon: 'USD' o 'DOP'). Los planes de antes no la
+     tienen y se tratan como RD$, así que nada cambia para ellos.
+   - La tasa (pesos por 1 dólar) se busca sola, como máximo cada 12 horas, en un servicio gratuito de
+     tasas de mercado (la misma referencia que muestra Google). Se guarda en el dispositivo y sin internet
+     se usa la última guardada. También se puede escribir a mano.
+   - Equivalente en pesos = monto en dólares × tasa.
+════════════════════════════════ */
+const TASA_FUENTES=[
+  {url:'https://open.er-api.com/v6/latest/USD',nombre:'tasa de mercado (open.er-api.com)',
+   leer:d=>({v:d&&d.rates&&d.rates.DOP,f:d&&d.time_last_update_unix?new Date(d.time_last_update_unix*1000).toISOString().slice(0,10):''})},
+  {url:'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.min.json',nombre:'tasa de mercado (currency-api)',
+   leer:d=>({v:d&&d.usd&&d.usd.dop,f:(d&&d.date)||''})},
+  {url:'https://latest.currency-api.pages.dev/v1/currencies/usd.min.json',nombre:'tasa de mercado (currency-api)',
+   leer:d=>({v:d&&d.usd&&d.usd.dop,f:(d&&d.date)||''})}
+];
+function tasaLeer(){try{const t=JSON.parse(localStorage.getItem(lsKey('tasaUSD'))||'null');return t&&t.v>0?t:null;}catch(e){return null;}}
+function tasaUSD(){const t=tasaLeer();return t?t.v:null;}
+function tasaGuardar(t){try{localStorage.setItem(lsKey('tasaUSD'),JSON.stringify(t));}catch(e){}}
+function tasaHoyISO(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function tasaFechaTxt(f){if(!/^\d{4}-\d{2}-\d{2}$/.test(f||''))return '';const [y,m,d]=f.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('es-DO',{day:'numeric',month:'short',year:'numeric'});}
+let _tasaBuscando=null;
+async function tasaActualizar(forzar){
+  const t=tasaLeer();
+  if(!forzar&&t&&(t.manual||(Date.now()-(t.ts||0))<12*3600e3))return t;
+  if(_tasaBuscando)return _tasaBuscando;
+  _tasaBuscando=(async()=>{
+    for(const s of TASA_FUENTES){
+      try{
+        const ctl=typeof AbortController!=='undefined'?new AbortController():null;
+        const to=ctl?setTimeout(()=>ctl.abort(),8000):null;
+        const r=await fetch(s.url,{cache:'no-store',signal:ctl?ctl.signal:undefined});
+        if(to)clearTimeout(to);
+        if(!r.ok)continue;
+        const x=s.leer(await r.json()),v=parseFloat(x.v);
+        if(v>20&&v<300){const n={v:Math.round(v*100)/100,fecha:x.f||tasaHoyISO(),fuente:s.nombre,ts:Date.now(),manual:false};tasaGuardar(n);return n;}
+      }catch(e){}
+    }
+    return null;
+  })();
+  try{return await _tasaBuscando;}finally{_tasaBuscando=null;}
+}
+function hayPlanUSD(){try{return planIds().some(n=>planCfgN(n).mon==='USD');}catch(e){return false;}}
+/* Repinta lo que depende de la tasa */
+function tasaAlCambiar(){
+  try{applyPlanMonUI();}catch(e){}
+  try{updateSummary();}catch(e){}
+  try{if(document.getElementById('pg-res').classList.contains('active'))renderResumen();}catch(e){}
+}
+/* Busca la tasa si hace falta (hay algún plan en dólares) */
+function tasaAsegurar(){
+  if(!hayPlanUSD()&&monActual()!=='USD')return;
+  tasaActualizar(false).then(n=>{if(n)tasaAlCambiar();});
+}
+async function tasaBoton(){
+  const b=document.getElementById('tasaBtn');if(b){b.disabled=true;b.textContent='Buscando…';}
+  const n=await tasaActualizar(true);
+  if(b){b.disabled=false;b.textContent='↻ Actualizar tasa';}
+  if(n){tasaAlCambiar();showPlanToast('Tasa actualizada: 1 US$ = RD$ '+n.v.toFixed(2));}
+  else showPlanToast('No se pudo buscar la tasa. Revisa tu internet o escríbela a mano.',true);
+}
+function tasaManualAbrir(){const w=document.getElementById('tasaManWrap');if(!w)return;w.hidden=!w.hidden;if(!w.hidden){const i=document.getElementById('tasaMan');const t=tasaLeer();if(i){i.value=t?t.v.toFixed(2):'';i.focus();}}}
+function tasaManualGuardar(){
+  const v=parseFloat(String((document.getElementById('tasaMan')||{}).value||'').replace(/,/g,''));
+  if(!(v>20&&v<300)){showPlanToast('Escribe una tasa válida, por ejemplo 60.45',true);return;}
+  tasaGuardar({v:Math.round(v*100)/100,fecha:tasaHoyISO(),fuente:'escrita a mano',ts:Date.now(),manual:true});
+  document.getElementById('tasaManWrap').hidden=true;
+  tasaAlCambiar();showPlanToast('Tasa guardada: 1 US$ = RD$ '+v.toFixed(2));
+}
+function monActual(){return (document.getElementById('pMon')||{}).value==='USD'?'USD':'DOP';}
+function curSym(m){return m==='USD'?'US$':'RD$';}
+function tasaTxt(){const t=tasaLeer();if(!t)return '';const f=tasaFechaTxt(t.fecha);return `1 US$ = RD$ ${t.v.toFixed(2)}${f?' · '+f:''} · ${t.fuente}`;}
+/* "≈ RD$ …" para un monto en dólares */
+function eqRD(v){
+  const t=tasaLeer();
+  if(!t)return 'Equivalente en RD$: falta la tasa del dólar (conéctate a internet o escríbela en "Editar plan").';
+  return `≈ RD$ ${fmt(Math.round(v*t.v))} al cambio de hoy (1 US$ = RD$ ${t.v.toFixed(2)})`;
+}
+function applyPlanMonUI(){
+  const m=monActual(),S=curSym(m),usd=m==='USD';
+  document.querySelectorAll('.cur-sym').forEach(e=>e.textContent=S);
+  try{applyPlanTipoUI();}catch(e){}
+  const box=document.getElementById('tasaBox');
+  if(box){box.hidden=!usd;
+    const t=tasaLeer(),tx=document.getElementById('tasaTxt');
+    if(tx)tx.textContent=t?tasaTxt():'Todavía no hay tasa guardada. Toca "Actualizar tasa" con internet o escríbela a mano.';}
+  try{planEditInfo();}catch(e){}
+}
 function loadPD(){try{PD=JSON.parse(localStorage.getItem(planKey('afiPD'))||'{}');}catch(e){PD={};}}
 function savePD(){
   localStorage.setItem(planKey('afiPD'),JSON.stringify(PD));
@@ -3816,7 +3925,7 @@ function savePD(){
   if(typeof gdScheduleBackup==='function') gdScheduleBackup();
 }
 function saveCfg(){
-  const c={tipo:(document.getElementById('pTipo')||{}).value==='ahorro'?'ahorro':'inversion',n:document.getElementById('pN').value,afi:document.getElementById('pAFI').value,m:String(parseNum('pMet')||''),a:String(parseNum('pAM')||''),fi:document.getElementById('pFI').value,fm:document.getElementById('pFM').value,rp:document.getElementById('pRP').value};
+  const c={tipo:(document.getElementById('pTipo')||{}).value==='ahorro'?'ahorro':'inversion',n:document.getElementById('pN').value,afi:document.getElementById('pAFI').value,m:String(parseNum('pMet')||''),a:String(parseNum('pAM')||''),fi:document.getElementById('pFI').value,fm:document.getElementById('pFM').value,rp:document.getElementById('pRP').value,mon:monActual()};
   localStorage.setItem(planKey('afiPC'),JSON.stringify(c));
   updateSummary();
   updatePlanTabsLabel();
@@ -3829,6 +3938,7 @@ document.addEventListener('toggle',e=>{if(e.target&&e.target.id==='planEdit'&&e.
 window.addEventListener('resize',()=>document.querySelectorAll('.ta-auto').forEach(growTA));
 function loadCfg(){
   // Limpiar campos antes de cargar (para que al cambiar de plan se vean los datos correctos)
+  {const ms=document.getElementById('pMon');if(ms)ms.value='DOP';}
   ['pN','pAFI','pMet','pAM','pFI','pFM','pRP'].forEach(id=>{
     const el=document.getElementById(id);
     if(el) el.value='';
@@ -3843,8 +3953,10 @@ function loadCfg(){
     if(c.fi){document.getElementById('pFI').value=c.fi;document.getElementById('pFI').classList.add('has-value');}
     if(c.fm){document.getElementById('pFM').value=c.fm;document.getElementById('pFM').classList.add('has-value');}
     if('rp' in c) document.getElementById('pRP').value=c.rp;
+    const ms=document.getElementById('pMon');if(ms)ms.value=c.mon==='USD'?'USD':'DOP'; // v9.0
   }catch(e){}
   applyPlanTipoUI();
+  applyPlanMonUI();
   document.querySelectorAll('.ta-auto').forEach(growTA);
 }
 /* v6.0: textos del formulario según el tipo de plan */
@@ -3853,7 +3965,7 @@ function applyPlanTipoUI(){
   const set=(id,t)=>{const e=document.getElementById(id);if(e)e.textContent=t;};
   set('lblAFI',ah?'Dónde ahorras':'AFI seleccionada');
   set('lblRP',ah?'Interés anual de la cuenta (%) — 0 si no genera':'Rendimiento anual proyectado (%)');
-  set('thGanF',ah?'Interés del Mes (RD$)':'Ganancia del Mes (RD$)');
+  set('thGanF',(ah?'Interés del Mes':'Ganancia del Mes')+' ('+curSym(monActual())+')'); // v9.0: moneda del plan
   set('thGanS',ah?'Interés':'Ganancia');
   const afi=document.getElementById('pAFI');if(afi)afi.placeholder=ah?'Ej: Cuenta de ahorro Banreservas, cooperativa, alcancía…':'Ej: AFI Popular, BHD Fondos, JMMB SAFI...';
   const pn=document.getElementById('pN');if(pn)pn.placeholder=ah?'Ej: Viaje a Punta Cana, fondo de emergencia…':'Ej: Mi Primer Millón — BHD Liquidez';
@@ -3876,7 +3988,7 @@ function renderPlanTabs(){
     b.onclick=()=>switchPlan(n);
     b.innerHTML='<span class="plan-tab-icon"></span><span class="plan-tab-text"><span class="plan-tab-title"></span><span class="plan-tab-sub"></span></span>';
     b.querySelector('.plan-tab-icon').textContent=ah?'🐷':(PLAN_NUM[n-1]||String(n));
-    b.querySelector('.plan-tab-title').textContent='Plan '+n+' · '+(ah?'Ahorro':'Inversión');
+    b.querySelector('.plan-tab-title').textContent='Plan '+n+' · '+(ah?'Ahorro':'Inversión')+(c.mon==='USD'?' · US$':'');
     const nombre=(c.n||'').trim(),sub=b.querySelector('.plan-tab-sub');
     sub.textContent=nombre||'Sin configurar';sub.title=nombre;
     box.appendChild(b);
@@ -4102,8 +4214,9 @@ function planEditInfo(){
   const rp=(document.getElementById('pRP').value||'').trim();
   const mes=v=>{if(!v)return '';const [y,mm]=v.split('-').map(Number);return new Date(y,mm-1).toLocaleDateString('es-DO',{month:'short',year:'numeric'});};
   const partes=[];
-  if(m)partes.push('Meta RD$ '+fmt(m));
-  if(a)partes.push('RD$ '+fmt(a)+'/mes');
+  const S=curSym(monActual());
+  if(m)partes.push('Meta '+S+' '+fmt(m));
+  if(a)partes.push(S+' '+fmt(a)+'/mes');
   if(iv&&mv)partes.push(mes(iv)+' → '+mes(mv));
   if(rp)partes.push(rp+'%');
   el.textContent=partes.length?'· '+partes.join(' · '):'· falta configurar';
@@ -4139,8 +4252,9 @@ function updateSummary(){
   const iv=document.getElementById('pFI').value,mv=document.getElementById('pFM').value;
   const rpAnnual=parseFloat((document.getElementById('pRP').value||'').toString().replace(/,/g,''))||0;
   // Stats reflect actual entered values: 0 / "—" when empty
-  document.getElementById('pcM').textContent= meta>0 ? 'RD$ '+fmt(meta) : 'RD$ 0';
-  document.getElementById('pcA').textContent= aM>0 ? 'RD$ '+fmt(aM)+'/mes' : 'RD$ 0/mes';
+  const S=curSym(monActual()),usd=monActual()==='USD'; // v9.0
+  document.getElementById('pcM').textContent= meta>0 ? S+' '+fmt(meta) : S+' 0';
+  document.getElementById('pcA').textContent= aM>0 ? S+' '+fmt(aM)+'/mes' : S+' 0/mes';
   let meses=0;
   if(iv&&mv){
     const [iy,im]=iv.split('-').map(Number),[my,mm]=mv.split('-').map(Number);
@@ -4162,7 +4276,10 @@ function updateSummary(){
   }
   const pct=meta>0?(saldo/meta*100).toFixed(1):'0';
   document.getElementById('pcPR').textContent=pct+'%';
-  document.getElementById('pcS').textContent='RD$ '+fmt(saldo);
+  document.getElementById('pcS').textContent=S+' '+fmt(saldo);
+  {const eS=document.getElementById('pcSEq'),eM=document.getElementById('pcMEq');
+   if(eS){eS.hidden=!usd;if(usd)eS.textContent=eqRD(saldo);}
+   if(eM){eM.hidden=!(usd&&meta>0);if(usd&&meta>0){const t=tasaUSD();eM.textContent=t?'≈ RD$ '+fmt(Math.round(meta*t)):'';eM.hidden=!t;}}}
   document.getElementById('pcSub').textContent=lastKey?`Último registro: ${lastKey}`:'Sin aportes registrados';
 
   // ═══ SALDO FINAL PROYECTADO ═══
@@ -4178,18 +4295,20 @@ function updateSummary(){
       for (let m = 0; m < meses; m++) {
         projBal = projBal * (1 + rMonthly) + aM;
       }
-      projEl.textContent = 'RD$ ' + fmt(Math.round(projBal));
+      projEl.textContent = S + ' ' + fmt(Math.round(projBal));
+      {const eP=document.getElementById('pcSProjEq');if(eP){eP.hidden=!usd;if(usd)eP.textContent=eqRD(projBal);}}
       const totalAportes = aM * meses;
       const ganancia = projBal - totalAportes;
-      const cmpMeta = meta > 0 ? (projBal >= meta ? '✓ Supera la meta' : `⚠ Faltan RD$ ${fmt(Math.round(meta - projBal))} para la meta`) : '';
+      const cmpMeta = meta > 0 ? (projBal >= meta ? '✓ Supera la meta' : `⚠ Faltan ${S} ${fmt(Math.round(meta - projBal))} para la meta`) : '';
       if (rpAnnual > 0) {
-        projSubEl.innerHTML = `Aportes: RD$ ${fmt(totalAportes)} + Ganancia: RD$ ${fmt(Math.round(ganancia))} <span style="color:var(--gold);font-weight:600">(${rpAnnual}% anual)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
+        projSubEl.innerHTML = `Aportes: ${S} ${fmt(totalAportes)} + Ganancia: ${S} ${fmt(Math.round(ganancia))} <span style="color:var(--gold);font-weight:600">(${rpAnnual}% anual)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
       } else {
-        projSubEl.innerHTML = `${meses} aportes de RD$ ${fmt(aM)} <span style="opacity:.7">(sin rendimiento aplicado)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
+        projSubEl.innerHTML = `${meses} aportes de ${S} ${fmt(aM)} <span style="opacity:.7">(sin rendimiento aplicado)</span>${cmpMeta ? ' · ' + cmpMeta : ''}`;
       }
     } else {
-      projEl.textContent = 'RD$ 0';
+      projEl.textContent = S+' 0';
       projSubEl.textContent = 'Define fechas, aporte y rendimiento';
+      {const eP=document.getElementById('pcSProjEq');if(eP)eP.hidden=true;}
     }
   }
 }
@@ -4422,11 +4541,12 @@ function exportCSV(){
   const growthDownStyle={...growthUpStyle,font:{...numStyle.font,bold:true,color:{rgb:'DC2626'}}};
 
   // Build the worksheet as array-of-arrays
-  const headers=['Mes / Año','Acum. Obj. (RD$)','Aporte Real (RD$)','Acum. Real (RD$)','Saldo Inicial (RD$)','Ganancia del Mes (RD$)','Rend. anualizado %','Saldo Final (RD$)','Crecimiento vs Mes Ant.'];
+  const _S=curSym(monActual()); // v9.0
+  const headers=['Mes / Año','Acum. Obj. ('+_S+')','Aporte Real ('+_S+')','Acum. Real ('+_S+')','Saldo Inicial ('+_S+')','Ganancia del Mes ('+_S+')','Rend. anualizado %','Saldo Final (RD$)','Crecimiento vs Mes Ant.'];
   const aoa=[];
   // Title row + subtitle row + blank + headers
   aoa.push([`CJ Metas — ${planName}`,'','','','','','','','']);
-  aoa.push([`${planAFI ? 'AFI: ' + planAFI + '   |   ' : ''}Período: ${iv} → ${mv}   |   Meta: RD$ ${fmt(meta)}   |   Aporte objetivo: RD$ ${fmt(aObj)}/mes   |   Rend. anualizado = ganancia del mes ÷ saldo inicial × 12`,'','','','','','','','']);
+  aoa.push([`${planAFI ? 'AFI: ' + planAFI + '   |   ' : ''}Período: ${iv} → ${mv}   |   Meta: ${_S} ${fmt(meta)}   |   Aporte objetivo: ${_S} ${fmt(aObj)}/mes${_S==='US$'&&tasaUSD()?'   |   Tasa: 1 US$ = RD$ '+tasaUSD().toFixed(2):''}   |   Rend. anualizado = ganancia del mes ÷ saldo inicial × 12`,'','','','','','','','']);
   aoa.push(['','','','','','','','','']);
   aoa.push(headers);
 
@@ -4932,7 +5052,8 @@ function getPlanStats(n){
   try{regs=JSON.parse(localStorage.getItem(lsKey('afiPD_p'+n))||'{}')||{};}catch(e){regs={};}
   const num=v=>{const x=parseFloat(String(v==null?'':v).replace(/,/g,''));return isNaN(x)?0:x;};
   const val=v=>(v!=null&&v!==''&&!isNaN(parseFloat(v)))?parseFloat(v):null;
-  const st={n,tipo:c.tipo==='ahorro'?'ahorro':'inversion',name:(c.n||'').trim(),afi:(c.afi||'').trim(),meta:num(c.m),aObj:num(c.a),fi:c.fi||'',fm:c.fm||'',rp:num(c.rp),serie:[],
+  const mon=c.mon==='USD'?'USD':'DOP'; // v9.0: fx = pesos por cada unidad de la moneda del plan (null si falta la tasa)
+  const st={n,mon,fx:mon==='USD'?tasaUSD():1,tipo:c.tipo==='ahorro'?'ahorro':'inversion',name:(c.n||'').trim(),afi:(c.afi||'').trim(),meta:num(c.m),aObj:num(c.a),fi:c.fi||'',fm:c.fm||'',rp:num(c.rp),serie:[],
     configured:false,totalAp:0,totalG:0,saldo:0,pct:0,lastKey:null,nComp:0,nRets:0,realAnual:null,
     avgAp:0,eta:null,miss:[]};
   if(!st.fi||!st.fm||!st.meta||!st.aObj)return st;
@@ -5032,7 +5153,8 @@ function imprimirInformePlan(){
     `<div><b>${esc(lblEnt)}</b><span>${v('pAFI')?esc(v('pAFI')):'—'}</span></div>`+
     `<div><b>Rendimiento anual proyectado</b><span>${rp?esc(rp)+' %':'—'}</span></div>`+
     `<div><b>Fecha de inicio</b><span>${mesTxt(v('pFI'))}</span></div>`+
-    `<div><b>Fecha meta</b><span>${mesTxt(v('pFM'))}</span></div>`;
+    `<div><b>Fecha meta</b><span>${mesTxt(v('pFM'))}</span></div>`+
+    (monActual()==='USD'?`<div class="ppd-ancho"><b>Moneda</b><span>US$ dólares estadounidenses${tasaUSD()?' · '+esc(tasaTxt()):''}</span></div>`:'');
   const n=document.getElementById('printPlanNota');
   if(n){const fut=document.querySelectorAll('#trkBody tr.trk-fut:not(.yr-sum)').length;
     n.textContent=fut?`El registro llega hasta el próximo mes. Faltan ${fut} ${fut===1?'mes':'meses'} más hasta la fecha meta (${mesTxt(v('pFM'))}).`:'';}
@@ -5070,21 +5192,26 @@ function renderResumen(){
   try{resCrecimiento(plans);}catch(e){}
   const act=plans.filter(p=>p.configured);
   // ── Consolidado ──
-  const tAp=act.reduce((s,p)=>s+p.totalAp,0),tG=act.reduce((s,p)=>s+p.totalG,0);
-  const tS=tAp+tG,tM=act.reduce((s,p)=>s+p.meta,0);
+  // v9.0: los planes en US$ se suman convertidos a RD$ con la tasa del día
+  const fxP=p=>p.fx==null?0:p.fx;
+  const tAp=act.reduce((s,p)=>s+p.totalAp*fxP(p),0),tG=act.reduce((s,p)=>s+p.totalG*fxP(p),0);
+  const tS=tAp+tG,tM=act.reduce((s,p)=>s+p.meta*fxP(p),0);
+  const conUSD=act.some(p=>p.mon==='USD'),sinTasa=act.some(p=>p.mon==='USD'&&p.fx==null);
+  const notaUSD=!conUSD?'':(sinTasa?'<div class="m-sub" style="margin-top:6px">⚠ Faltan los planes en US$: no hay tasa del dólar</div>':'<div class="m-sub" style="margin-top:6px">Planes en US$ convertidos a 1 US$ = RD$ '+tasaUSD().toFixed(2)+'</div>');
   const tPct=tM>0?tS/tM*100:0;
   const gPct=tAp>0?tG/tAp*100:0;
   totEl.innerHTML=`
     <div class="stat-card"><div class="sc-lbl">Total aportado</div><div class="sc-val b">RD$ ${fmt(Math.round(tAp))}</div><div class="m-sub">${act.length} plan${act.length===1?'':'es'} activo${act.length===1?'':'s'}</div></div>
     <div class="stat-card"><div class="sc-lbl">Total ganado</div><div class="sc-val t">RD$ ${fmt(Math.round(tG))}</div><div class="m-sub">${tAp>0?gPct.toFixed(2)+'% sobre lo aportado':'Sin aportes registrados'}</div></div>
-    <div class="stat-card"><div class="sc-lbl">Saldo total</div><div class="sc-val g">RD$ ${fmt(Math.round(tS))}</div><div class="m-sub">Aportes + ganancias</div></div>
+    <div class="stat-card"><div class="sc-lbl">Saldo total</div><div class="sc-val g">RD$ ${fmt(Math.round(tS))}</div><div class="m-sub">Aportes + ganancias</div>${notaUSD}</div>
     <div class="stat-card"><div class="sc-lbl">Avance de metas combinadas</div><div class="sc-val g">${tPct.toFixed(1)}%</div>
       <div class="prog-track"><div class="prog-fill" style="width:${Math.max(0,Math.min(tPct,100)).toFixed(1)}%"></div></div>
       <div class="m-sub" style="margin-top:6px">${tM>0?'Meta combinada: RD$ '+fmt(tM):'Configura al menos un plan'}</div></div>`;
   // ── Plan por plan ──
   plEl.innerHTML=plans.map((p,i)=>{
     const titulo=resEsc(p.name||('Plan '+p.n));
-    const etiqueta='Plan '+p.n+' · '+(p.tipo==='ahorro'?'🐷 Ahorro':'📈 Inversión');
+    const S=curSym(p.mon); // v9.0
+    const etiqueta='Plan '+p.n+' · '+(p.tipo==='ahorro'?'🐷 Ahorro':'📈 Inversión')+(p.mon==='USD'?' · US$':'');
     if(!p.configured){
       return `<div class="res-plan" data-color="${RES_COLORS[i%3]}">
         <div class="res-plan-num">${etiqueta}</div>
@@ -5105,7 +5232,7 @@ function renderResumen(){
     }
     // Fecha estimada
     const e=p.eta;let etaVal,etaChip,etaNote;
-    const base=`aporte promedio ${e.usaApReal?'real':'objetivo'} de RD$ ${fmt(Math.round(p.avgAp))}/mes y rendimiento ${e.usaReal?'real':'proyectado'} de ${e.rateAnual.toFixed(2)}% anual`;
+    const base=`aporte promedio ${e.usaApReal?'real':'objetivo'} de ${S} ${fmt(Math.round(p.avgAp))}/mes y rendimiento ${e.usaReal?'real':'proyectado'} de ${e.rateAnual.toFixed(2)}% anual`;
     if(e.reached){
       etaVal='Meta alcanzada';etaChip='<span class="res-status ok">✓ Lograda</span>';
       etaNote='Tu saldo ya iguala o supera la meta de este plan.';
@@ -5132,21 +5259,21 @@ function renderResumen(){
       const dif=p.aNec-p.avgAp;
       necHtml=p.aNec<=0
         ?`<div class="res-nec ok">Con lo que ya tienes y el rendimiento estimado llegas a la meta sin aportar más.</div>`
-        :`<div class="res-nec ${dif>0?'warn':'ok'}"><div class="m-lbl">Aporte necesario para llegar a tiempo</div><div class="res-nec-val">RD$ ${fmt(Math.round(p.aNec))}<small>/mes durante ${p.aNecR} mes${p.aNecR===1?'':'es'}</small></div><div class="res-eta-note">${dif>0?'RD$ '+fmt(Math.round(dif))+' más que tu aporte promedio actual':'Tu aporte promedio actual (RD$ '+fmt(Math.round(p.avgAp))+') ya alcanza'} · rendimiento ${(p.rateM*12*100).toFixed(2)}% anual.</div></div>`;
+        :`<div class="res-nec ${dif>0?'warn':'ok'}"><div class="m-lbl">Aporte necesario para llegar a tiempo</div><div class="res-nec-val">${S} ${fmt(Math.round(p.aNec))}<small>/mes durante ${p.aNecR} mes${p.aNecR===1?'':'es'}</small></div><div class="res-eta-note">${dif>0?S+' '+fmt(Math.round(dif))+' más que tu aporte promedio actual':'Tu aporte promedio actual ('+S+' '+fmt(Math.round(p.avgAp))+') ya alcanza'} · rendimiento ${(p.rateM*12*100).toFixed(2)}% anual.</div></div>`;
     }
     return `<div class="res-plan" data-color="${RES_COLORS[i%3]}">
       <div class="res-plan-num">${etiqueta}</div>
       <div class="res-plan-name">${titulo}</div>
       <div class="res-plan-afi">${resEsc(p.afi)}</div>
-      <div class="res-plan-saldo">RD$ ${fmt(Math.round(p.saldo))}</div>
+      <div class="res-plan-saldo">${S} ${fmt(Math.round(p.saldo))}</div>${p.mon==='USD'?`<div class="res-plan-eq">${eqRD(p.saldo)}</div>`:''}
       <div class="res-plan-sub">${p.lastKey?'Último registro: '+resLbl(p.lastKey):'Sin aportes registrados'}</div>
       <div class="prog-wrap">
-        <div class="prog-hd"><span>Meta: RD$ ${fmt(p.meta)}</span><strong>${p.pct.toFixed(1)}%</strong></div>
+        <div class="prog-hd"><span>Meta: ${S} ${fmt(p.meta)}</span><strong>${p.pct.toFixed(1)}%</strong></div>
         <div class="prog-track"><div class="prog-fill" style="width:${w}%"></div></div>
       </div>
       <div class="res-kv">
-        <div class="metric"><div class="m-lbl">Total aportado</div><div class="m-val">RD$ ${fmt(Math.round(p.totalAp))}</div><div class="m-sub">${p.nComp} mes${p.nComp===1?'':'es'} completo${p.nComp===1?'':'s'}</div></div>
-        <div class="metric"><div class="m-lbl">Total ganado</div><div class="m-val teal">RD$ ${fmt(Math.round(p.totalG))}</div><div class="m-sub">Ganancias registradas</div></div>
+        <div class="metric"><div class="m-lbl">Total aportado</div><div class="m-val">${S} ${fmt(Math.round(p.totalAp))}</div><div class="m-sub">${p.nComp} mes${p.nComp===1?'':'es'} completo${p.nComp===1?'':'s'}</div></div>
+        <div class="metric"><div class="m-lbl">Total ganado</div><div class="m-val teal">${S} ${fmt(Math.round(p.totalG))}</div><div class="m-sub">Ganancias registradas</div></div>
         <div class="metric"><div class="m-lbl">Rendimiento real (anual)</div><div class="m-val ${realCls}">${realTxt}</div><div class="m-sub">${realSub}</div></div>
         <div class="metric"><div class="m-lbl">${p.tipo==='ahorro'?'Interés proyectado':'Rendimiento proyectado'}</div><div class="m-val gold">${p.rp>0?p.rp+'%':'—'}</div><div class="m-sub">${p.rp>0?'El que escribiste en el plan':(p.tipo==='ahorro'?'Ahorro sin interés':'No definido en el plan')}</div></div>
         ${infHtml}
@@ -5189,7 +5316,7 @@ function resCreceSerie(plans){
   if(!act.length)return [];
   const idx=k=>{const [y,m]=k.split('-').map(Number);return y*12+m-1;};
   let ini=Infinity,fin=-Infinity;
-  const mapas=act.map(p=>{const b=idx(p.fi),mp={};p.serie.forEach(x=>{mp[b+x.m]=x.saldo;ini=Math.min(ini,b+x.m);fin=Math.max(fin,b+x.m);});return mp;});
+  const mapas=act.map(p=>{const b=idx(p.fi),mp={},fx=p.fx==null?0:p.fx;p.serie.forEach(x=>{mp[b+x.m]=x.saldo*fx;ini=Math.min(ini,b+x.m);fin=Math.max(fin,b+x.m);});return mp;});
   const ult=mapas.map(()=>0),pts=[];
   for(let i=ini;i<=fin;i++){
     let t=0;mapas.forEach((mp,j)=>{if(mp[i]!=null)ult[j]=mp[i];t+=ult[j];});
@@ -5263,13 +5390,14 @@ window.addEventListener('resize',()=>{const b=document.getElementById('creceGraf
 const PATRI_COLORS=['#7FD3B8','#A69CF0','#FFB996','#8EC5F2','#F5A3C0','#FFD27A','#9FE0E6','#C9B6F2'];
 function resPatrimonio(plans){
   const el=document.getElementById('resPatri');if(!el)return;
-  const act=plans.filter(p=>p.configured);
+  // v9.0: todo en RD$; los planes en US$ se convierten con la tasa del día
+  const act=plans.filter(p=>p.configured).map(p=>Object.assign({},p,{saldoN:p.saldo,saldo:p.saldo*(p.fx==null?0:p.fx),totalAp:p.totalAp*(p.fx==null?0:p.fx),totalG:p.totalG*(p.fx==null?0:p.fx)}));
   const tS=act.reduce((s,p)=>s+p.saldo,0),tAp=act.reduce((s,p)=>s+p.totalAp,0),tG=act.reduce((s,p)=>s+p.totalG,0);
   const pos=act.filter(p=>p.saldo>0),base=pos.reduce((s,p)=>s+p.saldo,0);
   const col=p=>PATRI_COLORS[(p.n-1)%PATRI_COLORS.length];
   const nom=p=>resEsc(p.name||('Plan '+p.n));
   const bar=pos.map(p=>`<i style="width:${(p.saldo/base*100).toFixed(2)}%;background:${col(p)}" title="${nom(p)}"></i>`).join('');
-  const leg=pos.slice().sort((a,b)=>b.saldo-a.saldo).map(p=>`<div class="patri-row"><span class="dot" style="--c:${col(p)}"></span><span class="nm" title="${nom(p)}">${p.tipo==='ahorro'?'🐷':'📈'} ${nom(p)}</span><span class="am">RD$ ${fmt(Math.round(p.saldo))}</span><span class="pc">${(p.saldo/base*100).toFixed(1)}%</span></div>`).join('');
+  const leg=pos.slice().sort((a,b)=>b.saldo-a.saldo).map(p=>`<div class="patri-row"><span class="dot" style="--c:${col(p)}"></span><span class="nm" title="${nom(p)}">${p.tipo==='ahorro'?'🐷':'📈'} ${nom(p)}</span><span class="am">RD$ ${fmt(Math.round(p.saldo))}${p.mon==='USD'?`<span class="usd">US$ ${fmt(Math.round(p.saldoN))}</span>`:''}</span><span class="pc">${(p.saldo/base*100).toFixed(1)}%</span></div>`).join('');
   el.innerHTML=`<div class="patri"><div class="patri-top"><div><div class="patri-k">Tu patrimonio en metas</div><div class="patri-v">RD$ ${fmt(Math.round(tS))}</div><div class="patri-sub">Aportado <b>RD$ ${fmt(Math.round(tAp))}</b> · Ganado <b>RD$ ${fmt(Math.round(tG))}</b></div></div><button class="qr-open" type="button" onclick="qrOpen()">＋ Registrar mes</button></div>`+
     (base>0?`<div class="patri-bar" role="img" aria-label="Reparto del patrimonio entre tus planes">${bar}</div><div class="patri-leg">${leg}</div>`
            :'<div class="patri-empty">Cuando registres aportes, aquí verás cuánto tienes en total y cómo se reparte entre tus planes.</div>')+'</div>';
@@ -5329,6 +5457,7 @@ function qrFillMeses(key){
     let t=resLbl(k,true).replace(' de ',' ');t=t.charAt(0).toUpperCase()+t.slice(1);
     return `<option value="${k}">${t}${ok?' ✓':(parcial?' ⚠':'')}</option>`;}).join('');
   sel.value=(key&&ks.includes(key))?key:qrDefMes(p);
+  document.querySelectorAll('.qr-cur').forEach(e=>e.textContent=curSym(p.mon)); // v9.0
   document.getElementById('qrGL').textContent=p.tipo==='ahorro'?(qrSinInt(p)?'Interés del mes (opcional)':'Interés del mes'):'Ganancia del mes';
   qrLoad();
 }
@@ -5350,8 +5479,9 @@ function qrVal(id){const v=document.getElementById(id).value.trim().replace(/,/g
 function qrPrev(){
   const p=qrState.p;if(!p)return;const k=document.getElementById('qrMes').value;
   const sI=qrSaldoIni(p,k),ap=qrVal('qrAp');let g=qrVal('qrG');if(g==null&&ap!=null&&qrSinInt(p))g=0;
-  let h=`Saldo al empezar el mes: <b>RD$ ${fmt(sI)}</b>`;
-  if(ap!=null&&g!=null){h+=`<br>Saldo al cerrar el mes: <b>RD$ ${fmt(sI+ap+g)}</b>`;if(sI>0)h+=` · rend. anualizado <b>${(g/sI*12*100).toFixed(1)}%</b>`;}
+  const S=curSym(p.mon); // v9.0
+  let h=`Saldo al empezar el mes: <b>${S} ${fmt(sI)}</b>`;
+  if(ap!=null&&g!=null){h+=`<br>Saldo al cerrar el mes: <b>${S} ${fmt(sI+ap+g)}</b>`;if(sI>0)h+=` · rend. anualizado <b>${(g/sI*12*100).toFixed(1)}%</b>`;}
   else h+='<br>Escribe el aporte y la ganancia para ver el saldo al cerrar.';
   document.getElementById('qrPrev').innerHTML=h;
 }
@@ -5609,7 +5739,7 @@ async function gdListFiles(){
 }
 function gdResumen(){
   try{
-    return planIds().map(getPlanStats).filter(p=>p.configured).map(p=>'Plan '+p.n+': RD$ '+fmt(Math.round(p.saldo))).join(' · ').slice(0,110);
+    return planIds().map(getPlanStats).filter(p=>p.configured).map(p=>'Plan '+p.n+': '+curSym(p.mon)+' '+fmt(Math.round(p.saldo))).join(' · ').slice(0,110);
   }catch(e){return '';}
 }
 function gdFileName(){
@@ -6013,6 +6143,9 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden){loadLive(
 renderUnificado();
 try{renderResumen();}catch(e){}
 try{if(localStorage.getItem(lsKey('anTab'))==='s')anTab('s');}catch(e){}
+/* v9.0: tasa del dólar al abrir la app y al volver la conexión */
+setTimeout(()=>{try{applyPlanMonUI();tasaAsegurar();}catch(e){}},1200);
+window.addEventListener('online',()=>{try{tasaAsegurar();}catch(e){}});
 </script>
 </body>
 </html>

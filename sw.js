@@ -1,7 +1,7 @@
-/* CJ Metas — service worker (v8.7)
+/* CJ Metas — service worker (v9.0)
    Guarda la app en el dispositivo para que abra sin internet.
    NO toca tus datos: esos viven en el almacenamiento del navegador (localStorage). */
-const CACHE = 'cj-metas-v8.7';
+const CACHE = 'cj-metas-v9.0';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 // Recursos externos que la app usa: tipografías y la librería de exportar a Excel
 const EXTERNAL = [
@@ -35,6 +35,8 @@ self.addEventListener('fetch', e => {
   // Solo tipografías y la librería de Excel. Las llamadas a Google Drive e inicio de sesión NUNCA se guardan en caché.
   const isExternalAsset = ['fonts.googleapis.com', 'fonts.gstatic.com', 'cdn.jsdelivr.net'].includes(url.hostname);
   if (!sameOrigin && !isExternalAsset) return;
+  // v9.0: la tasa del dólar siempre va directo a internet (nunca de la copia guardada)
+  if (url.pathname.includes('currency-api')) return;
   // Los datos de fondos (fondos.json) siempre van directo a internet: nunca se sirven desde la copia guardada
   if (sameOrigin && /fondos\.json$/.test(url.pathname)) return;
 

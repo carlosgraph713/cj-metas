@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.1 — Ahorro e inversión</title>
+<title>CJ Metas v9.2 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2698,6 +2698,36 @@ table.trk thead th{color:#2B2645;}
 @media print{
   table.trk thead tr,[data-theme="dark"] table.trk thead tr{animation:none!important;background-position:0% 50%!important;box-shadow:none!important;}
   .qr-open,.res-plan .btn-sec{animation:none!important;}}
+/* ═══ v9.2 · Pestañas de planes: nombre arriba, ícono por tipo y un color propio por plan ═══ */
+.plan-tab-ico{flex-shrink:0;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:var(--tab-tile,var(--soft2));color:var(--tab-c1);transition:background .3s ease,color .3s ease,transform .3s ease;}
+.plan-tab-ico svg{width:25px;height:25px;display:block;}
+.plan-tab.active .plan-tab-ico{background:var(--tab-c1);color:#FFFFFF;transform:scale(1.04);}
+[data-theme="dark"] .plan-tab.active .plan-tab-ico{color:#17151F;}
+.plan-tab:not(.plan-tab-add) .plan-tab-title{font-size:15px;line-height:1.3;overflow-wrap:anywhere;}
+.plan-tab:not(.plan-tab-add) .plan-tab-sub{font-size:10.5px;font-weight:600;letter-spacing:.6px;margin-top:2px;}
+.plan-tab.active .plan-tab-title{color:var(--text);}
+.plan-tab.active .plan-tab-sub{color:var(--tab-c1);}
+.plan-tab[data-pc="1"]{--tab-c1:#1A7356;--tab-c2:#1A7356;--tab-bg-soft:#E3F5EE;--tab-tile:#CDEDE0;--tab-glow:rgba(26,115,86,.20);}
+[data-theme="dark"] .plan-tab[data-pc="1"]{--tab-c1:#8FDDC4;--tab-c2:#8FDDC4;--tab-bg-soft:rgba(143,221,196,.13);--tab-tile:rgba(143,221,196,.20);--tab-glow:rgba(143,221,196,.24);}
+.plan-tab[data-pc="2"]{--tab-c1:#4A4EB6;--tab-c2:#4A4EB6;--tab-bg-soft:#ECEBFB;--tab-tile:#DCDBF7;--tab-glow:rgba(74,78,182,.20);}
+[data-theme="dark"] .plan-tab[data-pc="2"]{--tab-c1:#C4BFFF;--tab-c2:#C4BFFF;--tab-bg-soft:rgba(196,191,255,.13);--tab-tile:rgba(196,191,255,.20);--tab-glow:rgba(196,191,255,.24);}
+.plan-tab[data-pc="3"]{--tab-c1:#8A5A0B;--tab-c2:#8A5A0B;--tab-bg-soft:#FCF0DA;--tab-tile:#F6E0B5;--tab-glow:rgba(138,90,11,.20);}
+[data-theme="dark"] .plan-tab[data-pc="3"]{--tab-c1:#FFD27A;--tab-c2:#FFD27A;--tab-bg-soft:rgba(255,210,122,.12);--tab-tile:rgba(255,210,122,.20);--tab-glow:rgba(255,210,122,.24);}
+.plan-tab[data-pc="4"]{--tab-c1:#A93A47;--tab-c2:#A93A47;--tab-bg-soft:#FCE8EA;--tab-tile:#F7D3D8;--tab-glow:rgba(169,58,71,.18);}
+[data-theme="dark"] .plan-tab[data-pc="4"]{--tab-c1:#FFB3BC;--tab-c2:#FFB3BC;--tab-bg-soft:rgba(255,179,188,.12);--tab-tile:rgba(255,179,188,.20);--tab-glow:rgba(255,179,188,.24);}
+.plan-tab[data-pc="5"]{--tab-c1:#1D5FA6;--tab-c2:#1D5FA6;--tab-bg-soft:#E4EFFC;--tab-tile:#CFE2F8;--tab-glow:rgba(29,95,166,.20);}
+[data-theme="dark"] .plan-tab[data-pc="5"]{--tab-c1:#9DC9FF;--tab-c2:#9DC9FF;--tab-bg-soft:rgba(157,201,255,.13);--tab-tile:rgba(157,201,255,.20);--tab-glow:rgba(157,201,255,.24);}
+.plan-tab[data-pc="6"]{--tab-c1:#8E3A86;--tab-c2:#8E3A86;--tab-bg-soft:#F8E7F5;--tab-tile:#F0D2EC;--tab-glow:rgba(142,58,134,.18);}
+[data-theme="dark"] .plan-tab[data-pc="6"]{--tab-c1:#F2B3E6;--tab-c2:#F2B3E6;--tab-bg-soft:rgba(242,179,230,.12);--tab-tile:rgba(242,179,230,.20);--tab-glow:rgba(242,179,230,.24);}
+.plan-tab[data-pc="7"]{--tab-c1:#0D6B77;--tab-c2:#0D6B77;--tab-bg-soft:#DFF3F5;--tab-tile:#C6E9ED;--tab-glow:rgba(13,107,119,.20);}
+[data-theme="dark"] .plan-tab[data-pc="7"]{--tab-c1:#8FE0EA;--tab-c2:#8FE0EA;--tab-bg-soft:rgba(143,224,234,.12);--tab-tile:rgba(143,224,234,.20);--tab-glow:rgba(143,224,234,.24);}
+.plan-tab[data-pc="8"]{--tab-c1:#6A3FB5;--tab-c2:#6A3FB5;--tab-bg-soft:#EFE8FB;--tab-tile:#E0D3F7;--tab-glow:rgba(106,63,181,.20);}
+[data-theme="dark"] .plan-tab[data-pc="8"]{--tab-c1:#D2BBFF;--tab-c2:#D2BBFF;--tab-bg-soft:rgba(210,187,255,.13);--tab-tile:rgba(210,187,255,.20);--tab-glow:rgba(210,187,255,.24);}
+@media(max-width:640px){
+  .plan-tab-ico{width:42px;height:42px;border-radius:13px;}
+  .plan-tab-ico svg{width:23px;height:23px;}
+}
 </style>
 </head>
 <body data-page="res">
@@ -2744,7 +2774,7 @@ table.trk thead th{color:#2B2645;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.1</span>
+      <span class="chip">Versión 9.2</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2792,7 +2822,7 @@ table.trk thead th{color:#2B2645;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.1</div>
+    <div class="ft-line ft-ver">Versión 9.2</div>
   </footer>
 </div>
 
@@ -2945,7 +2975,7 @@ table.trk thead th{color:#2B2645;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.1</div>
+    <div class="ft-line ft-ver">Versión 9.2</div>
   </footer>
 </div>
 
@@ -3091,7 +3121,7 @@ table.trk thead th{color:#2B2645;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.1</div>
+    <div class="ft-line ft-ver">Versión 9.2</div>
   </footer>
 </div>
 
@@ -3831,6 +3861,12 @@ function planIds(){return Array.from({length:planCount()},(_,i)=>i+1);}
 function planCfgN(n){try{return JSON.parse(localStorage.getItem(lsKey('afiPC_p'+n))||'{}')||{};}catch(e){return {};}}
 const PLAN_COLORS=['teal','indigo','amber'];
 const PLAN_NUM='①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳';
+/* v9.2: íconos de las pestañas de planes (trazo de línea, estilo Lucide · licencia ISC) */
+const PLAN_ICOS={
+  inversion:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><polyline points="4 15 9 10 13 13.5 20 6.5"/><polyline points="15 6.5 20 6.5 20 11.5"/></svg>',
+  ahorro:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2V5z"/><path d="M2 9v1c0 1.1.9 2 2 2h1"/><circle cx="16" cy="11" r="0.6" fill="currentColor"/></svg>',
+  usd:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M15 9.3c-.6-.9-1.7-1.4-3-1.4-1.7 0-3 .9-3 2.2 0 2.9 6 1.6 6 4.4 0 1.3-1.3 2.3-3 2.3-1.4 0-2.6-.6-3.1-1.6"/><path d="M12 6.2v1.6M12 16.8v1.6"/></svg>'
+};
 let currentPlan = parseInt(localStorage.getItem(lsKey('currentPlan')) || '1', 10);
 if (currentPlan < 1 || currentPlan > planCount()) currentPlan = 1;
 
@@ -4013,13 +4049,15 @@ function renderPlanTabs(){
   planIds().forEach(n=>{
     const c=planCfgN(n),ah=c.tipo==='ahorro';
     const b=document.createElement('button');
-    b.className='plan-tab'+(n===currentPlan?' active':'');b.dataset.plan=n;b.dataset.color=PLAN_COLORS[(n-1)%3];
+    // v9.2: un color propio por plan (8 colores que se repiten), ícono según el tipo y la moneda, y el nombre arriba
+    b.className='plan-tab'+(n===currentPlan?' active':'');b.dataset.plan=n;b.dataset.color=PLAN_COLORS[(n-1)%3];b.dataset.pc=String((n-1)%8+1);
     b.onclick=()=>switchPlan(n);
-    b.innerHTML='<span class="plan-tab-icon"></span><span class="plan-tab-text"><span class="plan-tab-title"></span><span class="plan-tab-sub"></span></span>';
-    b.querySelector('.plan-tab-icon').textContent=ah?'🐷':(PLAN_NUM[n-1]||String(n));
-    b.querySelector('.plan-tab-title').textContent='Plan '+n+' · '+(ah?'Ahorro':'Inversión')+(c.mon==='USD'?' · US$':'');
-    const nombre=(c.n||'').trim(),sub=b.querySelector('.plan-tab-sub');
-    sub.textContent=nombre||'Sin configurar';sub.title=nombre;
+    const usd=c.mon==='USD',ico=usd?'usd':(ah?'ahorro':'inversion');
+    b.innerHTML='<span class="plan-tab-ico" aria-hidden="true">'+PLAN_ICOS[ico]+'</span><span class="plan-tab-text"><span class="plan-tab-title"></span><span class="plan-tab-sub"></span></span>';
+    const nombre=(c.n||'').trim(),tit=b.querySelector('.plan-tab-title'),sub=b.querySelector('.plan-tab-sub');
+    tit.textContent=nombre||('Plan '+n+' · sin nombre');tit.title=nombre;
+    sub.textContent='Plan '+n+' · '+(ah?'Ahorro':'Inversión')+(usd?' · US$':'');
+    b.setAttribute('aria-label',(nombre?nombre+', ':'')+'plan '+n+', '+(ah?'ahorro':'inversión')+(usd?' en dólares':''));
     box.appendChild(b);
   });
   const add=document.createElement('button');add.className='plan-tab plan-tab-add';add.type='button';

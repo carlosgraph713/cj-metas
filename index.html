@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.0 — Ahorro e inversión</title>
+<title>CJ Metas v9.1 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2669,6 +2669,35 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
 .res-plan-eq{margin:2px 0 6px;}
 .patri-row .usd{display:block;font-size:10.5px;color:var(--text-dim);font-weight:500;}
 @media print{.tasa-box{display:none!important;}}
+/* ═══ v9.1 · Animaciones suaves ═══
+   1) Barra de títulos del registro mensual: degradado lavanda → menta que fluye despacio (12 s por vuelta).
+   2) Resumen: "Registrar mes" y "Abrir plan" respiran (un halo que se ilumina y se apaga, 3.6 s).
+   Se detienen solas con "reducir movimiento" del celular y no salen en el PDF. */
+@keyframes cjFluye{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+table.trk thead tr,[data-theme="light"] table.trk thead tr{
+  background:linear-gradient(100deg,#C8B9F2 0%,#A9DEC9 30%,#CDBEF5 55%,#9FD8C1 80%,#C8B9F2 100%);
+  background-size:250% 100%;animation:cjFluye 12s ease-in-out infinite;
+  box-shadow:0 6px 16px -10px rgba(74,78,182,.55);}
+table.trk thead th{color:#2B2645;}
+[data-theme="dark"] table.trk thead tr{
+  background:linear-gradient(100deg,#3B3270 0%,#1E4C40 30%,#3F3577 55%,#1C463B 80%,#3B3270 100%);
+  background-size:250% 100%;animation:cjFluye 12s ease-in-out infinite;
+  box-shadow:0 6px 18px -10px rgba(0,0,0,.7);}
+[data-theme="dark"] table.trk thead th{color:#EAE6FF;}
+@keyframes cjRespira{
+  0%,100%{box-shadow:0 6px 16px -10px rgba(60,50,120,.55),0 0 0 0 rgba(140,116,219,0);transform:scale(1);}
+  50%{box-shadow:0 8px 22px -8px rgba(60,50,120,.5),0 0 0 7px rgba(140,116,219,.22);transform:scale(1.025);}}
+@keyframes cjRespiraO{
+  0%,100%{box-shadow:0 6px 16px -10px rgba(0,0,0,.6),0 0 0 0 rgba(196,191,255,0);transform:scale(1);}
+  50%{box-shadow:0 8px 22px -8px rgba(0,0,0,.55),0 0 0 7px rgba(196,191,255,.24);transform:scale(1.025);}}
+.qr-open,.res-plan .btn-sec{animation:cjRespira 3.6s ease-in-out infinite;will-change:transform;}
+[data-theme="dark"] .qr-open,[data-theme="dark"] .res-plan .btn-sec{animation-name:cjRespiraO;}
+.qr-open:hover,.res-plan .btn-sec:hover,.qr-open:focus-visible,.res-plan .btn-sec:focus-visible{animation-play-state:paused;}
+@media (prefers-reduced-motion:reduce){
+  table.trk thead tr,[data-theme="dark"] table.trk thead tr,.qr-open,.res-plan .btn-sec{animation:none!important;}}
+@media print{
+  table.trk thead tr,[data-theme="dark"] table.trk thead tr{animation:none!important;background-position:0% 50%!important;box-shadow:none!important;}
+  .qr-open,.res-plan .btn-sec{animation:none!important;}}
 </style>
 </head>
 <body data-page="res">
@@ -2715,7 +2744,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.0</span>
+      <span class="chip">Versión 9.1</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2763,7 +2792,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.0</div>
+    <div class="ft-line ft-ver">Versión 9.1</div>
   </footer>
 </div>
 
@@ -2916,7 +2945,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.0</div>
+    <div class="ft-line ft-ver">Versión 9.1</div>
   </footer>
 </div>
 
@@ -3062,7 +3091,7 @@ table.trk tbody tr.yr-sum td{border-color:#A9C8EE;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.0</div>
+    <div class="ft-line ft-ver">Versión 9.1</div>
   </footer>
 </div>
 

@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.5 — Ahorro e inversión</title>
+<title>CJ Metas v9.6 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2775,6 +2775,37 @@ table.trk thead tr{position:static!important;}
 .trk-flot table.trk{border-spacing:0!important;table-layout:fixed;margin:0;min-width:0!important;will-change:transform;}
 .trk-flot th{box-sizing:border-box;}
 @media print{.trk-flot{display:none!important;}}
+/* ═══ v9.6 · Vista compacta: la tabla ocupa justo el ancho de la pantalla ═══
+   Antes medía al menos 430 px y en el celular se salía por la derecha (las filas quedaban cortadas).
+   Ahora se ajusta al ancho: el mes va en dos líneas (mes arriba, año abajo) y los campos se estrechan.
+   Si una pantalla es muy angosta, la tabla todavía se puede deslizar de lado como antes. */
+@media(max-width:720px){
+  table.trk.compact{min-width:0;width:100%;}
+  table.trk.compact td,table.trk.compact th{padding-left:4px;padding-right:4px;}
+  table.trk.compact td:first-child,table.trk.compact th:first-child{padding-left:10px;}
+  table.trk.compact td:nth-child(8),table.trk.compact th:nth-child(8){padding-right:10px;}
+  table.trk.compact tbody tr:not(.yr-sum) .mon-lbl{white-space:normal;display:block;width:min-content;line-height:1.25;font-size:10.5px;}
+  table.trk.compact .ii.ii{min-width:68px;width:100%;padding:5px 6px;font-size:12px;}
+  table.trk.compact td:nth-child(7){font-size:10.5px;}
+  table.trk.compact td:nth-child(8){font-size:10.5px;}
+  /* La columna 9 (Crecimiento) está oculta: el borde y la esquina redondeada de la derecha pasan a la 8 (Saldo final) */
+  table.trk.compact tbody tr:not(.empty-state) td:nth-child(8){border-right:1px solid var(--border);border-radius:0 12px 12px 0;}
+  table.trk.compact tbody tr.yr-sum td:nth-child(8){border-right:1.5px solid #A9C8EE;}
+  [data-theme="dark"] table.trk.compact tbody tr.yr-sum td:nth-child(8){border-right-color:#35517A;}
+  table.trk.compact thead th:nth-child(8){border-radius:0 12px 12px 0;}
+}
+@media(max-width:380px){
+  table.trk.compact td,table.trk.compact th{padding-left:3px;padding-right:3px;}
+  table.trk.compact td:first-child,table.trk.compact th:first-child{padding-left:9px;}
+  table.trk.compact td:nth-child(8),table.trk.compact th:nth-child(8){padding-right:8px;}
+  table.trk.compact .ii.ii{min-width:60px;padding:5px 4px;font-size:11px;}
+  table.trk.compact td:nth-child(7),table.trk.compact td:nth-child(8){font-size:10px;}
+  table.trk.compact tbody tr:not(.yr-sum) .mon-lbl{font-size:10px;}
+}
+@media(max-width:340px){
+  .tbl-scroll.compact-on{margin-left:-8px;margin-right:-8px;}
+  table.trk.compact .ii.ii{font-size:10.5px;padding:5px 3px;}
+}
 </style>
 </head>
 <body data-page="res">
@@ -2821,7 +2852,7 @@ table.trk thead tr{position:static!important;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.5</span>
+      <span class="chip">Versión 9.6</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2869,7 +2900,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.5</div>
+    <div class="ft-line ft-ver">Versión 9.6</div>
   </footer>
 </div>
 
@@ -3022,7 +3053,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.5</div>
+    <div class="ft-line ft-ver">Versión 9.6</div>
   </footer>
 </div>
 
@@ -3168,7 +3199,7 @@ table.trk thead tr{position:static!important;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.5</div>
+    <div class="ft-line ft-ver">Versión 9.6</div>
   </footer>
 </div>
 

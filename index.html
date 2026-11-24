@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="CJ Metas">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzVEQjQ5MSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiM4Qzc0REIiLz48cmVjdCB4PSI3NCIgeT0iNCIgd2lkdGg9IjgiIGhlaWdodD0iMjgiIHJ4PSI0IiBmaWxsPSIjMkIyNjQ1Ii8+PHBvbHlnb24gcG9pbnRzPSI4Miw1IDEwOCwxNiA4MiwyNyIgZmlsbD0iI0UzQjE1RiIvPjwvc3ZnPg==">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>CJ Metas v9.4 — Ahorro e inversión</title>
+<title>CJ Metas v9.5 — Ahorro e inversión</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
 <style>
@@ -2768,6 +2768,13 @@ table.trk tbody td[id^="cR_"]{font-weight:600;}
 @media print{
   table.trk tbody tr.filled:not(.yr-sum) td:first-child,table.trk tbody tr.filled-down:not(.yr-sum) td:first-child{box-shadow:none;}
 }
+/* ═══ v9.5 · Barra de títulos del registro que se queda visible al bajar ═══ */
+table.trk thead tr{position:static!important;}
+.trk-flot{position:fixed;z-index:150;overflow:hidden;display:none;pointer-events:none;padding-bottom:14px;}
+.trk-flot.on{display:block;}
+.trk-flot table.trk{border-spacing:0!important;table-layout:fixed;margin:0;min-width:0!important;will-change:transform;}
+.trk-flot th{box-sizing:border-box;}
+@media print{.trk-flot{display:none!important;}}
 </style>
 </head>
 <body data-page="res">
@@ -2814,7 +2821,7 @@ table.trk tbody td[id^="cR_"]{font-weight:600;}
     <div class="hero-chips fi">
       <span class="chip green">🧭 Resumen general</span>
       <span class="chip">Todos tus planes en una sola vista</span>
-      <span class="chip">Versión 9.4</span>
+      <span class="chip">Versión 9.5</span>
     </div>
     <div class="hero-title-row fi2"><h1 class="hero-title">Resumen <span class="hl">General</span></h1><img class="hero-logo" alt="Logo CJ Metas" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAgMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgcng9IjI4LjgiIGZpbGw9IiNGMUVDRkMiLz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxNC44MjkgMTkuMjAwKSBzY2FsZSgwLjcyODYpIj48Y2lyY2xlIGN4PSIyNCIgY3k9IjM0IiByPSIxMSIgZmlsbD0iI0VEQzI3QyIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzQiIHI9IjciIGZpbGw9IiNGOEU3QzIiLz48cG9seWdvbiBwb2ludHM9IjYsMTA0IDQyLDU2IDc4LDEwNCIgZmlsbD0iIzdDQzZBQSIvPjxwb2x5Z29uIHBvaW50cz0iMzgsMTA0IDc4LDMwIDExOCwxMDQiIGZpbGw9IiNDOEI5RjIiLz48cG9seWdvbiBwb2ludHM9Ijc4LDMwIDExOCwxMDQgOTIsMTA0IiBmaWxsPSIjQTQ4RkUzIi8+PHJlY3QgeD0iNzYuNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMjQiIHJ4PSIxLjUiIGZpbGw9IiMyQjI2NDUiLz48cG9seWdvbiBwb2ludHM9Ijc5LjUsOSAxMDEsMTUuNSA3OS41LDIyIiBmaWxsPSIjRURDMjdDIi8+PC9nPjwvc3ZnPg=="></div>
     <p class="hero-sub fi3">Cuánto has aportado, cuánto has ganado y qué tan cerca estás de cada meta, calculado con lo que has registrado en tus planes.</p>
@@ -2862,7 +2869,7 @@ table.trk tbody td[id^="cR_"]{font-weight:600;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.4</div>
+    <div class="ft-line ft-ver">Versión 9.5</div>
   </footer>
 </div>
 
@@ -3015,7 +3022,7 @@ table.trk tbody td[id^="cR_"]{font-weight:600;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.4</div>
+    <div class="ft-line ft-ver">Versión 9.5</div>
   </footer>
 </div>
 
@@ -3161,7 +3168,7 @@ table.trk tbody td[id^="cR_"]{font-weight:600;}
     <div class="ft-line"><strong>Autor:</strong> Carlos Jorge</div>
     <div class="ft-line"><strong>Correo:</strong> <a href="mailto:carlosgraph7@gmail.com">carlosgraph7@gmail.com</a></div>
     <div class="ft-line">Santiago, R.D.</div>
-    <div class="ft-line ft-ver">Versión 9.4</div>
+    <div class="ft-line ft-ver">Versión 9.5</div>
   </footer>
 </div>
 
@@ -6254,6 +6261,45 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden){loadLive(
 renderUnificado();
 try{renderResumen();}catch(e){}
 try{if(localStorage.getItem(lsKey('anTab'))==='s')anTab('s');}catch(e){}
+/* v9.5: BARRA DE TÍTULOS FIJA EN EL REGISTRO MENSUAL
+   La tabla se puede deslizar de lado en el celular, y eso impide que el navegador fije su encabezado.
+   Por eso, al bajar, se muestra una copia exacta de la barra (mismas columnas, anchos y animación)
+   pegada debajo del menú de arriba, y se desliza de lado junto con la tabla. */
+(function(){
+  let flot=null,tablaF=null,firma='',pend=false;
+  function crear(){flot=document.createElement('div');flot.id='trkFlot';flot.className='trk-flot';flot.setAttribute('aria-hidden','true');document.body.appendChild(flot);}
+  function copiar(tbl){
+    const thead=tbl.tHead,h=thead.cloneNode(true);
+    h.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+    tablaF=document.createElement('table');tablaF.className=tbl.className;tablaF.style.width=tbl.offsetWidth+'px';
+    tablaF.appendChild(h);
+    const o=thead.rows[0].cells,c=h.rows[0].cells;
+    for(let i=0;i<o.length&&i<c.length;i++){const w=o[i].getBoundingClientRect().width;c[i].style.width=c[i].style.minWidth=c[i].style.maxWidth=w+'px';}
+    flot.innerHTML='';flot.appendChild(tablaF);
+  }
+  function act(){
+    if(!flot)crear();
+    const tbl=document.getElementById('trkTbl'),sc=document.getElementById('trkScroll'),pg=document.getElementById('pg-plan');
+    const ok=tbl&&sc&&tbl.tHead&&tbl.tHead.rows.length&&pg&&pg.classList.contains('active')&&!document.body.classList.contains('print-plan');
+    if(!ok){flot.classList.remove('on');return;}
+    const nav=document.querySelector('nav'),top=nav?Math.max(0,nav.getBoundingClientRect().bottom):0;
+    const th=tbl.tHead.getBoundingClientRect(),tb=tbl.getBoundingClientRect();
+    if(!(th.height>0&&th.top<top&&tb.bottom-th.height-30>top)){flot.classList.remove('on');return;}
+    const f=tbl.className+'|'+tbl.tHead.innerHTML+'|'+tbl.offsetWidth+'|'+window.innerWidth;
+    if(f!==firma||!tablaF){copiar(tbl);firma=f;}
+    const r=sc.getBoundingClientRect();
+    flot.style.top=top+'px';flot.style.left=r.left+'px';flot.style.width=r.width+'px';
+    tablaF.style.transform='translateX('+(tb.left-r.left)+'px)';
+    flot.classList.add('on');
+  }
+  function pedir(){if(pend)return;pend=true;requestAnimationFrame(()=>{pend=false;try{act();}catch(e){}});}
+  window.addEventListener('scroll',pedir,{passive:true});
+  window.addEventListener('resize',()=>{firma='';pedir();});
+  document.addEventListener('scroll',e=>{if(e.target&&e.target.id==='trkScroll')pedir();},{capture:true,passive:true});
+  document.addEventListener('click',()=>setTimeout(()=>{firma='';pedir();},80),true);
+  window.trkFlotActualizar=()=>{firma='';pedir();};
+})();
+
 /* v9.0: tasa del dólar al abrir la app y al volver la conexión */
 setTimeout(()=>{try{applyPlanMonUI();tasaAsegurar();}catch(e){}},1200);
 window.addEventListener('online',()=>{try{tasaAsegurar();}catch(e){}});

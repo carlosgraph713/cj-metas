@@ -1,5 +1,5 @@
 {
- "actualizado": "2026-11-26T04:10:58Z",
+ "actualizado": "2026-11-26T20:12:31Z",
  "fuente": "Informes públicos de cada administradora (BHD Fondos: Información Diaria; Alcanza/AFP Siembra: página principal)",
  "fuente_url": "https://bhdfondos.com.do/",
  "nota": "Rentabilidades anualizadas publicadas por la administradora.",
@@ -22,7 +22,7 @@
    "r180": null,
    "r365": 8.19,
    "nota": "Plan de Ahorro Complementario de AFP Siembra (regulado por la SIPEN). La pagina no aclara si la cifra es antes o despues de la comision anual de 2%.",
-   "leido": "2026-11-26T04:10:58Z",
+   "leido": "2026-11-26T20:12:31Z",
    "ok": true,
    "error": null
   },
@@ -40,7 +40,7 @@
    "r90": 8.63,
    "r180": 8.74,
    "r365": 8.57,
-   "leido": "2026-11-26T04:10:58Z",
+   "leido": "2026-11-26T20:12:31Z",
    "ok": true,
    "error": null
   },
@@ -58,7 +58,7 @@
    "r90": 8.11,
    "r180": 8.37,
    "r365": 8.64,
-   "leido": "2026-11-26T04:10:58Z",
+   "leido": "2026-11-26T20:12:31Z",
    "ok": true,
    "error": null
   },
@@ -76,7 +76,7 @@
    "r90": 8.78,
    "r180": 8.66,
    "r365": 8.36,
-   "leido": "2026-11-26T04:10:58Z",
+   "leido": "2026-11-26T20:12:31Z",
    "ok": true,
    "error": null
   },
@@ -94,7 +94,7 @@
    "r90": 7.5,
    "r180": 7.84,
    "r365": 7.74,
-   "leido": "2026-11-26T04:10:58Z",
+   "leido": "2026-11-26T20:12:31Z",
    "ok": true,
    "error": null
   },
@@ -112,7 +112,7 @@
    "r90": 2.28,
    "r180": 2.18,
    "r365": 15.56,
-   "leido": "2026-11-26T04:10:58Z",
+   "leido": "2026-11-26T20:12:31Z",
    "ok": true,
    "error": null
   }

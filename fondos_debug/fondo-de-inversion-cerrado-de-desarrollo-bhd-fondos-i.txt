@@ -1,25 +1,25 @@
-https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-Fondo-de-FICD-BHD-Fondos-I-1.pdf
+https://bhdfondos.com.do/wp-content/uploads/bsk-pdf-manager/2026/11/Informacion-Diaria-Fondo-de-FICD-BHD-Fondos-I.pdf
 
 InformeDiario
-24 de noviembre de 2026
+25 de noviembre de 2026
 DATOS GENERALES
 Nombre del fondo Tipo de fondo
 Fondo De Inversion Cerrado De Desarrollo BHD Fondos I Fondo de Inversión Cerrado
 Administrador del fondo No. de registro SIMV Moneda de Inversión Benchmark TIAP +5 años
 Natalia Ruiz Garcia SIVFIC-053 Dólar Estadounidense 6.81%
-Rentabilidad de 2.00% US$ 1,329.116842 US$ 116,308,356.63
+Rentabilidad de 2.00% US$ 1,329.185829 US$ 116,314,393.54
 Últimos:
 Comisión por administración Valor de la cuota del día Valor del fondo
 30días 1.97%
-1 junio de 2022 1 junio de 2042 US$ 1,329.047847 8
+1 junio de 2022 1 junio de 2042 US$ 1,329.116842 8
 Valor de la cuota del día anterior Número de aportantes
 Fecha de constitución Fecha de vencimiento
-90días 2.29%
-180días 2.18% CEVALDOM 765 87,508
+90días 2.28%
+180días 2.18% CEVALDOM 764 87,508
 Custodio de valores Duración del portafolio Cantidad de cuotas emitidas
-365 días 15.57%
+365 días 15.56%
 PriceWaterhouseCoopers BBB+fa Feller Rate
-Inicio 7.37% Firma de auditoría Calificación de riesgo Calificadora de riesgo
+Inicio 7.36% Firma de auditoría Calificación de riesgo Calificadora de riesgo
 COMPOSICIÓN DEL PORTAFOLIO
 Sector Económico Instrumento
 Prestamo Inversión 1.84%
@@ -27,12 +27,11 @@ Turismo 99.99%
 Acciones 98.16%
 EVOLUCIÓN VALOR CUOTA Y COMPARACIÓN CON BENCHAMARK
 Evolución Valor Cuota Comparación con Benchmark
-1,329.1
+1,329.2 Jun-23
 1,327.4
-Jun-23
-1,324.3
+1,324.3 BENCHMARK 6.81%
 1,322.1
-1,319.8 BENCHMARK 6.81%
+1,319.8
 1,317.4
 RENTABILIDAD 3.73%
 Jun-26 Jul-26 Aug-26 Sep-26 Oct-26 Nov-26
